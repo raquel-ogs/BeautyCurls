@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Sofia&display=swap');
+
+:root {
+    --pink: #FF5E81;
+    --pink-25: rgba(255, 94, 129, 0.25);
+    --light-pink: #F6E6EB;
+    --background: #F5EDF0;
+    --dark-pink: #703D57;
+    --dark-pink-70: rgba(112, 61, 87, 0.7);
+    --dark-pink-65: rgba(112, 61, 87, 0.65);
+    --dark-pink-50: rgba(112, 61, 87, 0.5);
+    --text-info: rgba(0, 0, 0, 0.5);
+    --text-button: #fff;
+}
+
+* {
+    font-family: 'Sofia';
+    margin: 0;
+    padding: 0;
+    scroll-behavior: auto;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    width: 0.3vw;
+    height: 0.1vh;
+}
+
+body::-webkit-scrollbar-track {
+    padding: 2px;
+    background: var(--dark-pink-50);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--pink);
+    border-radius: 2rem;
+}
+
+header {
+    width: 100%;
+}
+
+header nav {
+    background-color: var(--light-pink);
+    color: var(--pink);
+    width: 100%;
+    height: 12vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header nav .logo {
+    width: fit-content;
+}
+
+header nav .logo img {
+    width: 12vw;
+}
+
+header nav .nav-list {
+    width: 55%;
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+}
+
+header nav .nav-list .nav-item a {
+    text-shadow: 0px 3px 4px var(--pink-25);
+}
+
+header nav .nav-list .nav-item a, header nav .button .btn-stroke {
+    font-family: 'Arvo';
+    font-size: 0.9vw;
+}
+
+header nav .nav-list .nav-item a:hover {
+    font-weight: 600;
+}
+
+header nav .button .btn-stroke {
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--pink);
+    width: 7.5vw;
+    height: 5vh;
+    border: 0.2vw solid var(--pink);
+    border-radius: 100vw;
+    font-size: 1vw;
+    box-shadow: 0px 7px 4px var(--pink-25);
+    transition: all 0.3s ease-in;
+}
+
+header nav .button .btn-stroke:hover {
+    background-color: var(--pink);
+    color: var(--text-button);
+}
+
+main {
+    width: 100%;
+}
+
+main .home {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(255, 94, 129, 0.05) 0%, rgba(255, 94, 129, 0) 100%);
+}
+
+main .home .background-wave {
+    position: absolute;
+    width: 100%;
+    height: 38vw;
+    background-image: url('./../assets/vector-home.svg');
+    background-position: 10%;
+    background-size: cover;
+}
+
+main .home .content {
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main .home .content .text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5vh;
+}
+
+main .home .content .text h1 {
+    width: 75%;
+    color: var(--dark-pink);
+    font-family: 'Arvo';
+    font-weight: 400;
+    font-size: 4.5vw;
+    line-height: 10vh;
+}
+
+main .home .content .text h1 .text-bold {
+    font-family: 'Arvo';
+    font-weight: 600;
+    color: var(--dark-pink-50);
+}
+
+main .home .content .text .btn-background {
+    cursor: pointer;
+    background-color: var(--pink);
+    color: var(--text-button);
+    width: 10vw;
+    height: 5vh;
+    border: 0.2vw solid var(--pink);
+    border-radius: 100vw;
+    font-family: 'Arvo';
+    font-size: 0.9vw;
+    box-shadow: 0px 7px 4px var(--pink-25);
+    transition: 0.3s ease-in;
+}
+
+main .home .content .text .btn-background:hover {
+    background-color: transparent;
+    color: var(--pink);
+    border-radius: 100vw;
+}
+
+main .home .content .image {
+    position: relative;
+}
+
+main .home .content .image img {
+    width: 28vw;
+}
+
+main .whoWeAre {
+    position: relative;
+    background-image: url('./../assets/vector-who-we-are.svg');
+    background-position: top;
+    background-size: cover;
+    padding-top: 7vw;
+    width: 100%;
+    height: 73vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .whoWeAre .content {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 3vh;
+}
+
+main .whoWeAre .content .text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .whoWeAre .content .text p {
+    margin-top: 3vh;
+    width: 60%;
+    font-family: 'Poppins';
+    font-size: 1.3vw;
+    text-align: justify;
+}
+
+main .aboutUs .background-wave {
+    position: absolute;
+    width: 100%;
+    height: 38vw;
+    background-image: url('./../assets/vector-about-us.svg');
+    background-position: 10%;
+    background-size: cover;
+}
+
+a{
+    color: var(--pink);
+    text-decoration: none;
+}
+
+.title{
+    font-weight: 400;
+    font-size: 2.5vw;
+    font-family: 'Arvo';
+    color: var(--dark-pink);
+}
