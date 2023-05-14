@@ -3,9 +3,11 @@
 :root {
     --pink: #FF5E81;
     --pink-25: rgba(255, 94, 129, 0.25);
+    --pink-10: rgba(255, 94, 129, 0.1);
     --light-pink: #F6E6EB;
     --background: #F5EDF0;
     --dark-pink: #703D57;
+    --dark-pink-90: rgba(112, 61, 87, 0.9);
     --dark-pink-70: rgba(112, 61, 87, 0.7);
     --dark-pink-65: rgba(112, 61, 87, 0.65);
     --dark-pink-50: rgba(112, 61, 87, 0.5);
@@ -86,24 +88,6 @@ header nav .nav-list .nav-item a:hover {
     font-weight: 600;
 }
 
-header nav .button .btn-stroke {
-    background-color: transparent;
-    cursor: pointer;
-    color: var(--pink);
-    width: 7.5vw;
-    height: 5vh;
-    border: 0.2vw solid var(--pink);
-    border-radius: 100vw;
-    font-size: 1vw;
-    box-shadow: 0px 7px 4px var(--pink-25);
-    transition: all 0.3s ease-in;
-}
-
-header nav .button .btn-stroke:hover {
-    background-color: var(--pink);
-    color: var(--text-button);
-}
-
 main {
     width: 100%;
 }
@@ -154,26 +138,6 @@ main .home .content .text h1 .text-bold {
     color: var(--dark-pink-50);
 }
 
-main .home .content .text .btn-background {
-    cursor: pointer;
-    background-color: var(--pink);
-    color: var(--text-button);
-    width: 10vw;
-    height: 5vh;
-    border: 0.2vw solid var(--pink);
-    border-radius: 100vw;
-    font-family: 'Arvo';
-    font-size: 0.9vw;
-    box-shadow: 0px 7px 4px var(--pink-25);
-    transition: 0.3s ease-in;
-}
-
-main .home .content .text .btn-background:hover {
-    background-color: transparent;
-    color: var(--pink);
-    border-radius: 100vw;
-}
-
 main .home .content .image {
     position: relative;
 }
@@ -218,6 +182,13 @@ main .whoWeAre .content .text p {
     text-align: justify;
 }
 
+main .aboutUs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 main .aboutUs .background-wave {
     position: absolute;
     width: 100%;
@@ -227,9 +198,422 @@ main .aboutUs .background-wave {
     background-size: cover;
 }
 
+main .aboutUs .content{
+    position: relative;
+    margin-top: 20vh;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10vh;
+}
+
+main .aboutUs .informations{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main .aboutUs .informations .text-informations{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+}
+
+main .aboutUs .informations .text-informations h3{
+    font-size: 1.3vw;
+    color: var(--pink);
+    text-shadow: 0px 4px 4px var(--pink-25);
+}
+
+main .aboutUs .informations .text-informations .text, main .aboutUs .informations .text-informations .text b{
+    width: 75%;
+    font-family: 'Poppins';
+    font-size: 1vw;
+    line-height: 3.5vh;
+    color: var(--text-info);
+    text-align: justify;
+}
+
+main .aboutUs .informations .icons-media{
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .aboutUs .informations .icons-media .icon{
+    background: linear-gradient(90.11deg, #FF5E81 -0.84%, rgba(255, 0, 55, 0.21) 97.72%);
+    color: var(--text-button);
+    width: 2.5vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vw;
+    border: none;
+    border-radius: 1vw 0vw 1vw 1vw;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 15px var(--pink-25);
+    transition: 0.5s ease-out;
+}
+
+main .aboutUs .informations .icons-media .icon:hover{
+    background-color: #FF5E81;
+}
+
+main .aboutUs .informations .image img{
+    width: 23vw;
+    height: inherit;
+    border: 2px solid var(--pink-25);
+    border-radius: 6vw;
+    box-sizing: border-box;
+    box-shadow: 25px 25px 15px var(--pink-25);
+}
+
+main .ourBlog{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .background-flower {
+    margin-top: 20vh;
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    background-image: url('./../assets/vector-our-blog.svg');
+    background-size: cover;
+
+}
+
+main .background-flower img{
+    position: absolute;
+    width: 20%;
+    margin-left: -10%;
+    margin-top: -5%;
+}
+
+main .ourBlog .content{
+    position: relative;
+    margin-top: 20vh;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10vh;
+}
+
+main .ourBlog .informations{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main .ourBlog .informations .image{
+    width: 60%;
+}
+
+main .ourBlog .informations .image img{
+    width: 25vw;
+    height: inherit;
+    border: 2px solid var(--pink-25);
+    border-radius: 6vw;
+    box-sizing: border-box;
+    box-shadow: 25px 25px 15px var(--pink-25);
+}
+
+main .ourBlog .informations .text-informations{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+}
+
+main .ourBlog .informations .text-informations h3{
+    font-size: 1.3vw;
+    color: var(--pink);
+    text-shadow: 0px 4px 4px var(--pink-25);
+}
+
+main .ourBlog .informations .text-informations .text, main .ourBlog .informations .text-informations .text b{
+    width: 85%;
+    font-family: 'Poppins';
+    font-size: 1vw;
+    line-height: 3.5vh;
+    color: var(--text-info);
+    text-align: justify;
+}
+
+main .contact{
+    margin-top: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main .contact .content{
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5vh;
+}
+
+main .contact .content form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+}
+
+main .contact .content form {
+    width: 100%;
+    display: flex;
+}
+
+main .contact .content form h3{
+    font-size: 1.2VW;
+    color: var(--pink);
+    text-shadow: 0px 4px 5px var(--pink-25);
+
+}
+
+main .contact .content form input{
+    height: 5vh;
+    padding-left: 1.5vw;
+}
+
+main .contact .content form input, textarea{
+    background-color: transparent;
+    font-size: 0.8vw;
+    font-family: 'Arvo';
+    border: 0.3vh solid var(--dark-pink-90);
+    border-radius: 3vh;
+    box-shadow: 0px 7px 4px var(--dark-pink-25);
+    color: var(--dark-pink);
+}
+
+main .contact .content form input::-webkit-input-placeholder, textarea::-webkit-input-placeholder{
+    color: var(--dark-pink-65);
+}
+
+main .contact .content form .row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+main .contact .content form .row .row-item{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2vh;
+}
+
+main .contact .content form .row .row-item input{
+    width: 95%;
+}
+
+main .contact .content form .form-item{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2vh;
+}
+
+main .contact form .form-item textarea{
+    width: 95%;
+    height: 13vh;
+    text-align: justify;
+    line-height: 3vh;
+    padding: 3vh 3vh 1.5vw 1.5vw;
+}
+
+footer {
+    margin-top: 5vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+footer .background-wave-footer {
+    position: absolute;
+    width: 120%;
+    height: 67%;
+    background-image: url('./../assets/vector-footer.svg');
+    background-size: cover;
+    margin-left: -10%;
+}
+
+footer .container{
+    margin-top: 20vh;
+    position: relative;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 15vh;
+}
+
+footer .container .content{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+footer .container .content .social{
+    width: 65%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+}
+
+footer .container .content .social .logo img{
+    width: 25vw;
+}
+
+footer .container .content .social .text, footer .container .content .social .text b{
+    color: var(--dark-pink);
+    font-family: 'Arvo';
+    font-size: 0.9vw;
+    -webkit-text-stroke: 0.3px;
+}
+
+footer .container .content .social .text b{
+    -webkit-text-stroke: 0.5px;
+    color: var(--dark-pink-70);
+}
+
+footer .container .content .social .icons-media{
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .container .content .social .icons-media .icon{
+    background: linear-gradient(90.11deg, #FF5E81 -0.84%, rgba(255, 0, 55, 0.21) 97.72%);
+    color: var(--text-button);
+    width: 2.2vw;
+    height: 4.4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.35vw;
+    border: none;
+    border-radius: 2vw;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 15px var(--pink-25);
+    transition: 0.5s ease-out;
+}
+
+footer .container .content .social .icons-media .icon:hover{
+    background-color: #FF5E81;
+}
+
+footer .container .content .informations{
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+footer .container .content .informations .navegation, footer .container .content .contact{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2vh;
+    align-items: flex-start;
+}
+
+footer .container .content .informations .navegation h3, footer .container .content .contact h3{
+    color: var(--pink);
+    font-size: 1.2vw;
+    letter-spacing: 0.1rem;
+    text-shadow: 0px 4px 4px var(--pink-25);
+}
+
+footer .container .content .informations .navegation .list .list-item a, footer .container .content .informations .contact a{
+    color: var(--dark-pink);
+    font-family: 'Arvo';
+    font-size: 0.9vw;
+    line-height: 4vh;
+    transition: 0.3s linear;
+}
+
+footer .container .content .informations .navegation .list .list-item a:hover, footer .container .content .informations .contact a:hover{
+    -webkit-text-stroke: 0.5px;
+}
+
+footer .container .content .informations .navegation .list{
+    list-style: none;
+}
+
+footer .container .copyright h3{
+    color: var(--pink);
+    text-align: center;
+    font-size: 1vw;
+    -webkit-text-stroke: 0px;
+}
+
 a{
     color: var(--pink);
     text-decoration: none;
+}
+
+h3, h4, h5{
+    -webkit-text-stroke-width: 0.03vw;
+    letter-spacing: 0.08vw;
+}
+
+textarea{
+    resize: none;
+}
+
+.btn-stroke {
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--pink);
+    width: 7.5vw;
+    height: 5vh;
+    border: 0.2vw solid var(--pink);
+    border-radius: 100vw;
+    font-size: 1vw;
+    box-shadow: 0px 7px 4px var(--pink-25);
+    transition: all 0.3s ease-in;
+}
+
+.btn-stroke:hover {
+    background-color: var(--pink);
+    color: var(--text-button);
+}
+
+.btn-background {
+    cursor: pointer;
+    background-color: var(--pink);
+    color: var(--text-button);
+    width: 10vw;
+    height: 5vh;
+    border: 0.2vw solid var(--pink);
+    border-radius: 100vw;
+    font-family: 'Arvo';
+    font-size: 0.9vw;
+    box-shadow: 0px 7px 4px var(--pink-25);
+    transition: 0.3s ease-in;
+}
+
+ .btn-background:hover {
+    background-color: transparent;
+    color: var(--pink);
+    border-radius: 100vw;
 }
 
 .title{
@@ -237,4 +621,5 @@ a{
     font-size: 2.5vw;
     font-family: 'Arvo';
     color: var(--dark-pink);
+    text-align: center;
 }

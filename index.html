@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="assets/imagotipo.svg" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title> BeautyCurls, onde seus cachos ganham vida! </title>
 </head>
+
 <body>
-    <header>
+    <header id="home">
         <nav>
             <div class="logo">
                 <a href="#home">
@@ -23,7 +28,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#abouUs">
+                    <a href="#aboutUs">
                         sobre nós
                     </a>
                 </li>
@@ -49,7 +54,7 @@
         </nav>
     </header>
     <main>
-        <section class="home" id="home">
+        <section class="home">
             <div class="background-wave"></div>
             <div class="content">
                 <div class="text">
@@ -83,25 +88,167 @@
         </section>
         <section class="aboutUs" id="aboutUs">
             <div class="background-wave"></div>
+            <div class="content">
+                <h1 class="title"> Sobre nós </h1>
+                <div class="informations">
+                    <div class="text-informations">
+                        <h3> O início de tudo </h3>
+                        <div class="text">
+                            A BeautyCurls foi <b>criada</b> e é <b>gerenciada</b> por Raquel de Oliveira, uma
+                            paulistana que ama o
+                            mundo dos <b>cachos</b>. Ela se interessou pelo tema no dia 27 de setembro de 2018,
+                            quando <b>iniciou</b>
+                            sua transição capilar, depois de viver quase 5 anos alisando o cabelo com química.
+                        </div>
+                        <div class="icons-media">
+                            <a class="icon" href="https://github.com/raquel-ogs">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a class="icon" href="https://www.linkedin.com/in/raquel-oliveira-b5bb111b4/">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                            <a class="icon" href="https://www.instagram.com/raquel_ogs/">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="image">
+                        <img src="./assets/raquel-about-us.svg">
+                    </div>
+                </div>
         </section>
+        <div class="background-flower">
+            <img src="./assets/vector-2-our-blog.svg" class="vector">
+        </div>
         <section class="ourBlog" id="ourBlog">
-            
+            <div class="content">
+                <h1 class="title"> Nosso blog </h1>
+                <div class="informations">
+                    <div class="image">
+                        <img src="./assets/beautycurls-our-blog.svg">
+                    </div>
+                    <div class="text-informations">
+                        <h3> BeautyCurls </h3>
+                        <div class="text">
+                            A <b> BeautyCurls </b> surgiu com o intuito de ajudar homens e mulheres que iniciaram a <b>
+                            transição </b> capilar, fornecendo receitas, dicas de produtos e penteados para cabelos cacheado.
+                            O blog é disponibilizado para todos que tenham cadastro na <b>BeautyCurls</b>.
+                        </div>
+                    
+                        <div class="button-sign-in">
+                            <a href="./cadastro.html">
+                                <button class="btn-background"> Obter acesso </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="contact" id="contact">
-            
+            <div class="content">
+                <h1 class="title"> Contato </h1>
+                <form>
+                    <div class="row">
+                        <div class="row-item">
+                            <h3> Nome </h3>
+                            <input type="text" id="input_nome" placeholder="Seu Nome" minlength="2" maxlength="45">
+                        </div>
+                        <div class="row-item">
+                            <h3> Sobrenome </h3>
+                            <input type="text" id="input_sobrenome" placeholder="Seu Sobrenome" minlength="2"
+                                maxlength="45">
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <h3> Email </h3>
+                        <input type="email" id="input_email" placeholder="Seu Email" maxlength="45">
+                    </div>
+                    <div class="form-item">
+                        <h3> Assunto </h3>
+                        <input type="text" id="input_assunto" placeholder="Assunto" maxlength="45">
+                    </div>
+                    <div class="form-item">
+                        <h3> Mensagem </h3>
+                        <textarea id="input_mensagem" placeholder="Escreva sua mensagem" minlength="20"
+                            maxlength="400"></textarea>
+                    </div>
+                    <div class="button">
+                        <button class="btn-background" onclick="enviarMensagem()"> Enviar </button>
+                    </div>
+                </form>
+            </div>
         </section>
     </main>
     <footer>
-        <div class="informations">
-            <div class="logo">
-                <img src="./assets/logotipo.svg">
+        <div class="background-wave-footer"></div>
+        <div class="container">
+            <div class="content">
+                <div class="social">
+                    <div class="info">
+                        <div class="logo">
+                            <img src="./assets/logotipo.svg">
+                        </div>
+                        <div class="text">
+                            Onde seus cachos ganham <b> vida. </b>
+                        </div>
+                    </div>
+                    <div class="icons-media">
+                        <a class="icon" href="https://github.com/raquel-ogs">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a class="icon" href="https://www.linkedin.com/in/raquel-oliveira-b5bb111b4/">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a class="icon" href="https://www.instagram.com/raquel_ogs/">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a class="icon" href="https://www.youtube.com/channel/UCOYDDdy9If9N7FlnCc6RuQg">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="informations">
+                    <div class="navegation">
+                        <h3> Navegação </h3>
+                        <ul class="list">
+                            <li class="list-item">
+                                <a href="#home">
+                                    Início
+                                </a>
+                            </li>
+                            <li class="list-item">
+                                <a href="#whoWeAre">
+                                    Quem somos
+                                </a>
+                            </li>
+                            <li class="list-item">
+                                <a href="#aboutUs">
+                                    Sobre nós
+                                </a>
+                            </li>
+                            <li class="list-item">
+                                <a href="#ourBlog">
+                                    Nosso blog
+                                </a>
+                            </li>
+                            <li class="list-item">
+                                <a href="#contact">
+                                    Contato
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="contact">
+                        <h3> Contato </h3>
+                        <a href="mailto:raquelogs15262@gmail.com?subject=&body=">
+                            raquelogs15262@gmail.com
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div> 
-                <h3> Onde seus cachos ganham <span class="text-"> vida. </span> </h3>
+            <div class="copyright">
+                <h3> © 2023 BeautyCurls. Todos os direitos reservados. </h3>
             </div>
-        </div>
-        <div class="copyright">
-            <h3> © 2023 BeautyCurls. Todos os direitos reservados. </h3>
         </div>
     </footer>
 </body>
