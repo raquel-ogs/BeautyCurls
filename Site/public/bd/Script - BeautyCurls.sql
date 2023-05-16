@@ -33,14 +33,14 @@ constraint fkCurvaturaCabelo foreign key (fkCurvaturaCabelo) references curvatur
 constraint chkEmail check (email like '%@%')
 )auto_increment = 11;
 
-drop table curvaturacabelo;
-
 INSERT INTO Usuario VALUES
 	(null, 'Elena', 'Lima', 'elena_lima', 'elena.lima@outlook.com', 'bananinha123', 7),
 	(null, 'Carla', 'Gomes', 'carlaaaa_g', 'carlagomes0403@gmail.com', 'cerejinha123', 9),
 	(null, 'Peter', 'Barros', 'peterSemPan', 'peterbarros123@gmail.com', 'laranjinha123', 4),
 	(null, 'Ana', 'Beatriz', 'beatriz_anaa', 'aninha456@gmail.com', 'macazinha123', 6),
 	(null, 'Lorenzo', 'Silva', 'lor_enzo', 'lorenzo987@gmail.com', 'goiabinha123', 5);
+
+SELECT * FROM Usuario;
     
 CREATE TABLE Postagem(
 idPostagem int primary key auto_increment,
@@ -53,6 +53,6 @@ qtdLikes int
 constraint chkCategoria check (categoria in ('Penteados', 'Produtos', 'Receitas'))
 )auto_increment = 100;
 
-INSERT INTO Postagem VALUES
-	()
+-- INSERT INTO Postagem VALUES
+-- 	()
 

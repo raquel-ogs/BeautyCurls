@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styleCadastro.css">
+    <link rel="shortcut icon" href="assets/imagotipo.svg" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src="./js/funcoes.js"></script>
+    <title> BeautyCurls - Cadastro </title>
+</head>
+<body onload="buscarCurvaturas()">
+    <main>
+        <section class="card-sign-up">
+            <div class="container">
+                <nav>
+                    <button class="btn-back" onclick="history.back()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                </nav>
+                <div class="content">
+                    <div class="text">
+                        <h1 class="title"> Cadastre-se </h1>
+                        <div class="subtitle">
+                            Olá, bem-vindo a BeautyCurls! Crie sua conta e tenha acesso ao nosso <b> blog </b>.
+                        </div>
+                    </div>
+                    <div class="form">
+                        <div class="form-item">
+                            <h3> Email </h3>
+                            <input type="email" id="input_email" placeholder="Seu Email" required>
+                        </div>
+                        <div class="form-item">
+                            <h3> Senha </h3>
+                            <input type="password" id="input_senha" placeholder="Sua Senha" required>
+                        </div>
+                        <div class="form-item">
+                            <h3> Curvatura do Cabelo </h3>
+                            <select id="select_curvatura">
+                                <!-- <option value="1"> 1 </option>
+                                <option value="2"> 2A </option>
+                                <option value="3"> 2B </option>
+                                <option value="4"> 2C </option>
+                                <option value="5"> 3A </option>
+                                <option value="6"> 3B </option>
+                                <option value="7"> 3C </option>
+                                <option value="8"> 4A </option>
+                                <option value="9"> 4B </option>
+                                <option value="10"> 4C </option> -->
+                            </select>
+                        </div>
+                        <div class="form-item">
+                            <button class="btn-background" onclick="cadastrar()">
+                                Cadastrar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="redirect">
+                        <span class="text-redirect">
+                            Quer saber sobre curvaturas? <a href="./assets/Tipos-de-curvatura.pdf"> Baixar PDF </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="card-logo">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="./assets/logotipo.svg">
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+<script>
+    function buscarCurvaturas() {
+        fetch('curvatura/listar')
+            .then(function(resposta){
+                return resposta.json();
+            })
+            .then(function(resposta){
+            resposta.forEach(element => {
+                select_curvatura.innerHTML += `<option value="${element.idCurvatura}"> ${element.nome} </option>`
+                });
+            });
+        }
+
+    function cadastrar() {
+        aguardar();
+
+        var nomeVar = sessionStorage.getItem('nome');
+        var sobrenomeVar = sessionStorage.getItem('sobrenome');
+        var userVar = sessionStorage.getItem('user');
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+        var curvaturaVar = select_curvatura.value;
+
+        if (emailVar == "" || senhaVar == "" || curvaturaVar == "") {
+           alert("Mensagem de erro para todos os campos em branco");
+
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            console.log('vai que é tua taffarel')
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                sobrenomeServer: sobrenomeVar,
+                userServer: userVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                curvaturaServer: Number(curvaturaVar),
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+    
+</script>

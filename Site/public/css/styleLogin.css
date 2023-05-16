@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Sofia&display=swap');
+
+:root {
+    --pink: #FF5E81;
+    --pink-25: rgba(255, 94, 129, 0.25);
+    --pink-10: rgba(255, 94, 129, 0.1);
+    --light-pink: #F6E6EB;
+    --background: #F5EDF0;
+    --dark-pink: #703D57;
+    --dark-pink-90: rgba(112, 61, 87, 0.9);
+    --dark-pink-70: rgba(112, 61, 87, 0.7);
+    --dark-pink-65: rgba(112, 61, 87, 0.65);
+    --dark-pink-50: rgba(112, 61, 87, 0.5);
+    --text-info: rgba(0, 0, 0, 0.5);
+    --text-button: #fff;
+}
+
+* {
+    font-family: 'Sofia';
+    margin: 0;
+    padding: 0;
+    scroll-behavior: auto;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--background);
+}
+
+main{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main .card-logo{
+    background: linear-gradient(174.33deg, rgba(255, 94, 129, 0.3) 4.52%, rgba(248, 183, 199, 0) 93.96%);
+    backdrop-filter: blur(10px);    
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .card-logo .logo img{
+    width: 35vw;
+}
+
+main .card-sign-up{ 
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.49) 100%);
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main .card-sign-up .content{
+    width: 70%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+main .card-sign-up .content .text{
+    width: 75%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 2vh;
+}
+
+main .card-sign-up .content .text .title{
+    font-weight: 400;
+    font-size: 2.5vw;
+    font-family: 'Arvo';
+    color: var(--dark-pink);
+    text-align: left;
+}
+
+main .card-sign-up .content .text .subtitle, main .card-sign-up .content .text .subtitle b{
+    width: 85%;
+    font-size: 0.9vw;
+    font-family: 'Poppins';
+    color: var(--text-info);
+    text-align: justify;
+    margin-left: 0.1vw;
+}
+
+main .card-sign-up .content .form{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 3vh;
+}
+
+main .card-sign-up .content .form .form-item{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5vh;
+}
+
+main .card-sign-up .content .form .form-item h3{
+    font-size: 1.2VW;
+    letter-spacing: 0.05rem;
+    color: var(--pink);
+    text-shadow: 0px 4px 5px var(--pink-25);
+    -webkit-text-stroke: 0.7px;
+}
+
+main .card-sign-up .content .form .form-item input, main .card-sign-up .content .form .form-item select, main .card-sign-up .content .form .form-item option{
+    background-color: transparent;
+    width: 85%;
+    height: 5vh;
+    padding-left: 1.5vw;
+    font-size: 0.8vw;
+    font-family: 'Arvo';
+    border: 0.3vh solid var(--dark-pink-90);
+    border-radius: 3vh;
+    box-shadow: 0px 7px 4px var(--dark-pink-25);
+    color: var(--dark-pink);
+}
+
+main .card-sign-up .content .form .form-item input::-webkit-input-placeholder{
+    color: var(--dark-pink-65);
+}
+
+main .card-sign-up .content .form .form-item .btn-background {
+    cursor: pointer;
+    background-color: var(--pink);
+    color: var(--text-button);
+    width: 91%;
+    height: 5.5vh;
+    border: 0.2vw solid var(--pink);
+    border-radius: 100vw;
+    font-family: 'Arvo';
+    font-size: 0.9vw;
+    box-shadow: 0px 7px 4px var(--pink-25);
+    transition: 0.3s ease-in;
+}
+
+main .card-sign-up .content .form .form-item .btn-background:hover {
+    background-color: transparent;
+    color: var(--pink);
+    border-radius: 100vw;
+}
+
+main .card-sign-up .content .redirect .text-redirect, main .card-sign-up .content .redirect .text-redirect a{
+    font-family: 'Poppins';
+    font-size: 0.7vw;
+}
+
+main .card-sign-up .content .redirect .text-redirect{
+    color: var(--text-info);
+    font-weight: 500;
+}
+
+main .card-sign-up .content .redirect .text-redirect a{
+    color: var(--pink);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.15s ease-out;
+}
+
+main .card-sign-up .content .redirect .text-redirect a:hover{
+    text-decoration: underline;
+    font-weight: 700;
+}
+

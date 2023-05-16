@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styleLogin.css">
+    <link rel="shortcut icon" href="assets/imagotipo.svg" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src="./js/funcoes.js"></script>
+    <title> BeautyCurls - Entrar </title>
+</head>
+<body>
+    <main>
+        <section class="card-logo">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="./assets/logotipo.svg">
+                </a>
+            </div>
+        </section>
+        <section class="card-sign-up">
+            <div class="content">
+                <div class="text">
+                    <h1 class="title"> Entrar </h1>
+                    <div class="subtitle">
+                        Olá, bem-vindo de volta! Entre na sua conta e tenha acesso ao nosso <b> blog </b>.
+                    </div>
+                </div>
+                <div class="form">
+                    <div class="form-item">
+                        <h3> Email </h3>
+                        <input type="email" id="input_email" placeholder="Seu Email" required>
+                    </div>
+                    <div class="form-item">
+                        <h3> Senha </h3>
+                        <input type="password" id="input_senha" placeholder="Sua Senha" required>
+                    </div>
+                    <div class="form-item">
+                        <button class="btn-background" onclick="entrarConta()">
+                            Entrar
+                        </button>
+                    </div>
+                </div>
+                <div class="redirect">
+                    <span class="text-redirect">
+                        Não possui uma conta? <a href="./cadastro.html"> Cadastre-se </a>
+                    </span>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+<script>
+    function entrarConta() {
+        aguardar();
+
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            alert('Mensagem de erro para todos os campos em branco');
+            finalizarAguardar();
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.SOBRENOME_USUARIO = json.sobrenome;
+                    sessionStorage.USER_USUARIO = json.nomeUser;
+                    sessionStorage.CURVATURA_USUARIO = json.fkCurvatura;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./blog/index.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+</script>

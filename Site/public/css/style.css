@@ -324,7 +324,7 @@ main .ourBlog .informations .image img{
     border: 2px solid var(--pink-25);
     border-radius: 6vw;
     box-sizing: border-box;
-    box-shadow: 25px 25px 15px var(--pink-25);
+    box-shadow: -25px 25px 15px var(--pink-25);
 }
 
 main .ourBlog .informations .text-informations{

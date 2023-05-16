@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styleCadastro.css">
+    <link rel="shortcut icon" href="assets/imagotipo.svg" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src="./js/funcoes.js"></script>
+    <title> BeautyCurls - Cadastro </title>
+</head>
+<body>
+    <main>
+        <section class="card-sign-up">
+            <div class="container">
+                <nav>
+                    <button class="btn-back" onclick="history.back()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                </nav>
+                <div class="content">
+                    <div class="text">
+                        <h1 class="title"> Cadastre-se </h1>
+                        <div class="subtitle">
+                            Olá, bem-vindo a BeautyCurls! Crie sua conta e tenha acesso ao nosso <b> blog </b>.
+                        </div>
+                    </div>
+                    <div class="form">
+                        <div class="form-item">
+                            <h3> Nome </h3>
+                            <input id="input_nome" placeholder="Seu Nome" required>
+                        </div>
+                        <div class="form-item">
+                            <h3> Sobrenome </h3>
+                            <input id="input_sobrenome" placeholder="Seu Sobrenome" required>
+                        </div>
+                        <div class="form-item">
+                            <h3> Nome de Usuário </h3>
+                            <input id="input_user" placeholder="Seu Usuário" required>
+                            <div id="div_erro"></div>
+                        </div>
+                        <div class="form-item">
+                            <button class="btn-background" onclick="irCadastroParte2()">
+                                Continuar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="redirect">
+                        <span class="text-redirect">
+                            Já possui uma conta? <a href="./login.html"> Entrar </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="card-logo">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="./assets/logotipo.svg">
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+<script>
+
+// function verificarUser() {
+//     var userVar = input_user.value;
+
+//     fetch('usuarios/verificarUser')
+//         .then(function(resposta){
+//             return resposta.json();
+//         })
+//         .then(function(resposta){
+//            console.log(resposta)
+//     });
+// }
+
+function verificarUser() {
+        var userVar = input_user.value;
+
+        console.log("FORM USER: ",userVar);
+
+        fetch("/usuarios/verificarUser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                userServer: userVar,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO verificarUser()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar verificar o nomeUser!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+}
+
+function irCadastroParte2(){
+    var nome = input_nome.value;
+    var sobrenome = input_sobrenome.value;
+    var user = input_user.value;
+    verificarUser();
+    var existeUser = sessionStorage.getItem('existeUser');
+    div_erro.innerHTML = "";
+
+
+    if (nome == "" || sobrenome == "" || user == "") {
+        alert("Mensagem de erro para todos os campos em branco");
+    } else if (existeUser){
+        input_user.focus();
+        input_user.style.borderColor = 'red'
+        div_erro.innerHTML = "Esse usuário já existe, tente novamente...";
+
+    } else {
+        sessionStorage.setItem('nome', nome);
+        sessionStorage.setItem('sobrenome', sobrenome);
+        sessionStorage.setItem('user', user);
+        window.location = 'cadastro_2.html';
+    }
+}
+</script>
