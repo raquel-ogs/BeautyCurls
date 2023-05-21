@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./../assets/imagotipo.svg" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src="./../js/funcoes.js"></script>
+    <title> BeautyCurls, onde seus cachos ganham vida</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="./../index.html">
+                    <img src="./../assets/logotipo.svg">
+                </a>
+            </div>
+            <div class="profile">
+                <a href="conta.html">
+                    <img src="./../assets/carla.png">
+                    <h4 class="user"> Carlaaaa_g </h4>
+                    <label>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </label>
+                </a>
+            </div>
+            <ul class="list-navegation">
+                <li class="list-item-now">
+                    <a href="#">
+                        <img class="icon" src="./../assets/icons/home_selecionado.svg">
+                        <h4 class="title-item-selected">
+                            Início
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="./salvos.html">
+                        <img class="icon" src="./../assets/icons/salvos.svg">
+                        <h4 class="title-item">
+                            Salvos
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="./curtidos.html">
+                        <img class="icon" src="./../assets/icons/curtidos.svg">
+                        <h4 class="title-item">
+                            Curtidos
+                        </h4>
+                        <i class="tick_square"></i>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="./ajudaSuporte.html">
+                        <img class="icon" src="./../assets/icons/ajuda.svg">
+                        <h4 class="title-item">
+                            Ajuda e Suporte
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <span onclick="sair()">
+                        <img class="icon" src="./../assets/icons/sair.svg">
+                        <h4 class="title-item">
+                            Sair da conta
+                        </h4>
+                    </span>
+                </li>
+            </ul>
+            <div class="copyright"> 
+                <h4 class="copyright-title">
+                    © Copyright <a href="./../index.html"> BeautyCurls </a>
+                </h4>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="home">
+            <div class="content">
+                <h1 class="title"> Olá, <span id="nomeUsuario"> Carla</span>!</h1>
+                <div class="categories">
+                    <div class="card-category">
+                        <div class="icon">
+                            <div class="background"></div>
+                            <img src="./../assets/penteados.png">
+                        </div>
+                        <h5> Penteados </h5>
+                    </div>
+                    <div class="card-category">
+                        <div class="icon">
+                            <div class="background"></div>
+                            <img src="./../assets/produtos.png">
+                        </div>
+                        <h5> Produtos </h5>
+                    </div>
+                    <div class="card-category">
+                        <div class="icon">
+                            <div class="background"></div>
+                            <img src="./../assets/receitas.png">
+                        </div>
+                        <h5> receitas </h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="recents">
+            <div class="content">
+                <h1 class="title"> Post recentes</h1>
+                <div class="post">
+                    <div class="image">
+                        <img src="./../assets/raquel_post_recent.png" id="urlImgPost">
+                    </div>
+                    <div class="post-informations">
+                        <div class="post-title">
+                            <h4 id="categoriaPost"> PENTEADO </h4>
+                            <h3 id="tituloPost"> Coque Abacaxi </h3>
+                        </div>
+                        <div class="post-subtitle">
+                            <h4 id="horaPost"> 3 horas atrás </h4>
+                        </div>
+                        <div class="post-text" id="descricaoPost">
+                            Esse penteado é muito comum entre cacheados e cacheadas, por ser <b> prático </b> e ajudar a não
+                            <b>amassar</b> os cachinhos enquanto dormimos.
+                        </div>
+                        <div class="button-sign-in">
+                            <button class="btn-background" onclick="irParaPost()"> Ler tudo </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="balls">
+                    <span class="ball" onclick="mostrarPost()"></span>
+                    <span class="ball" onclick="mostrarPost()"></span>
+                    <span class="ball" onclick="mostrarPost()"></span>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

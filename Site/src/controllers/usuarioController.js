@@ -33,31 +33,29 @@ function entrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        
-    usuarioModel.entrar(email, senha)
-        .then(
-            function (resultado) {
-                console.log(`\nResultados encontrados: ${resultado.length}`);
-                console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+        usuarioModel.entrar(email, senha)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
 
-                if (resultado.length == 1) {
-                    console.log(resultado);
-                    res.json(resultado[0]);
-                } else if (resultado.length == 0) {
-                    res.status(403).send("Email e/ou senha inválido(s)");
-                } else {
-                    res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                    if (resultado.length == 1) {
+                        console.log(resultado);
+                        res.json(resultado[0]);
+                    } else if (resultado.length == 0) {
+                        res.status(403).send("Email e/ou senha inválido(s)");
+                    } else {
+                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                    }
                 }
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
     }
-
 }
 
 function cadastrar(req, res) {
@@ -103,63 +101,47 @@ function cadastrar(req, res) {
     }
 }
 
-function verificarEmail(req, res) {
-    var email = req.body.emailServer;
-        
-    usuarioModel.verificarEmail(email)
-    .then(
-        function (resultado) {
-            console.log(`\nResultados encontrados: ${resultado.length}`);
-            console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+function verificarUser(req, res) {
+    var nomeUser = req.params.nomeUser;
 
-            if (resultado.length == 0) {
-                console.log(resultado);
-                return false;
-            } else{
-                return true;
-            }
+    console.log(`Verificando nome do usuário`);
+
+    usuarioModel.verificarUser(nomeUser).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(204).send("")
+        } else {
+            res.status(200).send("Nenhum nome de usuário encontrado");
         }
-    ).catch(
-        function (erro) {
-            console.log(erro);
-            console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
-            res.status(500).json(erro.sqlMessage);
-        }
-    );
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao tentar verificar nome de usuário.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
 }
 
-function verificarUser(req, res) {
-    var user = req.body.userServer;
-        
-    usuarioModel.verificarUser(user)
-        .then(
-            function (resultado) {
-                console.log(`\nResultados encontrados: ${resultado.length}`);
-                console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+function verificarEmail(req, res) {
+    var emailUser = req.params.emailUser;
 
-                if (resultado.length > 0) {
-                    console.log(resultado);
-                    sessionStorage.setItem('existeUser', true)
-                } else {
-                    sessionStorage.setItem('existeUser', false)
-                } 
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("\nHouve um erro ao verificar nomeUser! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-    }
+    console.log(`Verificando nome do usuário`);
 
-
+    usuarioModel.verificarEmail(emailUser).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(204).send("Esse email já foi cadastrado")
+        } else {
+            res.status(200).send("Nenhum email encontrado");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao tentar verificar nome de usuário.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 
 module.exports = {
     entrar,
     cadastrar,
     testar,
-    verificarEmail,
-    verificarUser
+    verificarUser,
+    verificarEmail
 }

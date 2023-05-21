@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Sofia&display=swap');
+
+:root{
+    --pink: #FF5E81;
+    --pink-25: rgba(255, 94, 129, 0.25);
+    --pink-10: rgba(255, 94, 129, 0.1);
+    --light-pink: #F6E6EB;
+    --background: #F5EDF0;
+    --background-header: #FCFAFB;
+    --dark-pink: #703D57;
+    --dark-pink-90: rgba(112, 61, 87, 0.9);
+    --dark-pink-70: rgba(112, 61, 87, 0.7);
+    --dark-pink-65: rgba(112, 61, 87, 0.65);
+    --dark-pink-50: rgba(112, 61, 87, 0.5);
+    --dark-pink-25: rgba(112, 61, 87, 0.25);
+    --text-info: rgba(0, 0, 0, 0.5);
+    --text-button: #fff;
+}
+
+*{
+    font-family: 'Sofia';
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+body{
+    background-color: var(--background);
+    display: flex;
+    justify-content: space-between;
+}
+
+body::-webkit-scrollbar{
+    width: 4px;
+    height: 4px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: var(--pink);
+}
+
+body::-webkit-scrollbar-track{
+    background-color: var(--dark-pink-25);
+}
+
+header{
+    width: 18%;
+    height: 100%;
+}
+
+header nav{
+    position: fixed;
+    background-color: var(--background-header);
+    float: left;
+    width: 18vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5vh;
+}
+
+header nav h4, header nav a, header nav i{
+    font-family: 'Poppins';
+    font-weight: 500;
+    transition: 0.3s linear;
+}
+
+header nav .logo{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header nav .logo img{
+    width: 12vw;
+}
+
+header nav .profile{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header nav .profile a{
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: var(--dark-pink-70);
+    font-size: 0.9vw;
+}
+
+header nav .profile a img{
+    width: 2.5vw;
+    border: 2px solid var(--dark-pink-70);
+    border-radius: 5vw;
+    filter: drop-shadow(0px 4px 4px var(--dark-pink-25));
+}
+
+header nav .profile a:hover h4, header nav .profile a:hover label i{
+    color: var(--dark-pink);
+    font-weight: 700;
+}
+
+header nav .list-navegation{
+    width: 80%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header nav .list-navegation .list-item, header nav .list-navegation .list-item-now{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow-y: hidden;
+    border: 1px solid;
+}
+
+header nav .list-navegation .list-item a img, header nav .list-navegation .list-item-now a img, header nav .list-navegation .list-item span img{
+    width: 1.5vw;
+}
+
+header nav .list-navegation .list-item a, header nav .list-navegation .list-item-now a{
+    display: flex;
+}
+
+header .list-navegation .list-item-now a {
+    overflow-y: hidden;    
+
+}
+
+header nav .copyright{
+    width: 100%;
+    font-family: 'Poppins';
+    text-align: center;
+    opacity: 0.75;
+}
+
+header nav .copyright .copyright-title, header nav .copyright .copyright-title a{
+    font-weight: 700;
+}
+
+header nav .copyright .copyright-title{
+    color: var(--dark-pink)
+}
+
+header nav .copyright .copyright-title a{
+    color: var(--pink);
+    transition: 0.3s ease-out;
+}
+
+header nav .copyright .copyright-title a:hover{
+    text-decoration: underline;
+}
+
+main{
+    width: 82%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10vh;
+    border: 1px solid;
+}
+
+a{
+    text-decoration: none;
+}

@@ -13,7 +13,6 @@
     --dark-pink-50: rgba(112, 61, 87, 0.5);
     --text-info: rgba(0, 0, 0, 0.5);
     --text-button: #fff;
-    --text-erro: #F53F28;
 }
 
 * {
@@ -23,6 +22,24 @@
     scroll-behavior: auto;
     scroll-behavior: smooth;
 }
+
+body {
+    animation-duration: 1s;
+    animation-name: slidein;
+  }
+  
+  @keyframes slidein {
+    from {
+      margin-bottom: 100%;
+      width: 300%
+    }
+  
+    to {
+      margin-bottom:0%;
+      width: 100%;
+    }
+  }
+
 
 body {
     background-color: var(--background);
@@ -216,4 +233,8 @@ main .card-logo{
 
 main .card-logo .logo img{
     width: 35vw;
+}
+
+input:focus{
+    border-color: var(--pink);
 }

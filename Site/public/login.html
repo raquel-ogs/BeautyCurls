@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +9,11 @@
     <link rel="shortcut icon" href="assets/imagotipo.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/funcoes.js"></script>
     <title> BeautyCurls - Entrar </title>
 </head>
+
 <body>
     <main>
         <section class="card-logo">
@@ -52,70 +55,94 @@
         </section>
     </main>
 </body>
+
 </html>
 <script>
     function entrarConta() {
-        aguardar();
-
         var emailVar = input_email.value;
         var senhaVar = input_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            alert('Mensagem de erro para todos os campos em branco');
-            finalizarAguardar();
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Preencha todos os campos!',
+                confirmButtonColor: "#FF5E81",
+                iconColor: '#FF5E81',
+            })
+        } else {
+            aguardar();
+
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
+
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+
+                        sessionStorage.ID = json.idUsuario;
+                        sessionStorage.NOME = json.nome;
+                        sessionStorage.SOBRENOME = json.sobrenome;
+                        sessionStorage.USER = json.nomeUser;
+                        sessionStorage.EMAIL = json.email;
+                        sessionStorage.SENHA= json.SENHA;
+                        sessionStorage.CURVATURA = json.fkCurvatura;
+
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                        icon: 'success',
+                        title: 'Login realizado com sucesso'
+                        })
+
+                        setTimeout(() => {
+                            window.location = "./blog/index.html";
+                        }, 3000); // apenas para exibir o loading
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        finalizarAguardar(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
             return false;
         }
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.SOBRENOME_USUARIO = json.sobrenome;
-                    sessionStorage.USER_USUARIO = json.nomeUser;
-                    sessionStorage.CURVATURA_USUARIO = json.fkCurvatura;
-                    sessionStorage.ID_USUARIO = json.id;
-
-                    setTimeout(function () {
-                        window.location = "./blog/index.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
     }
 
 </script>

@@ -150,29 +150,27 @@
                     <div class="row">
                         <div class="row-item">
                             <h3> Nome </h3>
-                            <input type="text" id="input_nome" placeholder="Seu Nome" minlength="2" maxlength="45">
+                            <input type="text" id="input_nome" placeholder="Seu Nome" maxlength="45" name="Nome" required>
                         </div>
                         <div class="row-item">
                             <h3> Sobrenome </h3>
-                            <input type="text" id="input_sobrenome" placeholder="Seu Sobrenome" minlength="2"
-                                maxlength="45">
+                            <input type="text" id="input_sobrenome" placeholder="Seu Sobrenome" maxlength="45" name="Sobrenome" required>
                         </div>
                     </div>
                     <div class="form-item">
                         <h3> Email </h3>
-                        <input type="email" id="input_email" placeholder="Seu Email" maxlength="45">
+                        <input type="email" id="input_email" placeholder="Seu Email" maxlength="45" name="Email">
                     </div>
                     <div class="form-item">
                         <h3> Assunto </h3>
-                        <input type="text" id="input_assunto" placeholder="Assunto" maxlength="45">
+                        <input type="text" id="input_assunto" placeholder="Assunto" maxlength="45" name="Assunto" required>
                     </div>
                     <div class="form-item">
                         <h3> Mensagem </h3>
-                        <textarea id="input_mensagem" placeholder="Escreva sua mensagem" minlength="20"
-                            maxlength="400"></textarea>
+                        <textarea id="input_mensagem" placeholder="Escreva sua mensagem" maxlength="400" name="Mensagem" required></textarea>
                     </div>
                     <div class="button">
-                        <button class="btn-background" onclick="enviarMensagem()"> Enviar </button>
+                        <button class="btn-background" type="submit" onclick="enviarEmail()"> Enviar </button>
                     </div>
                 </form>
             </div>
@@ -252,3 +250,29 @@
     </footer>
 </body>
 </html>
+<script>
+    function limparFormulario(){
+        input_nome.value = "";
+        input_sobrenome.value = "";
+        input_email.value = "";
+        input_assunto.value = "";
+        input_mensagem.value = "";
+        console.log('Limpando campos do formulario...')
+    }
+
+    function enviarEmail(){
+        var nome = input_nome.value;
+        var sobrenome = input_sobrenome.value;
+        var email = input_email.value;
+        var assunto = input_assunto.value;
+        var mensagem = input_mensagem.value;
+
+        if(nome != "" && sobrenome != "" && email != "" && assunto != "" && mensagem != ""){
+            var formulario = document.querySelector('form');
+            console.log('Enviando email...')
+            formulario.action = 'https://formspree.io/f/xyyavrql'
+            formulario.method = 'POST';
+            setTimeout(limparFormulario, 2000)
+        }
+    }
+</script>

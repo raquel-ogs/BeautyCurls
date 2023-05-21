@@ -20,8 +20,12 @@ router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
-router.post("/verificarUser", function (req, res) {
+router.get("/verificarUser/:nomeUser", function (req, res) {
     usuarioController.verificarUser(req, res);
+});
+
+router.get("/verificarEmail/:emailUser", function (req, res) {
+    usuarioController.verificarEmail(req, res);
 });
 
 module.exports = router;

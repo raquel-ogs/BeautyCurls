@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
     <script src="./js/funcoes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title> BeautyCurls - Cadastro </title>
 </head>
 <body>
@@ -66,81 +67,49 @@
 </body>
 </html>
 <script>
+    var statusResposta = 0;
 
-// function verificarUser() {
-//     var userVar = input_user.value;
-
-//     fetch('usuarios/verificarUser')
-//         .then(function(resposta){
-//             return resposta.json();
-//         })
-//         .then(function(resposta){
-//            console.log(resposta)
-//     });
-// }
-
-function verificarUser() {
-        var userVar = input_user.value;
-
-        console.log("FORM USER: ",userVar);
-
-        fetch("/usuarios/verificarUser", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                userServer: userVar,
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO verificarUser()!")
+    function verificarUser(user) {
+        fetch(`/usuarios/verificarUser/${user}`)
+        .then(resposta => {
 
             if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                });
-
+                statusResposta = resposta.status;
             } else {
-
-                console.log("Houve um erro ao tentar verificar o nomeUser!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
+                console.error('Nenhum dado encontrado ou erro na API');
             }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-}
-
-function irCadastroParte2(){
-    var nome = input_nome.value;
-    var sobrenome = input_sobrenome.value;
-    var user = input_user.value;
-    verificarUser();
-    var existeUser = sessionStorage.getItem('existeUser');
-    div_erro.innerHTML = "";
-
-
-    if (nome == "" || sobrenome == "" || user == "") {
-        alert("Mensagem de erro para todos os campos em branco");
-    } else if (existeUser){
-        input_user.focus();
-        input_user.style.borderColor = 'red'
-        div_erro.innerHTML = "Esse usuário já existe, tente novamente...";
-
-    } else {
-        sessionStorage.setItem('nome', nome);
-        sessionStorage.setItem('sobrenome', sobrenome);
-        sessionStorage.setItem('user', user);
-        window.location = 'cadastro_2.html';
+            })
+            .catch(function (error) {
+            console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+            
     }
-}
+
+    function irCadastroParte2(){
+        var nome = input_nome.value;
+        var sobrenome = input_sobrenome.value;
+        var user = input_user.value;
+        verificarUser(user);
+
+        if (nome == "" || sobrenome == "" || user == "") {
+            Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Preencha todos os campos!',
+                    confirmButtonColor: "#FF5E81",
+                    iconColor: '#FF5E81',
+            })
+        } else {
+            setTimeout( () => {
+                if(statusResposta == 200){
+                    sessionStorage.setItem('nome', nome);
+                    sessionStorage.setItem('sobrenome', sobrenome);
+                    sessionStorage.setItem('user', user);
+                    window.location = 'cadastro_2.html';
+                } else {
+                    finalizarAguardar('Esse usuário já foi cadastrado, tente com outro')
+                }
+            }, 300)
+        }
+    }
 </script>

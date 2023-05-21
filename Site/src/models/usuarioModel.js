@@ -31,7 +31,7 @@ function cadastrar(nome, sobrenome, user, email, senha, curvatura) {
     return database.executar(instrucao);
 }
 
-function verificarEmail() {
+function verificarEmail(email) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarEmail(): ", email);
     var instrucao = `
         SELECT * FROM usuario WHERE email = '${email}' ;
@@ -43,7 +43,7 @@ function verificarEmail() {
 function verificarUser(user) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarUser(): ", user)
     var instrucao = `
-        SELECT idUsuario FROM usuario WHERE nomeUser = '${user}';
+        SELECT * FROM usuario WHERE nomeUser = '${user}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

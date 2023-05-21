@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +10,10 @@
     <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
     <script src="./js/funcoes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title> BeautyCurls - Cadastro </title>
 </head>
+
 <body onload="buscarCurvaturas()">
     <main>
         <section class="card-sign-up">
@@ -39,16 +42,6 @@
                         <div class="form-item">
                             <h3> Curvatura do Cabelo </h3>
                             <select id="select_curvatura">
-                                <!-- <option value="1"> 1 </option>
-                                <option value="2"> 2A </option>
-                                <option value="3"> 2B </option>
-                                <option value="4"> 2C </option>
-                                <option value="5"> 3A </option>
-                                <option value="6"> 3B </option>
-                                <option value="7"> 3C </option>
-                                <option value="8"> 4A </option>
-                                <option value="9"> 4B </option>
-                                <option value="10"> 4C </option> -->
                             </select>
                         </div>
                         <div class="form-item">
@@ -74,22 +67,39 @@
         </section>
     </main>
 </body>
+
 </html>
 <script>
+    var statusResposta = 0;
+
     function buscarCurvaturas() {
         fetch('curvatura/listar')
-            .then(function(resposta){
+            .then(function (resposta) {
                 return resposta.json();
             })
-            .then(function(resposta){
-            resposta.forEach(element => {
-                select_curvatura.innerHTML += `<option value="${element.idCurvatura}"> ${element.nome} </option>`
+            .then(function (resposta) {
+                resposta.forEach(element => {
+                    select_curvatura.innerHTML += `<option value="${element.idCurvatura}"> ${element.nome} </option>`
                 });
             });
-        }
+    }
+
+    function verificarEmail(email) {
+        fetch(`/usuarios/verificarEmail/${email}`)
+            .then(resposta => {
+                if (resposta.ok) {
+                    statusResposta = resposta.status;
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na verifição do nome de usuário: ${error.message}`);
+            });
+
+    }
 
     function cadastrar() {
-        aguardar();
 
         var nomeVar = sessionStorage.getItem('nome');
         var sobrenomeVar = sessionStorage.getItem('sobrenome');
@@ -97,56 +107,81 @@
         var emailVar = input_email.value;
         var senhaVar = input_senha.value;
         var curvaturaVar = select_curvatura.value;
+        verificarEmail(emailVar);
 
         if (emailVar == "" || senhaVar == "" || curvaturaVar == "") {
-           alert("Mensagem de erro para todos os campos em branco");
-
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            console.log('vai que é tua taffarel')
-        }
-
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                sobrenomeServer: sobrenomeVar,
-                userServer: userVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar,
-                curvaturaServer: Number(curvaturaVar),
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Preencha todos os campos!',
+                confirmButtonColor: "#FF5E81",
+                iconColor: '#FF5E81',
             })
-        }).then(function (resposta) {
 
-            console.log("resposta: ", resposta);
+            return false;
 
-            if (resposta.ok) {
+        } else {
+            setTimeout( () => {
+                if(statusResposta == 200){
+                    // Enviando o valor da nova input
+                    fetch("/usuarios/cadastrar", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            // crie um atributo que recebe o valor recuperado aqui
+                            // Agora vá para o arquivo routes/usuario.js
+                            nomeServer: nomeVar,
+                            sobrenomeServer: sobrenomeVar,
+                            userServer: userVar,
+                            emailServer: emailVar,
+                            senhaServer: senhaVar,
+                            curvaturaServer: Number(curvaturaVar),
+                        })
+                    }).then(function (resposta) {
 
-                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                        console.log("resposta: ", resposta);
 
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000")
+                        if (resposta.ok) {
 
-                limparFormulario();
-                finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
 
-        return false;
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Cadastro realizado com sucesso'
+                            })
+
+                            setTimeout(() => {
+                                window.location = "login.html";
+                            }, "3000")
+
+                            finalizarAguardar();
+                        } else {
+                            throw ("Houve um erro ao tentar realizar o cadastro!");
+                        }
+                    }).catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                        finalizarAguardar(resposta);
+                    });
+
+                    return false;
+                }
+                else {
+                    finalizarAguardar('Esse email já foi cadastrado, tente com outro')
+                }
+            }, 300)
+        }
     }
-    
+
 </script>
