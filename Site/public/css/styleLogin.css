@@ -31,6 +31,22 @@ body {
     }
   }
 
+  body::-webkit-scrollbar {
+    width: 0.3vw;
+    height: 0.1vh;
+}
+
+body::-webkit-scrollbar-track {
+    padding: 2px;
+    background: var(--dark-pink-50);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--pink);
+    border-radius: 2rem;
+}
+
+
 
 * {
     font-family: 'Sofia';
