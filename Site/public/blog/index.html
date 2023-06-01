@@ -10,6 +10,9 @@
     <link rel="shortcut icon" href="./../assets/imagotipo.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <script src="./../js/funcoes.js"></script>
     <title> BeautyCurls, onde seus cachos ganham vida</title>
 </head>
@@ -34,7 +37,9 @@
             <ul class="list-navegation">
                 <li class="list-item-now">
                     <a href="#">
-                        <img class="icon" src="./../assets/icons/home_selecionado.svg">
+                        <label class="icon">
+                            <i class="fi fi-sr-house-blank"></i>
+                        </label>
                         <h4 class="title-item-selected">
                             Início
                         </h4>
@@ -42,7 +47,9 @@
                 </li>
                 <li class="list-item">
                     <a href="./salvos.html">
-                        <img class="icon" src="./../assets/icons/salvos.svg">
+                        <label class="icon">
+                            <i class="fi fi-br-bookmark"></i>
+                        </label>
                         <h4 class="title-item">
                             Salvos
                         </h4>
@@ -50,16 +57,19 @@
                 </li>
                 <li class="list-item">
                     <a href="./curtidos.html">
-                        <img class="icon" src="./../assets/icons/curtidos.svg">
+                        <label class="icon">
+                            <i class="fi fi-br-heart"></i>
+                        </label>
                         <h4 class="title-item">
                             Curtidos
                         </h4>
-                        <i class="tick_square"></i>
                     </a>
                 </li>
                 <li class="list-item">
                     <a href="./ajudaSuporte.html">
-                        <img class="icon" src="./../assets/icons/ajuda.svg">
+                        <label class="icon">
+                            <i class="fi fi-br-info"></i>
+                        </label>
                         <h4 class="title-item">
                             Ajuda e Suporte
                         </h4>
@@ -67,7 +77,9 @@
                 </li>
                 <li class="list-item">
                     <span onclick="sair()">
-                        <img class="icon" src="./../assets/icons/sair.svg">
+                        <label class="icon">
+                            <i class="fi fi-br-sign-out-alt"></i>
+                        </label>
                         <h4 class="title-item">
                             Sair da conta
                         </h4>
@@ -86,46 +98,55 @@
             <div class="content">
                 <h1 class="title"> Olá, <span id="nomeUsuario"> Carla</span>!</h1>
                 <div class="categories">
-                    <div class="card-category">
-                        <div class="icon">
-                            <div class="background"></div>
-                            <img src="./../assets/penteados.png">
+                    <a href="./penteados.html">
+                        <div class="card-category">
+                            <div class="icon">
+                                <div class="background"></div>
+                                <img src="./../assets/penteados.png">
+                            </div>
+                            <h5> Penteados </h5>
                         </div>
-                        <h5> Penteados </h5>
-                    </div>
-                    <div class="card-category">
-                        <div class="icon">
-                            <div class="background"></div>
-                            <img src="./../assets/produtos.png">
+                    </a>
+                    <a href="./produtos.html">
+                        <div class="card-category">
+                            <div class="icon">
+                                <div class="background"></div>
+                                <img src="./../assets/produtos.png">
+                            </div>
+                            <h5> Produtos </h5>
                         </div>
-                        <h5> Produtos </h5>
-                    </div>
-                    <div class="card-category">
-                        <div class="icon">
-                            <div class="background"></div>
-                            <img src="./../assets/receitas.png">
+                    </a>
+                    <a href="./receitas.html">
+                        <div class="card-category">
+                            <div class="icon">
+                                <div class="background"></div>
+                                <img src="./../assets/receitas.png">
+                            </div>
+                            <h5> Receitas </h5>
                         </div>
-                        <h5> receitas </h5>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
         <section class="recents">
             <div class="content">
-                <h1 class="title"> Post recentes</h1>
+                <h1 class="title"> Penteados Recentes</h1>
                 <div class="post">
                     <div class="image">
-                        <img src="./../assets/raquel_post_recent.png" id="urlImgPost">
+                        <img src="./../assets/raquel.png" id="urlImgPost">
                     </div>
                     <div class="post-informations">
-                        <div class="post-title">
-                            <h4 id="categoriaPost"> PENTEADO </h4>
-                            <h3 id="tituloPost"> Coque Abacaxi </h3>
+                        <div class="post-texts">
+                            <div class="post-title">
+                                <h3 id="categoriaPost"> PENTEADO </h3>
+                                <h2 id="tituloPost"> Coque Abacaxi </h2>
+                            </div>
+                            <div class="post-subtitle">
+                                <h4 id="horaPost"> 
+                                    &bull; 3 horas atrás </h4>
+                            </div>
                         </div>
-                        <div class="post-subtitle">
-                            <h4 id="horaPost"> 3 horas atrás </h4>
-                        </div>
-                        <div class="post-text" id="descricaoPost">
+                        <div class="post-description" id="descricaoPost">
                             Esse penteado é muito comum entre cacheados e cacheadas, por ser <b> prático </b> e ajudar a não
                             <b>amassar</b> os cachinhos enquanto dormimos.
                         </div>
@@ -135,9 +156,9 @@
                     </div>
                 </div>
                 <div class="balls">
-                    <span class="ball" onclick="mostrarPost()"></span>
-                    <span class="ball" onclick="mostrarPost()"></span>
-                    <span class="ball" onclick="mostrarPost()"></span>
+                    <div class="ball-now" id="post_1" onclick="mostrarPost(1)"></div>
+                    <div class="ball" id="post_2" onclick="mostrarPost(2)"></div>
+                    <div class="ball" id="post_3" onclick="mostrarPost(3)"></span>
                 </div>
             </div>
         </section>
@@ -145,3 +166,77 @@
 </body>
 
 </html>
+<script>
+    var idPost = 0;
+
+    var postRecente = [
+        {
+            categoria: 'Penteado', 
+            titulo: 'Coque Abacaxi', 
+            descricao: 'Esse penteado é muito comum entre cacheados e cacheadas, por ser prático e ajudar a não amassar os cachinhos enquanto dormimos.', 
+            hrPostado: '3 horas atrás',
+            url: './../../assets/raquel.png'
+        },
+        {
+            categoria: 'Penteado', 
+            titulo: 'Coque Com Tranças', 
+            descricao: 'Esse penteado é um penteado que gosto muito por ser fácil de fazer e é por ser super prático para o dia-a-dia, pois é simples de fazer a "manutenção".', 
+            hrPostado: '12 horas atrás',
+            url: './../../assets/raquel_2.png'
+        },
+        {
+            categoria: 'Penteado', 
+            titulo: 'PUFF + Baby Hair', 
+            descricao: 'Esse penteado é muito amado por cacheados e crespos, ainda mais com um baby hair viramos a 8ª maravilha do mundo haha.', 
+            hrPostado: '2 dias atrás',
+            url: './../../assets/raquel_3.png'
+        },
+    ];
+
+    function mostrarPost(numPost){
+        idPost = numPost;
+        var item = postRecente[numPost - 1];
+        var img = document.getElementById('urlImgPost');
+        var categoria = document.getElementById('categoriaPost');
+        var titulo = document.getElementById('tituloPost');
+        var hora = document.getElementById('horaPost');
+        var descricao = document.getElementById('descricaoPost');
+        var bolinha_1 = document. getElementById('post_1')
+        var bolinha_2= document. getElementById('post_2')
+        var bolinha_3 = document. getElementById('post_3')
+
+        if(numPost == 1){
+            bolinha_1.classList.remove('ball');
+            bolinha_2.classList.remove('ball-now');
+            bolinha_3.classList.remove('ball-now');
+            bolinha_1.classList.add('ball-now');
+            bolinha_2.classList.add('ball');
+            bolinha_3.classList.add('ball');
+        } else if(numPost == 2){
+            bolinha_1.classList.remove('ball-now');
+            bolinha_2.classList.remove('ball');
+            bolinha_3.classList.remove('ball-now');
+            bolinha_1.classList.add('ball');
+            bolinha_2.classList.add('ball-now');
+            bolinha_3.classList.add('ball');
+        } else {
+            bolinha_1.classList.remove('ball-now');
+            bolinha_2.classList.remove('ball-now');
+            bolinha_3.classList.remove('ball');
+            bolinha_1.classList.add('ball');
+            bolinha_2.classList.add('ball');
+            bolinha_3.classList.add('ball-now');
+            idPost = 0;
+        }
+
+        img.src = item.url;
+        categoria.innerHTML = item.categoria;
+        titulo.innerHTML = item.titulo;
+        hora.innerHTML = item.hrPostado;
+        descricao.src = item.descricao;
+
+    }
+
+    setInterval(() => {mostrarPost(idPost+=1)}, 7000);
+    
+</script>

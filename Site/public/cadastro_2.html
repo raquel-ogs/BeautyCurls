@@ -123,15 +123,12 @@
         } else {
             setTimeout( () => {
                 if(statusResposta == 200){
-                    // Enviando o valor da nova input
                     fetch("/usuarios/cadastrar", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            // crie um atributo que recebe o valor recuperado aqui
-                            // Agora vá para o arquivo routes/usuario.js
                             nomeServer: nomeVar,
                             sobrenomeServer: sobrenomeVar,
                             userServer: userVar,
@@ -166,7 +163,6 @@
                                 window.location = "login.html";
                             }, "3000")
 
-                            finalizarAguardar();
                         } else {
                             throw ("Houve um erro ao tentar realizar o cadastro!");
                         }

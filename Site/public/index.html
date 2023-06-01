@@ -183,7 +183,9 @@
                 <div class="social">
                     <div class="info">
                         <div class="logo">
-                            <img src="./assets/logotipo.svg">
+                            <a href="#home">
+                                <img src="./assets/logotipo.svg">
+                            </a>
                         </div>
                         <div class="text">
                             Onde seus cachos ganham <b> vida. </b>
@@ -251,6 +253,8 @@
 </body>
 </html>
 <script>
+    window.onload = limparFormulario();
+
     function limparFormulario(){
         input_nome.value = "";
         input_sobrenome.value = "";
@@ -270,9 +274,11 @@
         if(nome != "" && sobrenome != "" && email != "" && assunto != "" && mensagem != ""){
             var formulario = document.querySelector('form');
             console.log('Enviando email...')
-            formulario.action = 'https://formspree.io/f/xyyavrql'
-            formulario.method = 'POST';
-            setTimeout(limparFormulario, 2000)
+            
+            if(email.indexOf('@') >= 0){
+                formulario.action = 'https://formspree.io/f/xyyavrql'
+                formulario.method = 'POST';
+            }
         }
     }
 </script>

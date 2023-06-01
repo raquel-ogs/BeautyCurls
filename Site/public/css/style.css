@@ -49,8 +49,8 @@ body {
 }
 
 body::-webkit-scrollbar {
-    width: 0.3vw;
-    height: 0.1vh;
+    width: 7px;
+    height: 7px;
 }
 
 body::-webkit-scrollbar-track {
@@ -264,14 +264,14 @@ main .aboutUs .informations .icons-media{
 main .aboutUs .informations .icons-media .icon{
     background: linear-gradient(90.11deg, #FF5E81 -0.84%, rgba(255, 0, 55, 0.21) 97.72%);
     color: var(--text-button);
-    width: 2.5vw;
-    height: 5vh;
+    width: 2.6vw;
+    height: 5.2vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5vw;
+    font-size: 1.6vw;
     border: none;
-    border-radius: 1vw 0vw 1vw 1vw;
+    border-radius: 1.02vw 0vw 1.02vw 1.02vw;
     box-sizing: border-box;
     box-shadow: 0px 4px 15px var(--pink-25);
     transition: 0.5s ease-out;
