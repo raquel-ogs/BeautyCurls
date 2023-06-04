@@ -2,10 +2,10 @@
 
 :root{
     --pink: #FF5E81;
+    --light-pink: #ffc4d1;
     --pink-50: rgba(255, 94, 129, 0.5);
     --pink-25: rgba(255, 94, 129, 0.25);
     --pink-10: rgba(255, 94, 129, 0.1);
-    --light-pink: #F6E6EB;
     --background: #F5EDF0;
     --background-header: #FCFAFB;
     --dark-pink: #703D57;
@@ -39,6 +39,8 @@ body::-webkit-scrollbar{
 
 body::-webkit-scrollbar-thumb{
     background: var(--pink);
+    border: none;
+    border-radius:10vh;
 }
 
 body::-webkit-scrollbar-track{
@@ -99,23 +101,27 @@ header nav .profile a{
     font-size: 0.85vw;
 }
 
+
 header nav .profile a img{
     width: 2.5vw;
-    border: 2px solid var(--dark-pink-70);
+    /* border: 2px solid var(--dark-pink-70); */
     border-radius: 5vw;
-    filter: drop-shadow(0px 4px 4px var(--dark-pink-25));
+    filter: drop-shadow(0px 0px 4px var(--dark-pink-25));
     transition: 0.3s linear;
 }
 
-header nav .profile a:hover {
+header nav .profile  a:hover i{
     color: var(--dark-pink);
 }
 
-header nav .profile a:hover h4{
+
+header nav .profile a:hover h4, header nav .profile a .now{
     font-weight: 600;
+    color: var(--dark-pink);
+
 }
 
-header nav .profile a:hover img{
+header nav .profile a:hover img, header nav .profile a #img-now{
     border-color: var(--dark-pink);
 }
 
@@ -192,9 +198,9 @@ header nav .copyright .copyright-title a{
     transition: 0.3s ease-out;
 }
 
-header nav .copyright:hover{
+/* header nav .copyright:hover{
     opacity: 1;
-}
+} */
 
 header nav .copyright .copyright-title a:hover{
     text-decoration: underline;
@@ -249,6 +255,11 @@ main .home .content .categories .card-category .icon{
     align-items: center;
     border: none;
     border-radius: 100vh;
+    transition: 0.5s all linear;
+}
+
+main .home .content .categories .card-category .icon:hover{
+    background-color: var(--light-pink);
 }
 
 main .home .content .categories .card-category .icon .background{
@@ -294,8 +305,7 @@ main .recents .content .post{
     height: 55vh;
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    
+    align-items: center;   
 }
 
 main .recents .content .post .image{
@@ -355,8 +365,7 @@ main .recents .content .post .post-informations .post-texts .post-title h2{
     font-weight: 700;
     font-size: 1.3vw;
     text-shadow: 0px 4px 4px var(--dark-pink-15);
-    transition: 0.3s ALL linear;
-
+    transition: 0.3s all linear;
 }
 
 main .recents .content .post .post-informations .post-texts .post-subtitle h4{
@@ -366,10 +375,8 @@ main .recents .content .post .post-informations .post-texts .post-subtitle h4{
     font-weight: bold;
     font-size: 1.1vw;
     -webkit-text-stroke: 0.5px var(--pink);
-    transition: 0.3s ALL linear;
-
+    transition: 0.3s all linear;
 }
-
 
 main .recents .content .post .post-informations .post-description, main .recents .content .post .post-description b{
     width: 95%;
@@ -444,6 +451,7 @@ main .recents .content .post .card-category h5{
 
 
 .title{
+    width: 100%;
     font-size: 2vw;
     color: var(--pink);
     letter-spacing: 0.05rem;
@@ -459,6 +467,10 @@ main .recents .content .post .card-category h5{
     border-radius: 100px;
     background-color: var(--pink-25);
     transition: 0.6s linear;
+}
+
+.ball:hover{
+    background-color: var(--pink);
 }
 
 .ball-now{

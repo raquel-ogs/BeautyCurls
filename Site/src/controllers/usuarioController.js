@@ -58,6 +58,21 @@ function entrar(req, res) {
     }
 }
 
+
+function verificarQtdFotoPerfil(req, res) {
+    usuarioModel.verificarQtdFotoPerfil().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.json(resultado[0])
+        } else {
+            res.status(200).send("Nenhuma foto encontrada");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao tentar listar fotos de perfil.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
@@ -66,6 +81,7 @@ function cadastrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var curvatura = req.body.curvaturaServer;
+    var fotoPerfil = req.body.fotoPerfilServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -80,10 +96,12 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else if (curvatura == undefined) {
         res.status(400).send("Sua curvatura está undefined!");
+    } else if (fotoPerfil == undefined) {
+        res.status(400).send("Sua foto de perfil está undefined!");
     } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, sobrenome, user, email, senha, curvatura)
+        usuarioModel.cadastrar(nome, sobrenome, user, email, senha, curvatura, fotoPerfil)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -140,8 +158,9 @@ function verificarEmail(req, res) {
 
 module.exports = {
     entrar,
+    verificarQtdFotoPerfil,
     cadastrar,
-    testar,
     verificarUser,
-    verificarEmail
+    verificarEmail,
+    testar
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,10 +13,10 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <script src="./../js/funcoes.js"></script>
+    <script src="./js/scriptBlog.js"></script>
     <title> BeautyCurls, onde seus cachos ganham vida</title>
 </head>
-
-<body>
+<body onload="validarSessao(), exibirNomeUsuario(), mostrarPost(1)">
     <header>
         <nav>
             <div class="logo">
@@ -27,8 +26,8 @@
             </div>
             <div class="profile">
                 <a href="conta.html">
-                    <img src="./../assets/carla.png">
-                    <h4 class="user"> Carlaaaa_g </h4>
+                    <img id="fotoPerfil">
+                    <h4 class="user" id="nomeUser"> </h4>
                     <label>
                         <i class="fa-solid fa-angle-right"></i>
                     </label>
@@ -76,7 +75,7 @@
                     </a>
                 </li>
                 <li class="list-item">
-                    <span onclick="sair()">
+                    <span onclick="limparSessao()">
                         <label class="icon">
                             <i class="fi fi-br-sign-out-alt"></i>
                         </label>
@@ -96,7 +95,7 @@
     <main>
         <section class="home">
             <div class="content">
-                <h1 class="title"> Olá, <span id="nomeUsuario"> Carla</span>!</h1>
+                <h1 class="title"> Olá, <span id="nomeUsuario"></span>!</h1>
                 <div class="categories">
                     <a href="./penteados.html">
                         <div class="card-category">
@@ -180,7 +179,7 @@
         {
             categoria: 'Penteado', 
             titulo: 'Coque Com Tranças', 
-            descricao: 'Esse penteado é um penteado que gosto muito por ser fácil de fazer e é por ser super prático para o dia-a-dia, pois é simples de fazer a "manutenção".', 
+            descricao: 'Esse é um penteado que gosto muito por ser fácil e super prático de fazer, dura muitos days after o que facilita no dia a dia.', 
             hrPostado: '12 horas atrás',
             url: './../../assets/raquel_2.png'
         },
@@ -233,10 +232,10 @@
         categoria.innerHTML = item.categoria;
         titulo.innerHTML = item.titulo;
         hora.innerHTML = item.hrPostado;
-        descricao.src = item.descricao;
-
-    }
-
-    setInterval(() => {mostrarPost(idPost+=1)}, 7000);
+        descricao.innerHTML = item.descricao;
     
+        setTimeout(() => {mostrarPost(idPost+=1)}, 8000);
+    }
+    
+
 </script>

@@ -1,0 +1,40 @@
+main .products{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+main .products .content{
+    margin-top: 10vh;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 7vh;
+}
+
+main .products .content .back{
+    width: 100%;
+    display: flex;
+    column-gap: 5vh;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+main .products .content .back button{
+    cursor: pointer;
+    background: transparent;
+    color: var(--pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+    border: none;
+    filter: drop-shadow(0px 7px 4px var(--pink-25));
+    transition: 0.3s ease-out;
+}
+
+main .products .content .back button:hover{
+    color: var(--dark-pink);
+    filter: drop-shadow(0px 7px 4px var(--dark-pink-25));
+}

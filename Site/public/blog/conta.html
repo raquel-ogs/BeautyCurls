@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/styleConta.css">
+    <link rel="shortcut icon" href="./../assets/imagotipo.svg" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <script src="./../js/funcoes.js"></script>
+    <script src="./js/scriptConta.js"></script>
+    <title> BeautyCurls, onde seus cachos ganham vida</title>
+</head>
+<body onload="validarSessao(), exibirDadosConta()">
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="./../index.html">
+                    <img src="./../assets/logotipo.svg">
+                </a>
+            </div>
+            <div class="profile">
+                <a href="conta.html">
+                    <img id="fotoPerfil">
+                    <h4 class="now" id="nomeUser"> </h4>
+                    <label>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </label>
+                </a>
+            </div>
+            <ul class="list-navegation">
+                <li class="list-item">
+                    <a href="./index.html">
+                        <label class="icon">
+                            <i class="fi fi-br-house-blank"></i>
+                        </label>
+                        <h4 class="title-item">
+                            Início
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="./salvos.html">
+                        <label class="icon">
+                            <i class="fi fi-br-bookmark"></i>
+                        </label>
+                        <h4 class="title-item">
+                            Salvos
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="./curtidos.html">
+                        <label class="icon">
+                            <i class="fi fi-br-heart"></i>
+                        </label>
+                        <h4 class="title-item">
+                            Curtidos
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="./ajudaSuporte.html">
+                        <label class="icon">
+                            <i class="fi fi-br-info"></i>
+                        </label>
+                        <h4 class="title-item">
+                            Ajuda e Suporte
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <span onclick="limparSessao()">
+                        <label class="icon">
+                            <i class="fi fi-br-sign-out-alt"></i>
+                        </label>
+                        <h4 class="title-item">
+                            Sair da conta
+                        </h4>
+                    </span>
+                </li>
+            </ul>
+            <div class="copyright"> 
+                <h4 class="copyright-title">
+                    © Copyright <a href="./../index.html"> BeautyCurls </a>
+                </h4>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="account">
+            <div class="content">
+                <div class="informations">
+                    <div class="informations-account">
+                        <div class="image-account">
+                            <img id="fotoConta">
+                            <a href="#">
+                                <button class="icon-camera">
+                                    <label class="icon">
+                                        <i class="fa-solid fa-camera"></i>
+                                    </label>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="data-account">
+                            <h1 class="title" id="nomeCompleto"> </h1>
+                            <h3 id="userUsuario"> </h3>
+                        </div>
+                    </div>
+                    <div class="informations-interaction">
+                        <div class="card">
+                            <label>
+                                <i class="fi fi-sr-heart"></i>
+                            </label>
+                            <h4> 10 curtidos </h4>
+                        </div>
+                        <div class="card">
+                            <label>
+                                <i class="fi fi-sr-bookmark"></i>
+                            </label>
+                            <h4> 3 salvos </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="personal-data">
+                    <ul class="list-personal-data">
+                        <li class="list-item" >
+                            <h3 class="name-data"> Email </h3>
+                            <span>
+                                <h3 class="data" id="email"> </h3>
+                                <label>
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </label>
+                            </span>
+                        </li>
+                        <li class="list-item" >
+                            <h3 class="name-data"> Senha </h3>
+                            <span>
+                                <h3 class="data" id="senha"> </h3>
+                                <label>
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </label>
+                            </span>
+                        </li>
+                        <li class="list-item" >
+                            <h3 class="name-data"> Curvatura do Cabelo </h3>
+                            <span>
+                                <h3 class="data" id="curvatura"> </h3>
+                                <label>
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </label>
+                            </span>
+                        </li> 
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

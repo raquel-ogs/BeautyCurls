@@ -100,14 +100,15 @@
                         sessionStorage.SOBRENOME = json.sobrenome;
                         sessionStorage.USER = json.nomeUser;
                         sessionStorage.EMAIL = json.email;
-                        sessionStorage.SENHA= json.SENHA;
-                        sessionStorage.CURVATURA = json.fkCurvatura;
+                        sessionStorage.SENHA = json.senha;
+                        sessionStorage.CURVATURA = json.nomeCurvatura;
+                        sessionStorage.FOTO_PERFIL = json.url;
 
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 3000,
+                            timer: 2500,
                             timerProgressBar: true,
                             didOpen: (toast) => {
                                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -122,7 +123,7 @@
 
                         setTimeout(() => {
                             window.location = "./blog/index.html";
-                        }, 3000); // apenas para exibir o loading
+                        }, 2500); // apenas para exibir o loading
 
                     });
 

@@ -2,25 +2,25 @@
 function validarSessao() {
     // aguardar();
 
-    var email = sessionStorage.EMAIL_USUARIO;
-    var nome = sessionStorage.NOME_USUARIO;
+    var email = sessionStorage.EMAIL;
+    var nome = sessionStorage.NOME;
+    var user = sessionStorage.USER;
+    var urlFotoPerfil = sessionStorage.FOTO_PERFIL;
 
-    var b_usuario = document.getElementById("b_usuario");
+    var nomeUser = document.getElementById("nomeUser");
+    var fotoPerfil = document.getElementById("fotoPerfil");
 
     if (email != null && nome != null) {
-        // window.alert(`Seja bem-vindo, ${nome}!`);
-        b_usuario.innerHTML = nome;
+        nomeUser.innerHTML = user;
+        fotoPerfil.src = urlFotoPerfil;
 
-        // finalizarAguardar();
     } else {
         window.location = "../login.html";
     }
 }
 
 function limparSessao() {
-    // aguardar();
     sessionStorage.clear();
-    // finalizarAguardar();
     window.location = "../login.html";
 }
 

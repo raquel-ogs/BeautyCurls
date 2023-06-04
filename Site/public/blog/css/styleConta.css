@@ -1,0 +1,174 @@
+main .account{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+main .account .content{
+    margin-top: 10vh;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 7vh;
+}
+
+main .account .content .informations{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 2vh;
+}
+
+main .account .content .informations .informations-account{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+main .account .content .informations .informations-account .image-account{
+    width: fit-content;
+    height: fit-content;
+    padding-bottom: 1vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+main .account .content .informations .informations-account .image-account img{
+    width: 10vw;
+    border: 4px solid var(--pink);
+    border-radius: 500px;
+    box-shadow: 0px 7px 4px var(--pink-25);
+}
+
+
+main .account .content .informations .informations-account .image-account a{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .account .content .informations .informations-account .image-account a .icon-camera{
+    cursor: pointer;
+    background-color: var(--pink);
+    color: #fff;
+    width: 2.3vw;
+    height: 2.3vw;
+    border: none;
+    border-radius: 100px;
+    transition: 0.25s ;
+}
+
+main .account .content .informations .informations-account .image-account a .icon-camera:hover{
+    cursor: pointer;
+    background-color: var(--dark-pink);
+    width: 2.3vw;
+    height: 2.3vw;
+    border: none;
+    border-radius: 100px;
+    transition: 0.25s ;
+}
+
+main .account .content .informations .informations-account .data-account{
+    width: 100%;
+    height: fit-content;
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .account .content .informations .informations-account .data-account h1{
+    width: 100%;
+    text-align: center;
+}
+
+main .account .content .informations .informations-account .data-account h3{
+    width: 100%;
+    color: var(--dark-pink);
+    font-family: 'Arvo';
+    font-size: 1.2vw;
+    text-align: center;
+}
+
+main .account .content .informations .informations-interaction{
+    width: 40%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+main .account .content .informations .informations-interaction .card{
+    display: flex;
+    align-items: center;
+    column-gap: 3vh;
+    color: var(--pink);
+    font-size: 1.2vw;
+}
+
+main .account .content .informations .informations-interaction .card label i{
+    font-size: 1.5vw;
+}
+
+main .account .content .informations .informations-interaction .card h4{
+    font-family: 'Arvo';
+    letter-spacing: 0.05em;
+}
+
+main .account .content .personal-data{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .account .content .personal-data .list-personal-data{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main .account .content .personal-data .list-personal-data .list-item{
+    width: 80%;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .account .content .personal-data .list-personal-data .list-item .name-data{
+    color: var(--dark-pink);
+    font-size: 1vw;
+    font-family: 'Poppins';
+    font-weight: 400;
+}
+
+main .account .content .personal-data .list-personal-data .list-item span{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .account .content .personal-data .list-personal-data .list-item span h3{
+    color: var(--dark-pink);
+    font-size: 1vw;
+    font-family: 'Poppins';
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+

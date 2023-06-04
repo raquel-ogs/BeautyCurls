@@ -71,6 +71,7 @@
 </html>
 <script>
     var statusResposta = 0;
+    var qtdFoto = 0;
 
     function buscarCurvaturas() {
         fetch('curvatura/listar')
@@ -96,11 +97,29 @@
             .catch(function (error) {
                 console.error(`Erro na verifição do nome de usuário: ${error.message}`);
             });
+    }
+
+    function verificarQtdFotoPerfil() {
+        fetch(`/usuarios/verificarQtdFotoPerfil/`)
+            .then(resposta => {
+                if (resposta.ok) {
+                    resposta.json().then(fotoPerfil => {
+                        console.log(fotoPerfil);
+                        console.log(JSON.stringify(fotoPerfil));
+
+                        qtdFoto = fotoPerfil.qtdFoto;
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na verifição do nome de usuário: ${error.message}`);
+            });
 
     }
 
     function cadastrar() {
-
         var nomeVar = sessionStorage.getItem('nome');
         var sobrenomeVar = sessionStorage.getItem('sobrenome');
         var userVar = sessionStorage.getItem('user');
@@ -121,7 +140,13 @@
             return false;
 
         } else {
+            verificarQtdFotoPerfil();
+
             setTimeout( () => {
+                var intervalo = (qtdFoto + 1) - 1;
+                var numeroAleatorio = parseInt(Math.random() * intervalo + 1);
+                console.log(numeroAleatorio)
+               
                 if(statusResposta == 200){
                     fetch("/usuarios/cadastrar", {
                         method: "POST",
@@ -135,6 +160,7 @@
                             emailServer: emailVar,
                             senhaServer: senhaVar,
                             curvaturaServer: Number(curvaturaVar),
+                            fotoPerfilServer: numeroAleatorio,
                         })
                     }).then(function (resposta) {
 
