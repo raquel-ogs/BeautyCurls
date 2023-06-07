@@ -22,6 +22,8 @@ main .products .content .back{
 }
 
 main .products .content .back button{
+    width: fit-content;
+    padding-left: 1vh;
     cursor: pointer;
     background: transparent;
     color: var(--pink);
@@ -37,4 +39,95 @@ main .products .content .back button{
 main .products .content .back button:hover{
     color: var(--dark-pink);
     filter: drop-shadow(0px 7px 4px var(--dark-pink-25));
+}
+
+main .products .content .back button:hover{
+    color: var(--dark-pink);
+    filter: drop-shadow(0px 7px 4px var(--dark-pink-25));
+}
+
+main .products .content .posts{
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+    row-gap: 3vh;
+    justify-content: center;
+    align-items: center;
+}
+
+main .products .content .posts .card-post{
+    width: 20vw;
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+main .products .content .posts .card-post .curvature-hair-post{
+    width: 100%;
+    color: var(--pink);
+    font-family: 'Poppins';
+    font-size: 1vw;
+    font-weight: 800;
+    text-align: end;
+}
+
+main .products .content .posts .card-post .info-post{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+}
+
+main .products .content .posts .card-post .info-post .img-post{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 100%;
+}
+
+main .products .content .posts .card-post .info-post .img-post div{
+    position: absolute;
+    width: 16vw;
+    height: 18vh;
+    background: radial-gradient(455.99% 1056.23% at 50% 50%, rgba(255, 94, 129, 0.3) 0%, rgba(255, 207, 218, 0.3) 100%);
+    border-radius: 3vw;
+    box-shadow: 0px 4px 4px var(--dark-pink-25);
+}
+
+main .products .content .posts .card-post .info-post .img-post img{
+    width: 13vw;
+    margin-bottom: 1vh;
+    filter: drop-shadow(0px 15px 15px rgba(255, 94, 129, 0.5));
+}
+
+main .products .content .posts .card-post .info-post .text-post{
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    line-height: 4.5vh;
+}
+
+main .products .content .posts .card-post .info-post .text-post .title-post{
+    color: var(--dark-pink);
+    font-family: 'Arvo';
+    font-weight: 700;
+    text-shadow: 0px 4px 4px var(--dark-pink-25);
+    -webkit-text-stroke: 0.5px var(--dark-pink);
+}
+
+main .products .content .posts .card-post .info-post .text-post .subtitle-post{
+    cursor: pointer;
+    color: var(--pink);
+    font-family: 'Sofia';
+    letter-spacing: 0.15rem;
+    text-shadow: 0px 4px 4px var(--pink-25);
+    -webkit-text-stroke: 1px var(--pink);
+    transition: 0.5s linear;
+}
+
+main .products .content .posts .card-post .info-post .text-post .subtitle-post:hover{
+    transform: scale(1.1);
 }

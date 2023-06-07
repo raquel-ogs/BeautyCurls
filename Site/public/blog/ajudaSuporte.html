@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/styleReceitas.css">
+    <link rel="shortcut icon" href="./../assets/imagotipo.svg" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <script src="./../js/funcoes.js"></script>
+    <title> BeautyCurls, onde seus cachos ganham vida</title>
+</head>
+<body onload="validarSessao(), exibirNomeUsuario(), mostrarPost(1)">
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="./../index.html">
+                    <img src="./../assets/logotipo.svg">
+                </a>
+            </div>
+            <div class="profile">
+                <a href="conta.html">
+                    <img id="fotoPerfil">
+                    <h4 class="user" id="nomeUser"> </h4>
+                    <label>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </label>
+                </a>
+            </div>
+            <ul class="list-navegation">
+                <li class="list-item">
+                    <a href="./index.html">
+                        <label class="icon">
+                            <i class="fi fi-br-house-blank"></i>
+                        </label>
+                        <h4 class="title-item">
+                            Início
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="./games.html">
+                        <label class="icon">
+                            <i class="fi fi-br-joystick"></i>
+                        </label>
+                        <h4 class="title-item">
+                            Games
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="./salvos.html">
+                        <label class="icon">
+                            <i class="fi fi-br-bookmark"></i>
+                        </label>
+                        <h4 class="title-item">
+                            Salvos
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="./curtidos.html">
+                        <label class="icon">
+                            <i class="fi fi-br-heart"></i>
+                        </label>
+                        <h4 class="title-item">
+                            Curtidos
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item-now">
+                    <a href="#">
+                        <label class="icon">
+                            <i class="fi fi-sr-info"></i>
+                        </label>
+                        <h4 class="title-item-selected">
+                            Ajuda e Suporte
+                        </h4>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <span onclick="limparSessao()">
+                        <label class="icon">
+                            <i class="fi fi-br-sign-out-alt"></i>
+                        </label>
+                        <h4 class="title-item">
+                            Sair da conta
+                        </h4>
+                    </span>
+                </li>
+            </ul>
+            <div class="copyright"> 
+                <h4 class="copyright-title">
+                    © Copyright <a href="./../index.html"> BeautyCurls </a>
+                </h4>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="recipe">
+            <div class="content">
+                
+            </div>
+        </section>
+    </main>
+</body>
+</html>

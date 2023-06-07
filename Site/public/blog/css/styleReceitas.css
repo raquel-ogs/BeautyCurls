@@ -22,6 +22,8 @@ main .recipe .content .back{
 }
 
 main .recipe .content .back button{
+    width: fit-content;
+    padding-left: 1vh;
     cursor: pointer;
     background: transparent;
     color: var(--pink);
