@@ -31,20 +31,6 @@ function verificarQtdFotoPerfil() {
     return database.executar(instrucao);
 }
 
-
-// Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar(nome, sobrenome, user, email, senha, curvatura, fotoPerfil) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, sobrenome, user, email, senha, curvatura);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    var instrucao = `
-        INSERT INTO Usuario (nome, sobrenome, nomeUser, email, senha, fkCurvaturaCabelo, fkFotoPerfil) VALUES ('${nome}', '${sobrenome}', '${user}', '${email}', '${senha}', ${curvatura}, ${fotoPerfil});
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
 function verificarEmail(email) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarEmail(): ", email);
     var instrucao = `
@@ -63,11 +49,103 @@ function verificarUser(user) {
     return database.executar(instrucao);
 }
 
+// Coloque os mesmos parâmetros aqui. Vá para a var instrucao
+function cadastrar(nome, sobrenome, user, email, senha, curvatura, fotoPerfil) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, sobrenome, user, email, senha, curvatura);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO Usuario (nome, sobrenome, nomeUser, email, senha, fkCurvaturaCabelo, fkFotoPerfil) VALUES ('${nome}', '${sobrenome}', '${user}', '${email}', '${senha}', ${curvatura}, ${fotoPerfil});
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function adicionarCurtida(fkUsuario, fkPostagem) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function adicionarCurtida():", fkUsuario, fkPostagem);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO Curtida VALUES (${fkUsuario}, ${fkPostagem}, CURRENT_DATE());
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function verificarCurtida(fkUsuario, fkPostagem) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarCurtida():", fkUsuario, fkPostagem);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        SELECT * FROM Curtida WHERE fkUsuario = ${fkUsuario} AND fkPostagem = ${fkPostagem};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function apagarCurtida(fkUsuario, fkPostagem) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function apagarCurtida():", fkUsuario, fkPostagem);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        DELETE FROM Curtida WHERE fkUsuario = ${fkUsuario} AND fkPostagem = ${fkPostagem};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function verificarSalvo(fkUsuario, fkPostagem) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarSalvo():", fkUsuario, fkPostagem);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        SELECT * FROM Salvo WHERE fkUsuario = ${fkUsuario} AND fkPostagem = ${fkPostagem};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+function adicionarSalvo(fkUsuario, fkPostagem) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function adicionarSalvo():", fkUsuario, fkPostagem);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO Salvo VALUES (${fkUsuario}, ${fkPostagem}, CURRENT_DATE());
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function apagarSalvo(fkUsuario, fkPostagem) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function apagarSalvo():", fkUsuario, fkPostagem);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        DELETE FROM Salvo WHERE fkUsuario = ${fkUsuario} AND fkPostagem = ${fkPostagem};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
+    listar,
     entrar,
+    verificarUser,
+    verificarEmail,
     verificarQtdFotoPerfil,
     cadastrar,
-    listar,
-    verificarEmail,
-    verificarUser
+    verificarCurtida,
+    adicionarCurtida,
+    apagarCurtida,
+    verificarSalvo,
+    adicionarSalvo,
+    apagarSalvo
 };

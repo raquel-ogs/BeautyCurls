@@ -6,7 +6,7 @@ main .hairstyle{
 
 main .hairstyle .content{
     margin-top: 10vh;
-    width: 85%;
+    width: 90%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -39,4 +39,108 @@ main .hairstyle .content .back button{
 main .hairstyle .content .back button:hover{
     color: var(--dark-pink);
     filter: drop-shadow(0px 7px 4px var(--dark-pink-25));
+}
+
+main .hairstyle .content .posts{
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+    align-items: center;
+    justify-content: center;
+    row-gap: 10vh;
+}
+
+main .hairstyle .content .posts .card-post{
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 1vh;
+}
+
+main .hairstyle .content .posts .card-post .image{
+    width: 55%;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2vh;
+}  
+
+main .hairstyle .content .posts .card-post .image .icons{
+    color: var(--pink);
+    width: 60%;
+    display: flex;
+}
+
+main .hairstyle .content .posts .card-post .image .icons .card-icon{
+    width: 12vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.5vw;
+    text-align: center;
+}
+
+main .hairstyle .content .posts .card-post .image .icons .card-icon i{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vw;
+}
+
+main .hairstyle .content .posts .card-post .image .icons .card-icon h3{
+    font-size: 1.1vw;
+    font-family: 'Poppins';
+    font-weight: 800;
+}
+
+main .hairstyle .content .posts .card-post .image img{
+    width: 13vw;
+    height: 32vh;
+    border: 3px solid var(--pink-50);
+    border-radius: 4vw;
+    filter: drop-shadow(-20px 10px 10px var(--pink-25));
+}
+
+main .hairstyle .content .posts .card-post .post-informations .post-texts{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 3vh;
+    padding-left: 1vh;
+}
+
+main .hairstyle .content .posts .card-post .post-informations .post-texts h4{
+    color: var(--dark-pink-70);
+    font-family: 'Poppins';
+    font-weight: 300;
+    font-size: 1vw;
+}
+
+main .hairstyle .content .posts .card-post .post-informations .post-texts h2{
+    width: 80%;
+    color: var(--dark-pink);
+    font-family: 'Arvo';
+    font-weight: 700;
+    font-size: 1.9vw;
+    text-shadow: 0px 7px 4px var(--dark-pink-25);
+    line-height: 5vh;
+    -webkit-text-stroke: 0.5px var(--dark-pink);
+}
+
+main .hairstyle .content .posts .card-post .post-informations .post-texts h3{
+    cursor: pointer;
+    color: var(--pink);
+    font-size: 1.4vw;
+    font-family: 'Sofia';
+    letter-spacing: 0.15rem;
+    text-shadow: 0px 7px 4px var(--pink-25);
+    -webkit-text-stroke: 1px var(--pink);
+    transition: 0.5s linear;
+}
+
+main .hairstyle .content .posts .card-post .post-informations .post-texts h3:hover{
+    transform: scale(1.1);
 }

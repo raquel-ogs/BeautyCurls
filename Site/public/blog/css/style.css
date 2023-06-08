@@ -7,7 +7,7 @@
     --pink-25: rgba(255, 94, 129, 0.25);
     --pink-10: rgba(255, 94, 129, 0.1);
     --background: #F5EDF0;
-    --background-header: #FCFAFB;
+    --background-header: #FCFCFC;
     --dark-pink: #703D57;
     --dark-pink-90: rgba(112, 61, 87, 0.9);
     --dark-pink-70: rgba(112, 61, 87, 0.7);
@@ -53,16 +53,17 @@ header{
 }
 
 header nav{
-    position: fixed;
     background-color: var(--background-header);
-    float: left;
+    position: fixed;
     width: 18vw;
     height: 100%;
-    display: flex;
     padding-top: 7vh;
+    display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 5vh;
+    box-shadow: 0px 0px 20px var(--pink-25);
+    float: left;
 }
 
 header nav h4, header nav a, header nav i{
@@ -367,11 +368,11 @@ main .recents .content .post .post-informations .post-texts .post-title h2{
 main .recents .content .post .post-informations .post-texts .post-subtitle h4{
     color: var(--pink);
     font-family: 'Sofia';
+    font-size: 1.1vw;
     letter-spacing: 0.05em;
-    font-weight: bold;
-    font-size: 1.3vw;
-    -webkit-text-stroke: 0.5px var(--pink);
+    text-shadow: 0px 4px 4px var(--pink-25);
     transition: 0.3s all linear;
+    -webkit-text-stroke: 1px var(--pink);
 }
 
 main .recents .content .post .post-informations .post-description, main .recents .content .post .post-description b{
@@ -448,6 +449,7 @@ main .recents .content .post .card-category h5{
 
 .title{
     width: 100%;
+    padding-left: 10px;
     font-size: 2.5vw;
     color: var(--pink);
     letter-spacing: 0.05rem;

@@ -3,7 +3,7 @@ var curvaturaModel = require("../models/curvaturaModel");
 var sessoes = [];
 
 function testar(req, res) {
-    console.log("ENTRAMOS NA usuarioController");
+    console.log("ENTRAMOS NA curvaturaController");
     res.json("ESTAMOS FUNCIONANDO!");
 }
 

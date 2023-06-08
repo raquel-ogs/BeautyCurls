@@ -156,11 +156,182 @@ function verificarEmail(req, res) {
 }
 
 
+function verificarCurtida(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+    var fkPostagem = req.params.fkPostagem;
+
+    console.log(`Verificando se existe curtida na postagem de id: ${fkPostagem}`);
+
+    usuarioModel.verificarCurtida(fkUsuario, fkPostagem).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(204).send("Existe")
+        } else {
+            res.status(200).send("Não existe");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao tentar verificar curtida.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function verificarSalvo(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+    var fkPostagem = req.params.fkPostagem;
+
+    console.log(`Verificando se existe salvo na postagem de id: ${fkPostagem}`);
+
+    usuarioModel.verificarSalvo(fkUsuario, fkPostagem).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(204).send("Existe")
+        } else {
+            res.status(200).send("Não existe");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao tentar verificar salvo.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function adicionarCurtida(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var fkUsuario = req.body.fkUsuarioServer;
+    var fkPostagem = req.body.fkPostagemServer;
+
+    // Faça as validações dos valores
+    if (fkUsuario == undefined) {
+        res.status(400).send("Seu fkUsuario está undefined!");
+    } else if (fkPostagem == undefined) {
+        res.status(400).send("Seu fkPostagem está undefined!");
+    } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.adicionarCurtida(fkUsuario, fkPostagem)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao curtir a postagem! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function apagarCurtida(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var fkUsuario = req.body.fkUsuarioServer;
+    var fkPostagem = req.body.fkPostagemServer;
+
+    // Faça as validações dos valores
+    if (fkUsuario == undefined) {
+        res.status(400).send("Seu fkUsuario está undefined!");
+    } else if (fkPostagem == undefined) {
+        res.status(400).send("Seu fkPostagem está undefined!");
+    } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.apagarCurtida(fkUsuario, fkPostagem)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao descurtir a postagem! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function adicionarSalvo(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var fkUsuario = req.body.fkUsuarioServer;
+    var fkPostagem = req.body.fkPostagemServer;
+
+    // Faça as validações dos valores
+    if (fkUsuario == undefined) {
+        res.status(400).send("Seu fkUsuario está undefined!");
+    } else if (fkPostagem == undefined) {
+        res.status(400).send("Seu fkPostagem está undefined!");
+    } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.adicionarSalvo(fkUsuario, fkPostagem)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao salvar a postagem! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function apagarSalvo(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var fkUsuario = req.body.fkUsuarioServer;
+    var fkPostagem = req.body.fkPostagemServer;
+
+    // Faça as validações dos valores
+    if (fkUsuario == undefined) {
+        res.status(400).send("Seu fkUsuario está undefined!");
+    } else if (fkPostagem == undefined) {
+        res.status(400).send("Seu fkPostagem está undefined!");
+    } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.apagarSalvo(fkUsuario, fkPostagem)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao apagar salvo na postagem! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
 module.exports = {
+    testar,
     entrar,
     verificarQtdFotoPerfil,
     cadastrar,
     verificarUser,
     verificarEmail,
-    testar
+    verificarCurtida,
+    adicionarCurtida,
+    apagarCurtida,
+    verificarSalvo,
+    adicionarSalvo,
+    apagarSalvo
 }
