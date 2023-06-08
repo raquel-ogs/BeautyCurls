@@ -39,7 +39,7 @@ function cadastrar(nome, sobrenome, user, email, senha, curvatura, fotoPerfil) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO usuario (nome, sobrenome, nomeUser, email, senha, fkCurvaturaCabelo, fkFotoPerfil) VALUES ('${nome}', '${sobrenome}', '${user}', '${email}', '${senha}', ${curvatura}, ${fotoPerfil});
+        INSERT INTO Usuario (nome, sobrenome, nomeUser, email, senha, fkCurvaturaCabelo, fkFotoPerfil) VALUES ('${nome}', '${sobrenome}', '${user}', '${email}', '${senha}', ${curvatura}, ${fotoPerfil});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -48,7 +48,7 @@ function cadastrar(nome, sobrenome, user, email, senha, curvatura, fotoPerfil) {
 function verificarEmail(email) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarEmail(): ", email);
     var instrucao = `
-        SELECT * FROM usuario WHERE email = '${email}' ;
+        SELECT * FROM Usuario WHERE email = '${email}' ;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -57,7 +57,7 @@ function verificarEmail(email) {
 function verificarUser(user) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarUser(): ", user)
     var instrucao = `
-        SELECT * FROM usuario WHERE nomeUser = '${user}';
+        SELECT * FROM Usuario WHERE nomeUser = '${user}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

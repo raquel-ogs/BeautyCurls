@@ -57,18 +57,18 @@ main .products .content .posts{
 
 main .products .content .posts .card-post{
     width: 20vw;
-    height: 55vh;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 main .products .content .posts .card-post .curvature-hair-post{
     width: 100%;
     color: var(--pink);
     font-family: 'Poppins';
-    font-size: 1vw;
+    font-size: 1.3vw;
     font-weight: 800;
     text-align: end;
 }
@@ -78,7 +78,7 @@ main .products .content .posts .card-post .info-post{
     height: fit-content;
     display: flex;
     flex-direction: column;
-    row-gap: 3vh;
+    row-gap: 4vh;
 }
 
 main .products .content .posts .card-post .info-post .img-post{
@@ -90,16 +90,16 @@ main .products .content .posts .card-post .info-post .img-post{
 
 main .products .content .posts .card-post .info-post .img-post div{
     position: absolute;
-    width: 16vw;
-    height: 18vh;
+    width: 18vw;
+    height: 23vh;
     background: radial-gradient(455.99% 1056.23% at 50% 50%, rgba(255, 94, 129, 0.3) 0%, rgba(255, 207, 218, 0.3) 100%);
     border-radius: 3vw;
     box-shadow: 0px 4px 4px var(--dark-pink-25);
 }
 
 main .products .content .posts .card-post .info-post .img-post img{
-    width: 13vw;
-    margin-bottom: 1vh;
+    width: 15vw;
+    margin-bottom: 2vh;
     filter: drop-shadow(0px 15px 15px rgba(255, 94, 129, 0.5));
 }
 
@@ -107,7 +107,7 @@ main .products .content .posts .card-post .info-post .text-post{
     overflow: hidden;
     width: 100%;
     text-align: center;
-    line-height: 4.5vh;
+    line-height: 6vh;
 }
 
 main .products .content .posts .card-post .info-post .text-post .title-post{
@@ -115,12 +115,14 @@ main .products .content .posts .card-post .info-post .text-post .title-post{
     font-family: 'Arvo';
     font-weight: 700;
     text-shadow: 0px 4px 4px var(--dark-pink-25);
+    font-size: 1.5vw;
     -webkit-text-stroke: 0.5px var(--dark-pink);
 }
 
 main .products .content .posts .card-post .info-post .text-post .subtitle-post{
     cursor: pointer;
     color: var(--pink);
+    font-size: 1.4vw;
     font-family: 'Sofia';
     letter-spacing: 0.15rem;
     text-shadow: 0px 4px 4px var(--pink-25);

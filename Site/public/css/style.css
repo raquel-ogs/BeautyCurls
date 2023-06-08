@@ -11,7 +11,7 @@
     --dark-pink-70: rgba(112, 61, 87, 0.7);
     --dark-pink-65: rgba(112, 61, 87, 0.65);
     --dark-pink-50: rgba(112, 61, 87, 0.5);
-    --text-info: rgba(0, 0, 0, 0.5);
+    --text-info: rgba(0, 0, 0, 0.65);
     --text-button: #fff;
 }
 
@@ -30,7 +30,7 @@ body {
       margin-bottom: 0%;
       width: 100%;
     }
-  }
+  } 
 
 * {
     font-family: 'Sofia';
@@ -71,7 +71,7 @@ header nav {
     background-color: var(--light-pink);
     color: var(--pink);
     width: 100%;
-    height: 12vh;
+    height: 16vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -98,7 +98,7 @@ header nav .nav-list .nav-item a {
 
 header nav .nav-list .nav-item a, header nav .button .btn-stroke {
     font-family: 'Arvo';
-    font-size: 0.9vw;
+    font-size: 1.1vw;
 }
 
 header nav .nav-list .nav-item a:hover {
@@ -111,7 +111,7 @@ main {
 
 main .home {
     width: 100%;
-    height: 60vh;
+    height: 58vh;
     display: flex;
     justify-content: center;
     background: linear-gradient(180deg, rgba(255, 94, 129, 0.05) 0%, rgba(255, 94, 129, 0) 100%);
@@ -120,7 +120,7 @@ main .home {
 main .home .background-wave {
     position: absolute;
     width: 100%;
-    height: 38vw;
+    height: 37vw;
     background-image: url('./../assets/vector-home.svg');
     background-position: 10%;
     background-size: cover;
@@ -131,6 +131,7 @@ main .home .content {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-top: 10vh;
 }
 
 main .home .content .text {
@@ -141,12 +142,12 @@ main .home .content .text {
 }
 
 main .home .content .text h1 {
-    width: 75%;
+    width: 85%;
     color: var(--dark-pink);
     font-family: 'Arvo';
     font-weight: 400;
-    font-size: 4.5vw;
-    line-height: 10vh;
+    font-size: 5vw;
+    line-height: 12vh;
 }
 
 main .home .content .text h1 .text-bold {
@@ -168,9 +169,9 @@ main .whoWeAre {
     background-image: url('./../assets/vector-who-we-are.svg');
     background-position: top;
     background-size: cover;
-    padding-top: 7vw;
+    padding-top: 10vw;
     width: 100%;
-    height: 73vh;
+    height: 75vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -191,12 +192,13 @@ main .whoWeAre .content .text {
     align-items: center;
 }
 
-main .whoWeAre .content .text p {
-    margin-top: 3vh;
-    width: 60%;
+main .whoWeAre .content .text p, main .whoWeAre .content .text b {
+    color: var(--text-info);
+    width: 65%;
     font-family: 'Poppins';
-    font-size: 1.3vw;
+    font-size: 1.5vw;
     text-align: justify;
+    margin-top: 3vh;
 }
 
 main .aboutUs{
@@ -209,7 +211,7 @@ main .aboutUs{
 main .aboutUs .background-wave {
     position: absolute;
     width: 100%;
-    height: 38vw;
+    height: 40vw;
     background-image: url('./../assets/vector-about-us.svg');
     background-position: 10%;
     background-size: cover;
@@ -217,7 +219,7 @@ main .aboutUs .background-wave {
 
 main .aboutUs .content{
     position: relative;
-    margin-top: 20vh;
+    margin-top: 25vh;
     width: 75%;
     display: flex;
     flex-direction: column;
@@ -236,26 +238,28 @@ main .aboutUs .informations .text-informations{
     width: 60%;
     display: flex;
     flex-direction: column;
-    row-gap: 3vh;
+    row-gap: 4vh;
 }
 
 main .aboutUs .informations .text-informations h3{
-    font-size: 1.3vw;
+    font-size: 2vw;
+    letter-spacing: 0.05rem;
     color: var(--pink);
     text-shadow: 0px 4px 4px var(--pink-25);
+    -webkit-text-stroke: 0.5px var(--pink);
 }
 
 main .aboutUs .informations .text-informations .text, main .aboutUs .informations .text-informations .text b{
     width: 75%;
     font-family: 'Poppins';
-    font-size: 1vw;
-    line-height: 3.5vh;
+    font-size: 1.2vw;
+    line-height: 4vh;
     color: var(--text-info);
     text-align: justify;
 }
 
 main .aboutUs .informations .icons-media{
-    width: 25%;
+    width: 30%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -264,14 +268,14 @@ main .aboutUs .informations .icons-media{
 main .aboutUs .informations .icons-media .icon{
     background: linear-gradient(90.11deg, #FF5E81 -0.84%, rgba(255, 0, 55, 0.21) 97.72%);
     color: var(--text-button);
-    width: 2.6vw;
-    height: 5.2vh;
+    width: 3.5vw;
+    height: 3.4vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.6vw;
+    font-size: 2.4vw;
     border: none;
-    border-radius: 1.02vw 0vw 1.02vw 1.02vw;
+    border-radius: 1.2vw 0vw 1.2vw 1.2vw;
     box-sizing: border-box;
     box-shadow: 0px 4px 15px var(--pink-25);
     transition: 0.5s ease-out;
@@ -282,7 +286,7 @@ main .aboutUs .informations .icons-media .icon:hover{
 }
 
 main .aboutUs .informations .image img{
-    width: 23vw;
+    width: 25vw;
     height: inherit;
     border: 2px solid var(--pink-25);
     border-radius: 6vw;
@@ -325,14 +329,14 @@ main .ourBlog .content{
 }
 
 main .ourBlog .informations{
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
 main .ourBlog .informations .image{
-    width: 60%;
+    width: 75%;
 }
 
 main .ourBlog .informations .image img{
@@ -345,23 +349,23 @@ main .ourBlog .informations .image img{
 }
 
 main .ourBlog .informations .text-informations{
-    width: 60%;
+    width: 80%;
     display: flex;
     flex-direction: column;
-    row-gap: 3vh;
+    row-gap: 4vh;
 }
 
 main .ourBlog .informations .text-informations h3{
-    font-size: 1.3vw;
+    font-size: 2vw;
     color: var(--pink);
     text-shadow: 0px 4px 4px var(--pink-25);
 }
 
 main .ourBlog .informations .text-informations .text, main .ourBlog .informations .text-informations .text b{
-    width: 85%;
+    width: 100%;
     font-family: 'Poppins';
-    font-size: 1vw;
-    line-height: 3.5vh;
+    font-size: 1.2vw;
+    line-height: 4vh;
     color: var(--text-info);
     text-align: justify;
 }
@@ -395,23 +399,23 @@ main .contact .content form {
 }
 
 main .contact .content form h3{
-    font-size: 1.2VW;
+    font-size: 1.7vw;
     color: var(--pink);
     text-shadow: 0px 4px 5px var(--pink-25);
 
 }
 
 main .contact .content form input{
-    height: 5vh;
-    padding-left: 1.5vw;
+    height: 8vh;
+    padding-left: 2vw;
 }
 
 main .contact .content form input, textarea{
     background-color: transparent;
-    font-size: 0.8vw;
+    font-size: 1.1vw;
     font-family: 'Arvo';
-    border: 0.3vh solid var(--dark-pink-90);
-    border-radius: 3vh;
+    border: 0.35vh solid var(--dark-pink-90);
+    border-radius: 4.5vh;
     box-shadow: 0px 7px 4px var(--dark-pink-25);
     color: var(--dark-pink);
 }
@@ -446,10 +450,10 @@ main .contact .content form .form-item{
 
 main .contact form .form-item textarea{
     width: 95%;
-    height: 13vh;
+    height: 16vh;
     text-align: justify;
     line-height: 3vh;
-    padding: 3vh 3vh 1.5vw 1.5vw;
+    padding: 4vh 4vh 2vw 2vw;
 }
 
 footer {
@@ -462,14 +466,14 @@ footer {
 footer .background-wave-footer {
     position: absolute;
     width: 120%;
-    height: 67%;
+    height: 80%;
     background-image: url('./../assets/vector-footer.svg');
     background-size: cover;
     margin-left: -10%;
 }
 
 footer .container{
-    margin-top: 20vh;
+    margin-top: 22vh;
     position: relative;
     width: 80%;
     display: flex;
@@ -490,17 +494,18 @@ footer .container .content .social{
     height: fit-content;
     display: flex;
     flex-direction: column;
-    row-gap: 3vh;
+    row-gap: 5vh;
 }
 
 footer .container .content .social .logo img{
-    width: 25vw;
+    width: 27vw;
 }
 
 footer .container .content .social .text, footer .container .content .social .text b{
     color: var(--dark-pink);
     font-family: 'Arvo';
-    font-size: 0.9vw;
+    font-size: 1.3vw;
+    margin-top: 1vh;
     -webkit-text-stroke: 0.3px;
 }
 
@@ -510,7 +515,7 @@ footer .container .content .social .text b{
 }
 
 footer .container .content .social .icons-media{
-    width: 25%;
+    width: 35%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -519,12 +524,12 @@ footer .container .content .social .icons-media{
 footer .container .content .social .icons-media .icon{
     background: linear-gradient(90.11deg, #FF5E81 -0.84%, rgba(255, 0, 55, 0.21) 97.72%);
     color: var(--text-button);
-    width: 2.2vw;
-    height: 4.4vh;
+    width: 7vh;
+    height: 7vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.35vw;
+    font-size: 2vw;
     border: none;
     border-radius: 2vw;
     box-sizing: border-box;
@@ -547,13 +552,13 @@ footer .container .content .informations .navegation, footer .container .content
     width: 50%;
     display: flex;
     flex-direction: column;
-    row-gap: 2vh;
+    row-gap: 3vh;
     align-items: flex-start;
 }
 
 footer .container .content .informations .navegation h3, footer .container .content .contact h3{
     color: var(--pink);
-    font-size: 1.2vw;
+    font-size: 1.7vw;
     letter-spacing: 0.1rem;
     text-shadow: 0px 4px 4px var(--pink-25);
 }
@@ -561,8 +566,8 @@ footer .container .content .informations .navegation h3, footer .container .cont
 footer .container .content .informations .navegation .list .list-item a, footer .container .content .informations .contact a{
     color: var(--dark-pink);
     font-family: 'Arvo';
-    font-size: 0.9vw;
-    line-height: 4vh;
+    font-size: 1.1vw;
+    line-height: 5.5vh;
     transition: 0.3s linear;
 }
 
@@ -577,7 +582,7 @@ footer .container .content .informations .navegation .list{
 footer .container .copyright h3{
     color: var(--pink);
     text-align: center;
-    font-size: 1vw;
+    font-size: 1.3vw;
     -webkit-text-stroke: 0px;
 }
 
@@ -587,8 +592,8 @@ a{
 }
 
 h3, h4, h5{
-    -webkit-text-stroke-width: 0.03vw;
-    letter-spacing: 0.08vw;
+    -webkit-text-stroke-width: 0.05vw;
+    letter-spacing: 0.1vw;
 }
 
 textarea{
@@ -599,11 +604,10 @@ textarea{
     background-color: transparent;
     cursor: pointer;
     color: var(--pink);
-    width: 7.5vw;
-    height: 5vh;
+    width: 8.5vw;
+    height: 6.5vh;
     border: 0.2vw solid var(--pink);
     border-radius: 100vw;
-    font-size: 1vw;
     box-shadow: 0px 7px 4px var(--pink-25);
     transition: all 0.3s ease-in;
 }
@@ -617,12 +621,12 @@ textarea{
     cursor: pointer;
     background-color: var(--pink);
     color: var(--text-button);
-    width: 10vw;
-    height: 5vh;
+    width: 12vw;
+    height: 7.5vh;
     border: 0.2vw solid var(--pink);
     border-radius: 100vw;
     font-family: 'Arvo';
-    font-size: 0.9vw;
+    font-size: 1.1vw;
     box-shadow: 0px 7px 4px var(--pink-25);
     transition: 0.3s ease-in;
 }
@@ -635,8 +639,9 @@ textarea{
 
 .title{
     font-weight: 400;
-    font-size: 2.5vw;
+    font-size: 2.7vw;
     font-family: 'Arvo';
     color: var(--dark-pink);
     text-align: center;
+    -webkit-text-stroke: 0.5px var(--dark-pink);
 }

@@ -10,7 +10,7 @@ function validarSessao() {
     var nomeUser = document.getElementById("nomeUser");
     var fotoPerfil = document.getElementById("fotoPerfil");
 
-    if (email != null && nome != null) {
+    if (email != undefined && nome != undefined) {
         nomeUser.innerHTML = user;
         fotoPerfil.src = urlFotoPerfil;
 

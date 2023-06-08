@@ -91,12 +91,12 @@ main .card-sign-up{
 }
 
 main .card-sign-up .content{
-    width: 70%;
-    height: 70%;
+    width: 75%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 main .card-sign-up .content .text{
@@ -105,7 +105,7 @@ main .card-sign-up .content .text{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    row-gap: 2vh;
+    row-gap: 3vh;
 }
 
 main .card-sign-up .content .text .title{
@@ -114,11 +114,13 @@ main .card-sign-up .content .text .title{
     font-family: 'Arvo';
     color: var(--dark-pink);
     text-align: left;
+    -webkit-text-stroke: 0.5px var(--dark-pink);
+
 }
 
 main .card-sign-up .content .text .subtitle, main .card-sign-up .content .text .subtitle b{
     width: 85%;
-    font-size: 0.9vw;
+    font-size: 1.1vw;
     font-family: 'Poppins';
     color: var(--text-info);
     text-align: justify;
@@ -130,7 +132,7 @@ main .card-sign-up .content .form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 3vh;
+    row-gap: 4vh;
 }
 
 main .card-sign-up .content .form .form-item{
@@ -141,7 +143,7 @@ main .card-sign-up .content .form .form-item{
 }
 
 main .card-sign-up .content .form .form-item h3{
-    font-size: 1.2VW;
+    font-size: 1.5VW;
     letter-spacing: 0.05rem;
     color: var(--pink);
     text-shadow: 0px 4px 5px var(--pink-25);
@@ -151,12 +153,12 @@ main .card-sign-up .content .form .form-item h3{
 main .card-sign-up .content .form .form-item input, main .card-sign-up .content .form .form-item select, main .card-sign-up .content .form .form-item option{
     background-color: transparent;
     width: 85%;
-    height: 5vh;
-    padding-left: 1.5vw;
-    font-size: 0.8vw;
+    height: 7vh;
+    padding-left: 2vw;
+    font-size: 1vw;
     font-family: 'Arvo';
-    border: 0.3vh solid var(--dark-pink-90);
-    border-radius: 3vh;
+    border: 0.35vh solid var(--dark-pink-90);
+    border-radius: 4vh;
     box-shadow: 0px 7px 4px var(--dark-pink-25);
     color: var(--dark-pink);
 }
@@ -170,11 +172,11 @@ main .card-sign-up .content .form .form-item .btn-background {
     background-color: var(--pink);
     color: var(--text-button);
     width: 91%;
-    height: 5.5vh;
+    height: 7.5vh;
     border: 0.2vw solid var(--pink);
     border-radius: 100vw;
     font-family: 'Arvo';
-    font-size: 0.9vw;
+    font-size: 1.1vw;
     box-shadow: 0px 7px 4px var(--pink-25);
     transition: 0.3s ease-in;
 }
@@ -187,12 +189,13 @@ main .card-sign-up .content .form .form-item .btn-background:hover {
 
 main .card-sign-up .content .redirect .text-redirect, main .card-sign-up .content .redirect .text-redirect a{
     font-family: 'Poppins';
-    font-size: 0.7vw;
+    font-size: 0.9vw;
 }
 
 main .card-sign-up .content .redirect .text-redirect{
     color: var(--text-info);
     font-weight: 500;
+    margin-top: 2vh;
 }
 
 main .card-sign-up .content .redirect .text-redirect a{

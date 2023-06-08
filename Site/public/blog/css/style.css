@@ -48,7 +48,7 @@ body::-webkit-scrollbar-track{
 }
 
 header{
-    width: 18%;
+    width: 20%;
     height: 100%;
 }
 
@@ -81,7 +81,7 @@ header nav .logo{
 }
 
 header nav .logo img{
-    width: 12vw;
+    width: 12.5vw;
 }
 
 header nav .profile, header nav .profile-now{
@@ -98,7 +98,7 @@ header nav .profile a, header nav .profile-now a{
     justify-content: space-evenly;
     align-items: center;
     color: var(--dark-pink-70);
-    font-size: 0.85vw;
+    font-size: 0.9vw;
 }
 
 header nav .profile a img, header nav .profile-now a img{
@@ -127,7 +127,7 @@ header nav .profile a:hover img, header nav .profile-now a img{
 header nav .list-navegation{
     margin-top: 1vh;
     width: 85%;
-    height: 45vh;
+    height: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -168,7 +168,7 @@ header nav .list-navegation .list-item a:hover, header nav .list-navegation .lis
 }
 
 .icon{
-    font-size: 1.1vw;
+    font-size: 1.3vw;
 }
 
 header nav .list-navegation .list-item a:hover h4, header nav .list-navegation .list-item-now h4, header nav .list-navegation .list-item span:hover h4{
@@ -177,7 +177,6 @@ header nav .list-navegation .list-item a:hover h4, header nav .list-navegation .
 }
 
 header nav .copyright{
-    margin-top: 7vh;
     width: 100%;
     font-family: 'Poppins';
     text-align: center;
@@ -185,7 +184,8 @@ header nav .copyright{
 }
 
 header nav .copyright .copyright-title, header nav .copyright .copyright-title a{
-    font-size: 0.85vw;
+    margin-top: 2vh;
+    font-size: 1vw;
     font-weight: 700;
 }
 
@@ -203,7 +203,7 @@ header nav .copyright .copyright-title a:hover{
 }
 
 main{
-    width: 82%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -245,8 +245,8 @@ main .home .content .categories .card-category{
 
 main .home .content .categories .card-category .icon{
     background: linear-gradient(113.35deg, rgba(255, 94, 129, 0.3) 0%, rgba(255, 207, 218, 0.3) 100%);
-    width: 10vw;
-    height: 10vw;
+    width: 11vw;
+    height: 11vw;
     display: flex;
     align-items: center;
     border: none;
@@ -268,11 +268,11 @@ main .home .content .categories .card-category .icon .background{
 }
 
 main .home .content .categories .card-category .icon img{
-    width: 6.5vw;
+    width: 7vw;
 }
 
 main .home .content .categories .card-category h5{
-    font-size: 1.1vw;
+    font-size: 1.3vw;
     font-family: 'Arvo';
     font-weight: bold;
     text-align: center;
@@ -298,7 +298,7 @@ main .recents .content{
 
 main .recents .content .post{
     width: 100%;
-    height: 55vh;
+    height: 61vh;
     display: flex;
     justify-content: space-around;
     align-items: center;   
@@ -349,7 +349,7 @@ main .recents .content .post .post-informations .post-texts .post-title h3{
     letter-spacing: 0.05em;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 0.9vw;
+    font-size: 1.1vw;
     -webkit-text-stroke: 0.5px var(--pink);
     transition: 0.3s ease-out;
 
@@ -359,7 +359,7 @@ main .recents .content .post .post-informations .post-texts .post-title h2{
     color: var(--dark-pink);
     font-family: 'Poppins';
     font-weight: 700;
-    font-size: 1.3vw;
+    font-size: 1.5vw;
     text-shadow: 0px 4px 4px var(--dark-pink-15);
     transition: 0.3s all linear;
 }
@@ -369,7 +369,7 @@ main .recents .content .post .post-informations .post-texts .post-subtitle h4{
     font-family: 'Sofia';
     letter-spacing: 0.05em;
     font-weight: bold;
-    font-size: 1.1vw;
+    font-size: 1.3vw;
     -webkit-text-stroke: 0.5px var(--pink);
     transition: 0.3s all linear;
 }
@@ -378,7 +378,7 @@ main .recents .content .post .post-informations .post-description, main .recents
     width: 95%;
     color: var(--text-info);
     font-family: 'Poppins';
-    font-size: 1vw;
+    font-size: 1.1vw;
     text-align: justify;
     line-height: 4vh;
     transition: 0.3s ALL linear;
@@ -421,12 +421,12 @@ main .recents .content .post .card-category h5{
     cursor: pointer;
     background-color: var(--pink);
     color: var(--text-button);
-    width: 10vw;
-    height: 5vh;
+    width: 12vw;
+    height: 7vh;
     border: 0.2vw solid var(--pink);
     border-radius: 100vw;
     font-family: 'Arvo';
-    font-size: 0.9vw;
+    font-size: 1.1vw;
     box-shadow: 0px 7px 4px var(--pink-25);
     transition: 0.3s ease-in;
 }
@@ -439,7 +439,7 @@ main .recents .content .post .card-category h5{
 
 .balls{
     margin: 0 auto;
-    width: 15%;
+    width: 20%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -448,7 +448,7 @@ main .recents .content .post .card-category h5{
 
 .title{
     width: 100%;
-    font-size: 2vw;
+    font-size: 2.5vw;
     color: var(--pink);
     letter-spacing: 0.05rem;
     -webkit-text-stroke: 0.5px var(--pink);
@@ -457,8 +457,8 @@ main .recents .content .post .card-category h5{
 
 .ball{
     cursor: pointer;
-    width: 0.7vw;
-    height: 0.7vw;
+    width: 0.85vw;
+    height: 0.85vw;
     border: 1.5px solid var(--pink-50);
     border-radius: 100px;
     background-color: var(--pink-25);
@@ -471,8 +471,8 @@ main .recents .content .post .card-category h5{
 
 .ball-now{
     cursor: pointer;
-    width: 1.3vw;
-    height: 1.3vw;
+    width: 1.5vw;
+    height: 1.5vw;
     border: 1px solid var(--pink);
     border-radius: 100px;
     background-color: var(--pink);

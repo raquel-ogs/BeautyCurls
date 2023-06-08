@@ -38,8 +38,8 @@ main .account .content .informations .informations-account .image-account{
 }
 
 main .account .content .informations .informations-account .image-account img{
-    width: 10vw;
-    border: 4px solid var(--pink);
+    width: 12vw;
+    border: 5px solid var(--pink);
     border-radius: 500px;
     box-shadow: 0px 7px 4px var(--pink-25);
 }
@@ -56,21 +56,18 @@ main .account .content .informations .informations-account .image-account a .ico
     cursor: pointer;
     background-color: var(--pink);
     color: #fff;
-    width: 2.3vw;
-    height: 2.3vw;
+    width: 3vw;
+    height: 3vw;
     border: none;
     border-radius: 100px;
     transition: 0.25s ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 main .account .content .informations .informations-account .image-account a .icon-camera:hover{
-    cursor: pointer;
     background-color: var(--dark-pink);
-    width: 2.3vw;
-    height: 2.3vw;
-    border: none;
-    border-radius: 100px;
-    transition: 0.25s ;
 }
 
 main .account .content .informations .informations-account .data-account{
@@ -108,11 +105,12 @@ main .account .content .informations .informations-interaction .card{
     align-items: center;
     column-gap: 3vh;
     color: var(--pink);
-    font-size: 1.2vw;
+    font-size: 1.3vw;
 }
 
 main .account .content .informations .informations-interaction .card label i{
-    font-size: 1.5vw;
+    font-size: 1.7vw;
+    color: var(--pink);
 }
 
 main .account .content .informations .informations-interaction .card h4{

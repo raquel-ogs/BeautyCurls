@@ -46,8 +46,8 @@ body {
 }
 
 body::-webkit-scrollbar {
-    width: 0.3vw;
-    height: 0.1vh;
+    width: 7px;
+    height: 7px;
 }
 
 body::-webkit-scrollbar-track {
@@ -60,7 +60,6 @@ body::-webkit-scrollbar-thumb {
     border-radius: 2rem;
 }
 
-
 main{
     width: 100%;
     display: flex;
@@ -71,7 +70,7 @@ main{
 main .card-sign-up{ 
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.49) 100%);
     width: 50%;
-    height: 100vh;
+    height: 110vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,19 +87,18 @@ main .card-sign-up .container{
 
 main .card-sign-up .container nav{
     width: 100%;
-    height: 15vh;
-    padding-left: 10vw;
+    height: 12vh;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    padding-left: 10vw;
 }
 
 main .card-sign-up .container nav button{
     cursor: pointer;
-    height: 100%;
     background: transparent;
-    border: none;
-    font-size: 1.7vw;
     color: var(--dark-pink);
+    font-size: 2vw;
+    border: none;
     filter: drop-shadow(0px 7px 4px var(--dark-pink-25));
     transition: 0.3s ease-out;
 }
@@ -111,12 +109,12 @@ main .card-sign-up .container nav button:hover{
 }
 
 main .card-sign-up .container .content{
-    width: 70%;
-    height: 75%;
+    width: 75%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    row-gap: 3.5vh;
 }
 
 main .card-sign-up .container .content .text{
@@ -134,11 +132,12 @@ main .card-sign-up .container .content .text .title{
     font-family: 'Arvo';
     color: var(--dark-pink);
     text-align: left;
+    -webkit-text-stroke: 0.5px var(--dark-pink);
 }
 
 main .card-sign-up .container .content .text .subtitle, main .card-sign-up .container .content .text .subtitle b{
     width: 85%;
-    font-size: 0.9vw;
+    font-size: 1.1vw;
     font-family: 'Poppins';
     color: var(--text-info);
     text-align: justify;
@@ -161,7 +160,7 @@ main .card-sign-up .container .content .form .form-item{
 }
 
 main .card-sign-up .container .content .form .form-item h3{
-    font-size: 1.2VW;
+    font-size: 1.5VW;
     letter-spacing: 0.05rem;
     color: var(--pink);
     text-shadow: 0px 4px 5px var(--pink-25);
@@ -170,12 +169,12 @@ main .card-sign-up .container .content .form .form-item h3{
 
 main .card-sign-up .container .content .form .form-item input, main .card-sign-up .container .content .form .form-item select,  main .card-sign-up .container .content .form .form-item option{
     background-color: transparent;
-    height: 5vh;
-    padding-left: 1.5vw;
-    font-size: 0.8vw;
+    height: 7vh;
+    padding-left: 2vw;
+    font-size: 1.1vw;
     font-family: 'Arvo';
-    border: 0.3vh solid var(--dark-pink-90);
-    border-radius: 3vh;
+    border: 0.35vh solid var(--dark-pink-90);
+    border-radius: 4vh;
     box-shadow: 0px 7px 4px var(--dark-pink-25);
     color: var(--dark-pink);
 }
@@ -183,7 +182,7 @@ main .card-sign-up .container .content .form .form-item input, main .card-sign-u
 
 main .card-sign-up .container .content .form .form-item select, main .card-sign-up .container .content .form .form-item option{
     width: 100%;
-    height: 5.5vh;
+    height: 7.5vh;
     color: var(--dark-pink-65);
 }
 
@@ -200,11 +199,11 @@ main .card-sign-up .container .content .form .form-item .btn-background {
     background-color: var(--pink);
     color: var(--text-button);
     width: 100%;
-    height: 5.5vh;
+    height: 7.5vh;
     border: 0.2vw solid var(--pink);
     border-radius: 100vw;
     font-family: 'Arvo';
-    font-size: 0.9vw;
+    font-size: 1.1vw;
     box-shadow: 0px 7px 4px var(--pink-25);
     transition: 0.3s ease-in;
 }
@@ -217,7 +216,7 @@ main .card-sign-up .container .content .form .form-item .btn-background:hover {
 
 main .card-sign-up .container .content .redirect .text-redirect, main .card-sign-up .container .content .redirect .text-redirect a{
     font-family: 'Poppins';
-    font-size: 0.7vw;
+    font-size: 0.9vw;
 }
 
 main .card-sign-up .container .content .redirect .text-redirect{
@@ -241,7 +240,7 @@ main .card-logo{
     background: linear-gradient(174.33deg, rgba(255, 94, 129, 0.3) 4.52%, rgba(248, 183, 199, 0) 93.96%);
     backdrop-filter: blur(10px);    
     width: 50%;
-    height: 100vh;
+    height: 110vh;
     display: flex;
     justify-content: center;
     align-items: center;
