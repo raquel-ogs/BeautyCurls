@@ -86,17 +86,21 @@
     }
 
     function verificarEmail(email) {
-        fetch(`/usuarios/verificarEmail/${email}`)
-            .then(resposta => {
-                if (resposta.ok) {
-                    statusResposta = resposta.status;
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na verifição do nome de usuário: ${error.message}`);
-            });
+        if (email.indexOf('@') == -1) {
+            statusResposta = 203;
+        } else {
+            fetch(`/usuarios/verificarEmail/${email}`)
+                .then(resposta => {
+                    if (resposta.ok) {
+                        statusResposta = resposta.status;
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                    }
+                })
+                .catch(function (error) {
+                    console.error(`Erro na verifição do nome de usuário: ${error.message}`);
+                });
+        }
     }
 
     function verificarQtdFotoPerfil() {
@@ -142,12 +146,12 @@
         } else {
             verificarQtdFotoPerfil();
 
-            setTimeout( () => {
+            setTimeout(() => {
                 var intervalo = (qtdFoto + 1) - 1;
                 var numeroAleatorio = parseInt(Math.random() * intervalo + 1);
                 console.log(numeroAleatorio)
-               
-                if(statusResposta == 200){
+
+                if (statusResposta == 200) {
                     fetch("/usuarios/cadastrar", {
                         method: "POST",
                         headers: {
@@ -199,7 +203,9 @@
 
                     return false;
                 }
-                else {
+                else if (statusResposta == 203) {
+                    finalizarAguardar('Email inválido, tente novamente')
+                } else {
                     finalizarAguardar('Esse email já foi cadastrado, tente com outro')
                 }
             }, 300)

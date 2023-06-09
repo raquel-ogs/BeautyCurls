@@ -1,13 +1,12 @@
 var fkUsuario = sessionStorage.ID;
-var postCurtido = false;
 var postSalvo = false;
 
-function verificarCurtida(fkPostagem){
-    fetch(`/usuarios/verificarCurtida/${fkUsuario}/${fkPostagem}`)
+function verificarSalvo(fkPostagem){
+    fetch(`/usuarios/verificarSalvo/${fkUsuario}/${fkPostagem}`)
     .then(resposta => {
 
         if (resposta.ok) {
-            mudarIconeLike(resposta.status, fkPostagem)
+            mudarIconeSalvo(resposta.status, fkPostagem)
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
         }
@@ -18,28 +17,29 @@ function verificarCurtida(fkPostagem){
 
 }
 
-function mudarIconeLike(statusResposta, fkPostagem){
-    var iconLike = document.getElementById(`post${fkPostagem}_like`);
+function mudarIconeSalvo(statusResposta, fkPostagem){
+    var iconSalvo = document.getElementById(`post${fkPostagem}_salvo`);
 
     if(statusResposta == 204){
-        postCurtido = true;
-        iconLike.classList.value = "fi fi-sr-heart"
+        postSalvo = true;
+        iconSalvo.classList.value = "fi fi-sr-bookmark"
     } else {
-        postCurtido = false;
-        iconLike.classList.value = "fi fi-br-heart"
+        postSalvo = false;
+        iconSalvo.classList.value = "fi fi-br-bookmark"
     }
 }
 
-function atualizarQtdLike(fkPostagem){
+function atualizarQtdSalvo(fkPostagem){
 
-    var qtdLike = document.getElementById(`qtdLike_post${fkPostagem}`);
+    var qtdSalvo = document.getElementById(`qtdSalvo_post${fkPostagem}`);
 
-    fetch(`/postagem/atualizarCurtida/${fkPostagem}`)
+   
+    fetch(`/postagem/atualizarSalvo/${fkPostagem}`)
     .then(resposta => {
 
         if (resposta.ok) {
             resposta.json().then(resposta => {
-                qtdLike.innerHTML = resposta[0].qtdCurtida;
+                qtdSalvo.innerHTML = resposta[0].qtdSalvo;
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -50,16 +50,16 @@ function atualizarQtdLike(fkPostagem){
         });
 }
 
-function atualizarCurtida(resposta, fkPostagem){
-    mudarIconeLike(resposta.status, fkPostagem);
-    atualizarQtdLike(fkPostagem);
+function atualizarSalvo(resposta, fkPostagem){
+    mudarIconeSalvo(resposta.status, fkPostagem);
+    atualizarQtdSalvo(fkPostagem);
 }
 
-function curtirOuDescurtir(fkPostagem) {
-    verificarCurtida(fkPostagem);
+function salvarOuDessalvar(fkPostagem) {
+    verificarSalvo(fkPostagem);
 
-    if(postCurtido){
-        fetch(`/usuarios/apagarCurtida/`, {
+    if(postSalvo){
+        fetch(`/usuarios/apagarSalvo/`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -74,17 +74,17 @@ function curtirOuDescurtir(fkPostagem) {
 
             if (resposta.ok) {
                 setTimeout(() => {
-                    atualizarCurtida(resposta, fkPostagem)
+                    atualizarSalvo(resposta, fkPostagem)
                 }, 100);
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
             })
             .catch(function (error) {
-            console.error(`Erro ao tentar apagar curtida: ${error.message}`);
+            console.error(`Erro ao tentar apagar Salvo: ${error.message}`);
             });
     } else {
-        fetch(`/usuarios/adicionarCurtida/`, {
+        fetch(`/usuarios/adicionarSalvo/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -98,14 +98,14 @@ function curtirOuDescurtir(fkPostagem) {
         .then(resposta => {
             if (resposta.ok) {
                 setTimeout(() =>{
-                    atualizarCurtida(resposta, fkPostagem)
+                    atualizarSalvo(resposta, fkPostagem)
                 }, 100);
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
             })
             .catch(function (error) {
-                console.error(`Erro ao tentar adicionar curtida: ${error.message}`);
+                console.error(`Erro ao tentar adicionar salvo: ${error.message}`);
         });
         
     }

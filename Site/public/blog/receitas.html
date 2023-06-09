@@ -15,9 +15,12 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <script src="./../js/funcoes.js"></script>
+    <script src="./js/scriptCurtir.js"></script>
+    <script src="./js/scriptSalvar.js"></script>
     <title> BeautyCurls, onde seus cachos ganham vida</title>
 </head>
-<body onload="validarSessao(), exibirNomeUsuario(), mostrarPost(1)">
+
+<body onload="validarSessao()   ">
     <header>
         <nav>
             <div class="logo">
@@ -96,7 +99,7 @@
                     </span>
                 </li>
             </ul>
-            <div class="copyright"> 
+            <div class="copyright">
                 <h4 class="copyright-title">
                     © Copyright <a href="./../index.html"> BeautyCurls </a>
                 </h4>
@@ -114,110 +117,59 @@
                         Receitas Caseiras
                     </h1>
                 </div>
-                <div class="posts">
-                    <div class="card-post">
-                        <div class="image">
-                            <div class="img-post">
-                                <div class="background-post"></div>
-                                <img src="../assets/soro.png">
-                            </div>
-                            <div class="icons">
-                                <div class="card-icon">
-                                    <i class="fi fi-br-heart"></i>
-                                    <h3> 10 </h3>
-                                </div>
-                                <div class="card-icon">
-                                    <i class="fi fi-br-bookmark"></i>
-                                    <h3> 7 </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-informations">
-                            <div class="post-texts">
-                                <h4 id="horaPost"> 7 dias atrás </h4>
-                                <h2 id="tituloPost"> Soro Fisiológico </h3>
-                                <h3 class="link-post"> Saiba mais </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-post">
-                        <div class="image">
-                            <div class="img-post">
-                                <div class="background-post"></div>
-                                <img src="../assets/oleo_de_coco.png">
-                            </div>                            
-                            <div class="icons">
-                                <div class="card-icon">
-                                    <i class="fi fi-br-heart"></i>
-                                    <h3> 29 </h3>
-                                </div>
-                                <div class="card-icon">
-                                    <i class="fi fi-br-bookmark"></i>
-                                    <h3> 20 </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-informations">
-                            <div class="post-texts">
-                                <h4 id="horaPost"> 21 dias atrás </h4>
-                                <h2 id="tituloPost"> Soro + Óleo de Coco </h3>
-                                <h3 class="link-post"> Saiba mais </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-post">
-                        <div class="image">
-                            <div class="img-post">
-                                <div class="background-post"></div>
-                                <img src="../assets/soro_acucar.png">
-                            </div>
-                            <div class="icons">
-                                <div class="card-icon">
-                                    <i class="fi fi-br-heart"></i>
-                                    <h3> 41 </h3>
-                                </div>
-                                <div class="card-icon">
-                                    <i class="fi fi-br-bookmark"></i>
-                                    <h3> 39 </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-informations">
-                            <div class="post-texts">
-                                <h4 id="horaPost"> 1 mês atrás </h4>
-                                <h2 id="tituloPost"> Soro + Açúcar </h3>
-                                <h3 class="link-post"> Saiba mais </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-post">
-                        <div class="image">
-                            <div class="img-post">
-                                <div class="background-post"></div>
-                                <img src="../assets/umectacao.png">
-                            </div>
-                            <div class="icons">
-                                <div class="card-icon">
-                                    <i class="fi fi-br-heart"></i>
-                                    <h3> 59 </h3>
-                                </div>
-                                <div class="card-icon">
-                                    <i class="fi fi-br-bookmark"></i>
-                                    <h3> 40 </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-informations">
-                            <div class="post-texts">
-                                <h4 id="horaPost"> 1 mês atrás </h4>
-                                <h2 id="tituloPost"> Umectação Noturna </h3>
-                                <h3 class="link-post"> Saiba mais </h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
+                <div class="posts" id="posts">
+                </div>
             </div>
         </section>
     </main>
 </body>
+
 </html>
+<script>
+    fetch(`/postagem/listarReceitas/`)
+        .then(resposta => {
+            if (resposta.ok) {
+                resposta.json().then(resposta => {
+                    resposta.forEach(receita => {
+                        posts.innerHTML += `                    
+                        <div class="card-post">
+                            <div class="image">
+                                <div class="img-post">
+                                    <div class="background-post"></div>
+                                    <img src="${receita.urlImagem}"">
+                                </div>
+                                <div class="icons">
+                                        <div class="card-icon">
+                                            <i class="fi fi-br-heart" onclick="curtirOuDescurtir(${receita.idPostagem})" id="post${receita.idPostagem}_like"></i>
+                                            <h3 id="qtdLike_post${receita.idPostagem}"> ${receita.qtdCurtida} </h3>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="fi fi-br-bookmark" onclick="salvarOuDessalvar(${receita.idPostagem})" id="post${receita.idPostagem}_salvo"></i>
+                                            <h3 id="qtdSalvo_post${receita.idPostagem}"> ${receita.qtdSalvo} </h3>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="post-informations">
+                                <div class="post-texts">
+                                    <h4 id="horaPost"> ${receita.dtPostagem} </h4>
+                                    <h2 id="tituloPost"> ${receita.titulo} </h2>
+                                    <h3 class="link-post" onclick="irParaPost(${receita.idPostagem})"> Saiba mais </h3>
+                                </div>
+                            </div>
+                        </div>`;
+
+                        verificarCurtida(receita.idPostagem);
+                        verificarSalvo(receita.idPostagem);
+                    });
+
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro ao tentar listar penteados recentes: ${ error.message }`);
+        });
+
+</script>

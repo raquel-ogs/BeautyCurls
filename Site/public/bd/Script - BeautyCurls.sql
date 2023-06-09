@@ -100,7 +100,25 @@ INSERT INTO Postagem VALUES
     'http://localhost:3333/assets/raquel.png', 
     'Penteado', 
     '2023-06-08');
-    
+   
+INSERT INTO Postagem VALUES
+	(null, 'Umectação Noturna', null, 
+	'http://localhost:3333/assets/umectacao.png', 
+	'Receita', 
+	'2023-05-07'),
+	(null, 'Soro + Açúcar', null, 
+	'http://localhost:3333/assets/soro_acucar.png', 
+	'Receita', 
+	'2023-05-18'),
+	(null, 'Soro + Óleo de Coco', null, 
+	'http://localhost:3333/assets/oleo_de_coco.png', 
+	'Receita', 
+	'2023-05-27'),
+	(null, 'Soro Fisiológico', null, 
+	'http://localhost:3333/assets/soro.png', 
+	'Receita', 
+	'2023-06-02');
+	
 SELECT * FROM Postagem;
 
 CREATE TABLE Curtida(
@@ -112,11 +130,8 @@ constraint fkPostagemCurtida foreign key (fkPostagem) references Postagem(idPost
 constraint pkCompostaCurtida primary key (fkUsuario, fkPostagem)
 );
 
-INSERT INTO Curtida VALUES
-	(1, 10000, NOW());
-
 SELECT * FROM Curtida;
-
+		
 CREATE TABLE Salvo(
 fkUsuario int,
 fkPostagem int,

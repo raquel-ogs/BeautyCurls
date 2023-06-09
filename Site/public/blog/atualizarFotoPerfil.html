@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/styleReceitas.css">
+    <link rel="stylesheet" href="./css/styleFotoPerfil.css">
     <link rel="shortcut icon" href="./../assets/imagotipo.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
@@ -15,9 +15,11 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <script src="./../js/funcoes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/scriptFotoPerfil.js"></script>
     <title> BeautyCurls, onde seus cachos ganham vida</title>
 </head>
-<body onload="validarSessao(), exibirNomeUsuario(), mostrarPost(1)">
+<body onload="validarSessao(), listarFotos()">
     <header>
         <nav>
             <div class="logo">
@@ -25,10 +27,10 @@
                     <img src="./../assets/logotipo.svg">
                 </a>
             </div>
-            <div class="profile">
+            <div class="profile-now">
                 <a href="conta.html">
                     <img id="fotoPerfil">
-                    <h4 class="user" id="nomeUser"> </h4>
+                    <h4 class="now" id="nomeUser"> </h4>
                     <label>
                         <i class="fa-solid fa-angle-right"></i>
                     </label>
@@ -55,12 +57,12 @@
                         </h4>
                     </a>
                 </li>
-                <li class="list-item-now">
-                    <a href="#">
+                <li class="list-item">
+                    <a href="./salvos.html">
                         <label class="icon">
-                            <i class="fi fi-sr-bookmark"></i>
+                            <i class="fi fi-br-bookmark"></i>
                         </label>
-                        <h4 class="title-item-selected">
+                        <h4 class="title-item">
                             Salvos
                         </h4>
                     </a>
@@ -104,16 +106,17 @@
         </nav>
     </header>
     <main>
-        <section class="saved">
+        <section class="profilePhoto">
             <div class="content">
-                <h1 class="title">
-                    Salvos
-                </h1>
-                <div class="posts">
-                    <div class="card-post">
-                        
-                    </div>
+                <div class="back">
+                    <button onclick="history.back()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <h1 class="title">
+                        Escolha uma Foto de Perfil
+                    </h1>
                 </div>
+                <div class="photos" id="photos"></div>
             </div>
         </section>
     </main>

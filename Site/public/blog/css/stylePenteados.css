@@ -87,6 +87,7 @@ main .hairstyle .content .posts .card-post .image .icons .card-icon i{
     justify-content: center;
     align-items: center;
     font-size: 1.5vw;
+    transition: 0.3s linear;
 }
 
 main .hairstyle .content .posts .card-post .image .icons .card-icon h3{
@@ -100,7 +101,7 @@ main .hairstyle .content .posts .card-post .image img{
     height: 32vh;
     border: 3px solid var(--pink-50);
     border-radius: 4vw;
-    filter: drop-shadow(-20px 10px 10px var(--pink-25));
+    filter: drop-shadow(-12px 7px 7px var(--pink-25));
 }
 
 main .hairstyle .content .posts .card-post .post-informations .post-texts{
@@ -116,7 +117,7 @@ main .hairstyle .content .posts .card-post .post-informations .post-texts h4{
     color: var(--dark-pink-70);
     font-family: 'Poppins';
     font-weight: 300;
-    font-size: 1vw;
+    font-size: 1.1vw;
 }
 
 main .hairstyle .content .posts .card-post .post-informations .post-texts h2{
@@ -125,7 +126,7 @@ main .hairstyle .content .posts .card-post .post-informations .post-texts h2{
     font-family: 'Arvo';
     font-weight: 700;
     font-size: 1.9vw;
-    text-shadow: 0px 7px 4px var(--dark-pink-25);
+    text-shadow: 0px 4px 4px var(--dark-pink-25);
     line-height: 5vh;
     -webkit-text-stroke: 0.5px var(--dark-pink);
 }
@@ -136,7 +137,7 @@ main .hairstyle .content .posts .card-post .post-informations .post-texts h3{
     font-size: 1.4vw;
     font-family: 'Sofia';
     letter-spacing: 0.15rem;
-    text-shadow: 0px 7px 4px var(--pink-25);
+    text-shadow: 0px 4px 4px var(--pink-25);
     -webkit-text-stroke: 1px var(--pink);
     transition: 0.5s linear;
 }

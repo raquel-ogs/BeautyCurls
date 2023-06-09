@@ -59,6 +59,52 @@ function entrar(req, res) {
 }
 
 
+function listarFotoPerfil(req, res) {
+    usuarioModel.listarFotoPerfil().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.json(resultado)
+        } else {
+            res.status(200).send("Nenhuma foto encontrada");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao tentar listar fotos de perfil.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function atualizarFotoPerfil(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    var fkFotoPerfil = req.body.fkFotoPerfilServer;
+
+    // Faça as validações dos valores
+    if (idUsuario == undefined) {
+        res.status(400).send("Seu idUsuario está undefined!");
+    } else if (fkFotoPerfil == undefined) {
+        res.status(400).send("Seu fkFotoPerfil está undefined!");
+    } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.atualizarFotoPerfil(idUsuario, fkFotoPerfil)
+            .then(
+                function (resultado) {
+                    res.status(200).send('Foto atualizada!')
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao atualizar foto de perfil! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
 function verificarQtdFotoPerfil(req, res) {
     usuarioModel.verificarQtdFotoPerfil().then(function (resultado) {
         if (resultado.length > 0) {
@@ -212,7 +258,7 @@ function adicionarCurtida(req, res) {
         usuarioModel.adicionarCurtida(fkUsuario, fkPostagem)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    res.status(204).send("Postagem está curtida!")
                 }
             ).catch(
                 function (erro) {
@@ -243,7 +289,7 @@ function apagarCurtida(req, res) {
         usuarioModel.apagarCurtida(fkUsuario, fkPostagem)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    res.status(200).send('Postagem não está mais curtida!')
                 }
             ).catch(
                 function (erro) {
@@ -274,7 +320,7 @@ function adicionarSalvo(req, res) {
         usuarioModel.adicionarSalvo(fkUsuario, fkPostagem)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    res.status(204).send("Postagem está salva!");
                 }
             ).catch(
                 function (erro) {
@@ -305,7 +351,7 @@ function apagarSalvo(req, res) {
         usuarioModel.apagarSalvo(fkUsuario, fkPostagem)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    res.status(200).send("Postagem não está mais salva")
                 }
             ).catch(
                 function (erro) {
@@ -320,10 +366,47 @@ function apagarSalvo(req, res) {
     }
 }
 
+function verificarQtdCurtida(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+
+    console.log(`Verificando quantidade de salvos do usuário de id: ${fkUsuario}`);
+
+    usuarioModel.verificarQtdCurtida(fkUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao tentar verificar salvo.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function verificarQtdSalvo(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+
+    console.log(`Verificando quantidade de salvos do usuário de id: ${fkUsuario}`);
+
+    usuarioModel.verificarQtdSalvo(fkUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao tentar verificar salvo.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 module.exports = {
     testar,
     entrar,
+    listarFotoPerfil,
+    atualizarFotoPerfil,
     verificarQtdFotoPerfil,
     cadastrar,
     verificarUser,
@@ -333,5 +416,7 @@ module.exports = {
     apagarCurtida,
     verificarSalvo,
     adicionarSalvo,
-    apagarSalvo
+    apagarSalvo,
+    verificarQtdCurtida,
+    verificarQtdSalvo
 }

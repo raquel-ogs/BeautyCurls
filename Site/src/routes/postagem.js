@@ -23,4 +23,12 @@ router.get("/listarReceitas", function (req, res) {
     postagemController.listarReceitas(req, res);
 });
 
+router.get("/atualizarCurtida/:fkPostagem", function (req, res) {
+    postagemController.atualizarCurtida(req, res);
+});
+
+router.get("/atualizarSalvo/:fkPostagem", function (req, res) {
+    postagemController.atualizarSalvo(req, res);
+});
+
 module.exports = router;

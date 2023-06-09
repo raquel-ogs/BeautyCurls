@@ -22,6 +22,26 @@ function entrar(email, senha) {
 }
 
 
+function listarFotoPerfil() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarFotoPerfil()");
+    var instrucao = `
+        SELECT * FROM fotoPerfil
+        ORDER BY titulo ASC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarFotoPerfil(idUsuario, fkFotoPerfil){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarFotoPerfil()");
+    var instrucao = `
+        UPDATE Usuario SET fkFotoPerfil = ${fkFotoPerfil}
+        WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function verificarQtdFotoPerfil() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarQtdFotoPerfil()");
     var instrucao = `
@@ -135,17 +155,41 @@ function apagarSalvo(fkUsuario, fkPostagem) {
     return database.executar(instrucao);
 }
 
+function verificarQtdCurtida(fkUsuario){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarQtdCurtida()", fkUsuario);
+    var instrucao = `
+        SELECT COUNT(fkUsuario) AS qtdCurtida FROM Curtida
+        WHERE fkUsuario = ${fkUsuario};                
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function verificarQtdSalvo(fkUsuario){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarQtdSalvo()", fkUsuario);
+    var instrucao = `
+        SELECT COUNT(fkUsuario) AS qtdSalvo FROM Salvo
+        WHERE fkUsuario = ${fkUsuario};                
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     listar,
     entrar,
     verificarUser,
     verificarEmail,
     verificarQtdFotoPerfil,
+    listarFotoPerfil,
+    atualizarFotoPerfil,
     cadastrar,
     verificarCurtida,
     adicionarCurtida,
     apagarCurtida,
     verificarSalvo,
     adicionarSalvo,
-    apagarSalvo
+    apagarSalvo,
+    verificarQtdCurtida,
+    verificarQtdSalvo
 };

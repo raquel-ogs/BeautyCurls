@@ -23,7 +23,6 @@
     font-family: 'Sofia';
     padding: 0;
     margin: 0;
-    overflow-x: hidden;
 }
 
 body{
@@ -253,6 +252,8 @@ main .home .content .categories .card-category .icon{
     border: none;
     border-radius: 100vh;
     transition: 0.5s all linear;
+    overflow-x: hidden;
+
 }
 
 main .home .content .categories .card-category .icon:hover{

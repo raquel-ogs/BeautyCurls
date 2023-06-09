@@ -106,9 +106,9 @@ main .recipe .content .posts .card-post .image .img-post div{
     position: absolute;
     width: 15vw;
     height: 17vh;
-    background: radial-gradient(455.99% 1056.23% at 50% 50%, rgba(255, 94, 129, 0.3) 0%, rgba(255, 207, 218, 0.3) 100%);
+    background: linear-gradient(113.35deg, rgba(255, 94, 129, 0.3) 0%, rgba(255, 207, 218, 0.3) 100%), #FFFFFF;
     border-radius: 3vw;
-    box-shadow: 0px 4px 4px var(--dark-pink-25);
+    box-shadow: 0px 7px 7px var(--pink-25);
 }
 
 main .recipe .content .posts .card-post .image .img-post img{
@@ -140,7 +140,7 @@ main .recipe .content .posts .card-post .post-informations .post-texts h2{
     font-family: 'Arvo';
     font-weight: 700;
     font-size: 1.9vw;
-    text-shadow: 0px 7px 4px var(--dark-pink-25);
+    text-shadow: 0px 4px 4px var(--dark-pink-25);
     line-height: 5vh;
     -webkit-text-stroke: 0.5px var(--dark-pink);
 }
@@ -151,7 +151,7 @@ main .recipe .content .posts .card-post .post-informations .post-texts h3{
     font-size: 1.4vw;
     font-family: 'Sofia';
     letter-spacing: 0.15rem;
-    text-shadow: 0px 7px 4px var(--pink-25);
+    text-shadow: 0px 4px 4px var(--pink-25);
     -webkit-text-stroke: 1px var(--pink);
     transition: 0.5s linear;
 }
