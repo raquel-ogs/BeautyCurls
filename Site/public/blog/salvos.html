@@ -131,12 +131,16 @@
             .then(resposta => {
                 if (resposta.ok) {
                     resposta.json().then(resposta => {
-                        resposta.forEach(postagem => {
-                            if (listaPostagens.indexOf(postagem.idPostagem) == -1) {
-                                listaPostagens.push(postagem.idPostagem);
+                        if (resposta.length == 0) {
+                            posts.innerHTML = '<div class="no-posts"> <h4> Não há postagens salvas </h4> </div>'
+                        } else {
 
-                                if(postagem.categoria == 'Penteado'){
-                                    posts.innerHTML += `                    
+                            resposta.forEach(postagem => {
+                                if (listaPostagens.indexOf(postagem.idPostagem) == -1) {
+                                    listaPostagens.push(postagem.idPostagem);
+
+                                    if (postagem.categoria == 'Penteado') {
+                                        posts.innerHTML += `                    
                                     <div class="card-post">
                                         <div class="image-hairstyle" id="img-post">
                                             <img src="${postagem.urlImagem}" id="urlImgPost">
@@ -163,8 +167,8 @@
                                             </div>
                                         </div>
                                     </div>`
-                                } else {
-                                    posts.innerHTML += `                    
+                                    } else {
+                                        posts.innerHTML += `                    
                                     <div class="card-post">
                                         <div class="image-recipe" id="img-post">
                                             <div class="img-post">
@@ -194,13 +198,14 @@
                                             </div>
                                         </div>
                                     </div>`
+                                    }
                                 }
-                            }
 
 
-                            verificarCurtida(postagem.idPostagem);
-                            verificarSalvo(postagem.idPostagem);
-                        });
+                                verificarCurtida(postagem.idPostagem);
+                                verificarSalvo(postagem.idPostagem);
+                            });
+                        }
 
 
                     });

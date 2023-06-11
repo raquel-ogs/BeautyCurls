@@ -22,6 +22,23 @@ main .saved .content .posts{
     row-gap: 10vh;
 }
 
+main .saved .content .posts .no-posts{
+    width: 95%;
+    height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main .saved .content .posts .no-posts h4{
+    font-family: 'Poppins';
+    font-weight: 300;
+    font-size: 1.2vw;
+    letter-spacing: 0.03em;
+    color: var(--dark-pink);
+}
+
+
 main .saved .content .posts .card-post{
     background-color: transparent;
     width: 100%;

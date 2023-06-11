@@ -1,6 +1,7 @@
 var fkUsuario = sessionStorage.ID;
 var qtdInteracaoUsuario = 0;
 var qtdPosts = 0;
+var dataAtual = new Date;
 
 function calcularMediaInteracao() {
     var mediaInteracao = (qtdInteracaoUsuario / (qtdPosts * 2)) * 100;
@@ -97,8 +98,10 @@ function obterDados() {
 
 function obterDadosGraficoLinha() {
     var registrosInteracaoHoje = [];
+    var dataAtual = new Date;
+    var horaAtual = dataAtual.getHours();
     
-    for (var contadorHora = 1; contadorHora <= 23; contadorHora++) {
+    for (var contadorHora = horaAtual - 7; contadorHora <= horaAtual; contadorHora++) {
         if(contadorHora < 10){
             var a = "0" + contadorHora;
             contadorHora = a;
@@ -126,9 +129,9 @@ function obterDadosGraficoLinha() {
 
 function obterDadosGraficoBarra() {
     var registrosInteracaoAno = [];
-    var mesAno = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho']
+    var mesAtual = dataAtual.getMonth();
 
-    for (var contadorMes = 1; contadorMes <= 12; contadorMes++) {
+    for (var contadorMes = 1; contadorMes <= mesAtual + 1; contadorMes++) {
         fetch(`/analytics/buscarInteracaoAno/${fkUsuario}/${contadorMes}`)
             .then(resposta => {
                 if (resposta.ok) {
@@ -239,15 +242,20 @@ function plotarGraficoLinha(resposta) {
 }
 
 function plotarGraficoBarra(resposta) {
-    var mesAno = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho']
-
+    var mesAno = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto']
+    var mesAtual = dataAtual.getMonth() + 1;
     console.log('iniciando plotagem do gráfico...');
 
     // Criando estrutura para plotar gráfico - labels
     let labelsAno = [];
 
+    for(var contadorMes = 0; contadorMes < mesAtual; contadorMes++){
+        var itemMesAtual = mesAno[contadorMes];
+        labelsAno.push(itemMesAtual);
+    }
+
     let dadosAno = {
-        labels: mesAno,
+        labels: labelsAno,
         datasets: [{
             label: 'Curtiu',
             backgroundColor: 'rgba(112, 61, 87, 0.35)',
@@ -325,63 +333,10 @@ function plotarGraficoBarra(resposta) {
         configAno
     );
 
-    // setTimeout(() => atualizarGrafico(dadosAno, chartAno), 2000);
 }
 
-
-// Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-// buscando a última medida inserida em tabela contendo as capturas, 
-
-//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-//     Para ajustar o "select", ajuste o comando sql em src/models
-// function atualizarGrafico(dados, chartAno) {
-//     fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-//         if (response.ok) {
-//             response.json().then(function (novoRegistro) {
-
-//                 obterdados();
-//                 // alertar(novoRegistro, idAquario);
-//                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-//                 console.log(`Dados atuais do gráfico:`);
-//                 console.log(dados);
-
-//                 let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-//                 avisoCaptura.innerHTML = ""
-
-
-//                 if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-//                     console.log("---------------------------------------------------------------")
-//                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-//                     avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-//                     console.log("Horário do novo dado capturado:")
-//                     console.log(novoRegistro[0].momento_grafico)
-//                     console.log("Horário do último dado capturado:")
-//                     console.log(dados.labels[dados.labels.length - 1])
-//                     console.log("---------------------------------------------------------------")
-//                 } else {
-//                     // tirando e colocando valores no gráfico
-//                     dados.labels.shift(); // apagar o primeiro
-//                     dados.labels.push(novoRegistro[0].dtCurtida); // incluir um novo momento
-
-//                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-//                     dados.datasets[0].data.push(novoRegistro[0].dtCurtida); // incluir uma nova medida de umidade
-
-//                     // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-//                     // dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-//                     chartAno.update();
-//                 }
-
-//                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-//                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, chartAno), 2000);
-//             });
-//         } else {
-//             console.error('Nenhum dado encontrado ou erro na API');
-//             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-//             proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, chartAno), 2000);
-//         }
-//     })
-//         .catch(function (error) {
-//             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-//         });
-
+window.onload = setTimeout(() => {
+    obterDados();
+    obterDadosGraficoLinha();
+    obterDadosGraficoBarra();
+}, 100)

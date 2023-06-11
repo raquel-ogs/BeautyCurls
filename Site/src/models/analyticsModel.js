@@ -42,7 +42,7 @@ function listarQtdPosts(){
 function buscarInteracaoHoje(fkUsuario, hora){
     console.log("ACESSEI O ANALYTICS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarInteracaoHoje()", fkUsuario, hora);
     var instrucao = `
-        SELECT COUNT(DISTINCT(Curtida.fkPostagem)) AS qtdCurtida, COUNT(DISTINCT(Salvo.fkPostagem)) AS qtdSalvo, hrCurtida, hrSalvo FROM Curtida
+        SELECT COUNT(DISTINCT(Curtida.fkPostagem)) AS qtdCurtida, COUNT(DISTINCT(Salvo.fkPostagem)) AS qtdSalvo, '${hora}:00:00' AS hrCurtida FROM Curtida
 	        JOIN Salvo ON Curtida.fkUsuario = Salvo.fkUsuario
 		        WHERE Curtida.fkUsuario = ${fkUsuario} AND hrCurtida LIKE '${hora}%' AND hrSalvo LIKE '${hora}%';          
     `;

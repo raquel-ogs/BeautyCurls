@@ -236,11 +236,7 @@ function listarPostsCurtidos(req, res) {
     var fkUsuario = req.params.fkUsuario;
 
     usuarioModel.listarPostsCurtidos(fkUsuario).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.json(resultado)
-        } else {
-            res.status(200).send("Nenhum post curtido encontrado");
-        }
+        res.json(resultado)
     }).catch(function (erro) {
         console.log(erro);
         console.log("Houve um erro ao tentar listar posts curtidos.", erro.sqlMessage);
@@ -352,11 +348,7 @@ function listarPostsSalvos(req, res) {
     var fkUsuario = req.params.fkUsuario;
 
     usuarioModel.listarPostsSalvos(fkUsuario).then(function (resultado) {
-        if (resultado.length > 0) {
             res.json(resultado)
-        } else {
-            res.status(200).send("Nenhum post salvo encontrado");
-        }
     }).catch(function (erro) {
         console.log(erro);
         console.log("Houve um erro ao tentar listar posts salvos.", erro.sqlMessage);
