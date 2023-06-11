@@ -83,8 +83,9 @@ function listarQtdPosts(req, res) {
 
 function buscarInteracaoHoje(req, res) {
     var fkUsuario = req.params.fkUsuario;
+    var hora = req.params.hora;
 
-    analyticsModel.buscarInteracaoHoje(fkUsuario)
+    analyticsModel.buscarInteracaoHoje(fkUsuario, hora)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);

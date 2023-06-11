@@ -93,34 +93,24 @@ function obterDados() {
     setTimeout(calcularMediaInteracao, 100);
 }
 
-var registrosInteracao = [];
-var mesAno = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho']
+
 
 function obterDadosGraficoLinha() {
-    fetch(`/analytics/buscarInteracaoHoje/${fkUsuario}`)
-        .then(resposta => {
-            if (resposta.ok) {
-                resposta.json().then(function (resposta) {
-                    console.log(resposta)
-                    plotarGraficoLinha(resposta);
-                })
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-        });
-}
+    var registrosInteracaoHoje = [];
+    
+    for (var contadorHora = 1; contadorHora <= 23; contadorHora++) {
+        if(contadorHora < 10){
+            var a = "0" + contadorHora;
+            contadorHora = a;
+            console.log(a)
+        }
 
-function obterDadosGraficoBarra() {
-    for (var contadorMes = 1; contadorMes <= 12; contadorMes++) {
-        fetch(`/analytics/buscarInteracaoAno/${fkUsuario}/${contadorMes}`)
+        fetch(`/analytics/buscarInteracaoHoje/${fkUsuario}/${contadorHora}`)
             .then(resposta => {
                 if (resposta.ok) {
                     resposta.json().then(function (resposta) {
                         console.log(resposta)
-                        registrosInteracao.push(resposta[0]);
+                        registrosInteracaoHoje.push(resposta[0]);
                     })
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
@@ -131,7 +121,31 @@ function obterDadosGraficoBarra() {
             });
     }
 
-    setTimeout(() => {plotarGraficoBarra(registrosInteracao)}, 200);
+    setTimeout(() => {plotarGraficoLinha(registrosInteracaoHoje)}, 200);
+}
+
+function obterDadosGraficoBarra() {
+    var registrosInteracaoAno = [];
+    var mesAno = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho']
+
+    for (var contadorMes = 1; contadorMes <= 12; contadorMes++) {
+        fetch(`/analytics/buscarInteracaoAno/${fkUsuario}/${contadorMes}`)
+            .then(resposta => {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        console.log(resposta)
+                        registrosInteracaoAno.push(resposta[0]);
+                    })
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+
+    setTimeout(() => {plotarGraficoBarra(registrosInteracaoAno)}, 200);
 }
 
 function plotarGraficoLinha(resposta) {
@@ -225,6 +239,7 @@ function plotarGraficoLinha(resposta) {
 }
 
 function plotarGraficoBarra(resposta) {
+    var mesAno = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho']
 
     console.log('iniciando plotagem do gráfico...');
 

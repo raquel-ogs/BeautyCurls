@@ -166,9 +166,6 @@ constraint pkCompostaVisita primary key (idVisita, fkUsuario, fkPostagem)
 
 SELECT * FROM Visita;
 
-SELECT AVG((SELECT COUNT(fkUsuario) FROM Visita)) AS mediaInteracao FROM Visita
-	GROUP BY fkUsuario;
-
 CREATE TABLE Curtida(
 fkUsuario int,
 fkPostagem int,
@@ -191,12 +188,4 @@ constraint fkPostagemSalvo foreign key (fkPostagem) references Postagem(idPostag
 constraint pkCompostaSalvo primary key (fkUsuario, fkPostagem)
 );
 
-alter table visita modify column dtVisita datetime;
-
-  SELECT hrCurtida, hrSalvo FROM Curtida
-            JOIN Salvo ON Salvo.fkUsuario = Curtida.fkUsuario
-                WHERE Curtida.fkUsuario = 105 AND dtCurtida = CURRENT_DATE()
-					GROUP BY Curtida.fkPostagem;
-                
-                
-                select * from curtida;
+SELECT * FROM Salvo;

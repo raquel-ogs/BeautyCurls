@@ -23,7 +23,7 @@ router.get("/listarQtdPosts/", function (req, res) {
     analyticsController.listarQtdPosts(req, res);
 });
 
-router.get("/buscarInteracaoHoje/:fkUsuario/", function (req, res) {
+router.get("/buscarInteracaoHoje/:fkUsuario/:hora", function (req, res) {
     analyticsController.buscarInteracaoHoje(req, res);
 });
 

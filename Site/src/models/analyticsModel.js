@@ -39,13 +39,12 @@ function listarQtdPosts(){
     return database.executar(instrucao);
 }
 
-function buscarInteracaoHoje(fkUsuario){
-    console.log("ACESSEI O ANALYTICS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarInteracaoHoje()", fkUsuario);
+function buscarInteracaoHoje(fkUsuario, hora){
+    console.log("ACESSEI O ANALYTICS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarInteracaoHoje()", fkUsuario, hora);
     var instrucao = `
-        SELECT 1 as qtdCurtida, 1 as qtdSalvo, hrCurtida, hrSalvo FROM Curtida
-            JOIN Salvo ON Salvo.fkUsuario = Curtida.fkUsuario
-                WHERE Curtida.fkUsuario = ${fkUsuario} AND dtCurtida = CURRENT_DATE()
-                    GROUP BY Curtida.fkPostagem;          
+        SELECT COUNT(DISTINCT(Curtida.fkPostagem)) AS qtdCurtida, COUNT(DISTINCT(Salvo.fkPostagem)) AS qtdSalvo, hrCurtida, hrSalvo FROM Curtida
+	        JOIN Salvo ON Curtida.fkUsuario = Salvo.fkUsuario
+		        WHERE Curtida.fkUsuario = ${fkUsuario} AND hrCurtida LIKE '${hora}%' AND hrSalvo LIKE '${hora}%';          
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
