@@ -3,8 +3,8 @@ var database = require("../database/config")
 function listarPenteadosRecentes() {
     console.log("ACESSEI O POSTAGEM MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPenteadosRecentes()");
     var instrucao = `
-    SELECT titulo, descricao, urlImagem, categoria, DATE_FORMAT(dtPostagem, '%d/%m/%Y') AS dtPostagem FROM Postagem
-    WHERE categoria = 'Penteado' ORDER BY idPostagem DESC LIMIT 3;
+    SELECT idPostagem, titulo, descricao, urlImagem, categoria, DATE_FORMAT(dtPostagem, '%d/%m/%Y') AS dtPostagemFormatada FROM Postagem
+    WHERE categoria = 'Penteado' ORDER BY dtPostagem DESC LIMIT 3;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -13,46 +13,70 @@ function listarPenteadosRecentes() {
 function listarPenteados() {
     console.log("ACESSEI O POSTAGEM MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPenteados()");
     var instrucao = `
-    SELECT idPostagem, titulo, descricao, urlImagem, categoria, DATE_FORMAT(dtPostagem, '%d/%m/%Y') AS dtPostagem, 
+    SELECT idPostagem, titulo, descricao, urlImagem, categoria, DATE_FORMAT(dtPostagem, '%d/%m/%Y') AS dtPostagemFormatada, 
     (SELECT COUNT(fkPostagem) FROM Curtida WHERE fkPostagem = Postagem.idPostagem) AS qtdCurtida,
     (SELECT COUNT(fkPostagem) FROM Salvo WHERE fkPostagem = Postagem.idPostagem) AS qtdSalvo FROM Postagem
             LEFT JOIN Curtida ON Curtida.fkPostagem = idPostagem
                 LEFT JOIN Salvo ON Salvo.fkPostagem = idPostagem
                 WHERE categoria = 'Penteado'
-                GROUP BY Salvo.fkPostagem, Curtida.fkPostagem
-                ORDER BY idPostagem DESC;
+                ORDER BY dtPostagem DESC;
             `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-
-function listarProdutos() {
-    console.log("ACESSEI O POSTAGEM MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarProdutos()");
+function listarReceitas() {
+    console.log("ACESSEI O POSTAGEM MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarReceitas()");
     var instrucao = `
-        SELECT * FROM Postagem WHERE categoria = 'Produto' ORDER BY dtPostagem DESC;
+    SELECT idPostagem, titulo, descricao, urlImagem, categoria, DATE_FORMAT(dtPostagem, '%d/%m/%Y') AS dtPostagemFormatada, 
+    (SELECT COUNT(fkPostagem) FROM Curtida WHERE fkPostagem = Postagem.idPostagem) AS qtdCurtida,
+    (SELECT COUNT(fkPostagem) FROM Salvo WHERE fkPostagem = Postagem.idPostagem) AS qtdSalvo FROM Postagem
+            LEFT JOIN Curtida ON Curtida.fkPostagem = idPostagem
+                LEFT JOIN Salvo ON Salvo.fkPostagem = idPostagem
+                WHERE categoria = 'Receita'
+                ORDER BY dtPostagem DESC;
+                
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-
-function listarReceitas() {
-    console.log("ACESSEI O POSTAGEM MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarProdutas()");
+function listarPostagem(idPost) {
+    console.log("ACESSEI O POSTAGEM MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPostagem()", idPost);
     var instrucao = `
     SELECT idPostagem, titulo, descricao, urlImagem, categoria, DATE_FORMAT(dtPostagem, '%d/%m/%Y') AS dtPostagem, 
     (SELECT COUNT(fkPostagem) FROM Curtida WHERE fkPostagem = Postagem.idPostagem) AS qtdCurtida,
     (SELECT COUNT(fkPostagem) FROM Salvo WHERE fkPostagem = Postagem.idPostagem) AS qtdSalvo FROM Postagem
             LEFT JOIN Curtida ON Curtida.fkPostagem = idPostagem
                 LEFT JOIN Salvo ON Salvo.fkPostagem = idPostagem
-                WHERE categoria = 'Receita'
-                GROUP BY Salvo.fkPostagem, Curtida.fkPostagem
-                ORDER BY idPostagem;
-                
+                WHERE Postagem.idPostagem = ${idPost};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+
+function listarIngredientes(idPost) {
+    console.log("ACESSEI O POSTAGEM MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarIngredientes()", idPost);
+    var instrucao = `
+        SELECT * FROM ingredienteReceita
+        WHERE fkPostagem = ${idPost};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function listarPassos(idPost) {
+    console.log("ACESSEI O POSTAGEM MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPassos()", idPost);
+    var instrucao = `
+        SELECT * FROM passoPostagem
+        WHERE fkPostagem = ${idPost};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
 
 function atualizarCurtida(fkPostagem){
     console.log("ACESSEI O POSTAGEM MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarCurtida()", fkPostagem);
@@ -78,8 +102,10 @@ function atualizarSalvo(fkPostagem){
 module.exports = {
     listarPenteadosRecentes,
     listarPenteados,
-    listarProdutos,
     listarReceitas,
+    listarPostagem,
+    listarIngredientes,
+    listarPassos,
     atualizarCurtida,
     atualizarSalvo
 };

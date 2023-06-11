@@ -5,12 +5,41 @@ main .account{
 }
 
 main .account .content{
-    margin-top: 10vh;
     width: 85%;
     display: flex;
     align-items: center;
     flex-direction: column;
     row-gap: 7vh;
+}
+
+main .account .content .nav{
+    margin-top: 2vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 1.2vw;
+    color: var(--pink);
+}
+
+
+main .account .content .nav a{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 1.2vw;
+    color: var(--pink);
+}
+
+main .account .content .nav a i{
+    font-size: 1.6vw;
+}
+
+main .account .content .nav a h3{
+    font-family: 'Poppins';
+    margin-left: 1.5vw;
+
 }
 
 main .account .content .informations{
@@ -47,26 +76,30 @@ main .account .content .informations .informations-account .image-account img{
 
 main .account .content .informations .informations-account .image-account a{
     position: absolute;
+    cursor: pointer;
+    background-color: var(--pink);
+    width: 3vw;
+    height: 3vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    border-radius: 100px;
+    transition: 0.25s linear;
+
 }
 
 main .account .content .informations .informations-account .image-account a .icon-camera{
     cursor: pointer;
-    background-color: var(--pink);
-    color: #fff;
-    width: 3vw;
-    height: 3vw;
+    background-color: transparent;
     border: none;
-    border-radius: 100px;
-    transition: 0.25s ;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #fff;
 }
 
-main .account .content .informations .informations-account .image-account a .icon-camera:hover{
+main .account .content .informations .informations-account .image-account a:hover{
     background-color: var(--dark-pink);
 }
 

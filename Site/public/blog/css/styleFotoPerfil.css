@@ -76,6 +76,8 @@ main .profilePhoto .content .photos .card-photo  img{
 main .profilePhoto .content .photos .card-photo img:hover{
     transform: scale(1.1);
     border-color: var(--pink);
+    filter: drop-shadow(0px 15px 15px var(--pink-25));
+
 }
 
 

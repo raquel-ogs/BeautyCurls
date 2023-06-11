@@ -81,12 +81,13 @@ main .recipe .content .posts .card-post .image .icons .card-icon{
     text-align: center;
 }
 
-main .recipe .content .posts .card-post .image .icons .card-icon i{
+main .recipe .content .posts .card-post .image .icons .card-icon button i{
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5vw;
+    color: var(--pink);
 }
 
 main .recipe .content .posts .card-post .image .icons .card-icon h3{

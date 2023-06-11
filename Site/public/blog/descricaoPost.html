@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/styleReceitas.css">
+    <link rel="stylesheet" href="./css/styleDescricaoPost.css">
     <link rel="shortcut icon" href="./../assets/imagotipo.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
@@ -15,9 +15,12 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <script src="./../js/funcoes.js"></script>
+    <script src="./js/scriptCurtir.js"></script>
+    <script src="./js/scriptSalvar.js"></script>
+    <script src="./js/scriptDescricaoPost.js"></script>
     <title> BeautyCurls, onde seus cachos ganham vida</title>
 </head>
-<body onload="validarSessao(), exibirNomeUsuario(), mostrarPost(1)">
+<body onload="validarSessao()">
     <header>
         <nav>
             <div class="logo">
@@ -35,12 +38,12 @@
                 </a>
             </div>
             <ul class="list-navegation">
-                <li class="list-item">
+                <li class="list-item-now">
                     <a href="./index.html">
                         <label class="icon">
-                            <i class="fi fi-br-house-blank"></i>
+                            <i class="fi fi-sr-house-blank"></i>
                         </label>
-                        <h4 class="title-item">
+                        <h4 class="title-item-selected">
                             Início
                         </h4>
                     </a>
@@ -75,12 +78,12 @@
                         </h4>
                     </a>
                 </li>
-                <!-- <li class="list-item-now">
-                    <a href="#">
+                <!-- <li class="list-item">
+                    <a href="./ajudaSuporte.html">
                         <label class="icon">
-                            <i class="fi fi-sr-info"></i>
+                            <i class="fi fi-br-info"></i>
                         </label>
-                        <h4 class="title-item-selected">
+                        <h4 class="title-item">
                             Ajuda e Suporte
                         </h4>
                     </a>
@@ -104,9 +107,14 @@
         </nav>
     </header>
     <main>
-        <section class="recipe">
+        <section class="post-description">
             <div class="content">
-                
+                <div class="back">
+                    <button onclick="history.back()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                </div>
+                <div class="posts" id="posts"></div>                
             </div>
         </section>
     </main>

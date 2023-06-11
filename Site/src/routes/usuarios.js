@@ -32,8 +32,16 @@ router.get("/verificarSalvo/:fkUsuario/:fkPostagem", function (req, res) {
     usuarioController.verificarSalvo(req, res);
 });
 
+router.get("/listarPostsCurtidos/:fkUsuario", function (req, res) {
+    usuarioController.listarPostsCurtidos(req, res);
+});
+
 router.get("/verificarQtdCurtida/:fkUsuario/", function (req, res) {
     usuarioController.verificarQtdCurtida(req, res);
+});
+
+router.get("/listarPostsSalvos/:fkUsuario", function (req, res) {
+    usuarioController.listarPostsSalvos(req, res);
 });
 
 router.get("/verificarQtdSalvo/:fkUsuario/", function (req, res) {
@@ -49,6 +57,10 @@ router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
+router.post("/adicionarVisita", function (req, res) {
+    usuarioController.adicionarVisita(req, res);
+})
+
 router.post("/adicionarCurtida", function (req, res) {
     usuarioController.adicionarCurtida(req, res);
 })
@@ -57,10 +69,13 @@ router.post("/adicionarSalvo", function (req, res) {
     usuarioController.adicionarSalvo(req, res);
 })
 
+router.put("/atualizarDadosPessoais/:idUsuario", function (req, res) {
+    usuarioController.atualizarDadosPessoais(req, res);
+});
+
 router.put("/atualizarFotoPerfil/:idUsuario", function (req, res) {
     usuarioController.atualizarFotoPerfil(req, res);
 });
-
 
 router.delete("/apagarCurtida", function (req, res) {
     usuarioController.apagarCurtida(req, res);

@@ -1,6 +1,5 @@
 var fkUsuario = sessionStorage.ID;
 var postCurtido = false;
-var postSalvo = false;
 
 function verificarCurtida(fkPostagem){
     fetch(`/usuarios/verificarCurtida/${fkUsuario}/${fkPostagem}`)

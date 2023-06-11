@@ -158,7 +158,7 @@
                         <div class="post-description" id="descricaoPost">
                         </div>
                         <div class="button-sign-in">
-                            <button class="btn-background" onclick="irParaPost()"> Ler tudo </button>
+                            <button class="btn-background" id="buttonRedirecionar"> Ler tudo </button>
                         </div>
                     </div>
                 </div>
@@ -174,6 +174,7 @@
 
 </html>
 <script>
+    var fkUsuario = sessionStorage.ID
     var idPost = 0;
     var postsRecentes = [];
 
@@ -189,10 +190,11 @@
 
                             postsRecentes.push(
                                 {
+                                    id: postAtual.idPostagem,
                                     categoria: postAtual.categoria,
                                     titulo: postAtual.titulo,
                                     descricao: postAtual.descricao,
-                                    hrPostado: postAtual.dtPostagem,
+                                    hrPostado: postAtual.dtPostagemFormatada,
                                     url: postAtual.urlImagem
                                 }
                             );
@@ -208,31 +210,6 @@
             .catch(function (error) {
                 console.error(`Erro ao tentar listar penteados recentes: ${error.message}`);
             });
-
-    // var postRecente = [
-    //     {
-    //         categoria: 'Penteado', 
-    //         titulo: 'Coque Abacaxi', 
-    //         descricao: 'Esse penteado é muito comum entre cacheados e cacheadas, por ser prático e ajudar a não amassar os cachinhos enquanto dormimos.', 
-    //         hrPostado: '3 horas atrás',
-    //         url: './../../assets/raquel.png'
-    //     },
-    //     {
-    //         categoria: 'Penteado', 
-    //         titulo: 'Coque Com Tranças', 
-    //         descricao: 'Esse é um penteado que gosto muito por ser fácil e super prático de fazer, dura muitos days after o que facilita no dia a dia.', 
-    //         hrPostado: '12 horas atrás',
-    //         url: './../../assets/raquel_2.png'
-    //     },
-    //     {
-    //         categoria: 'Penteado', 
-    //         titulo: 'PUFF + Baby Hair', 
-    //         descricao: 'Esse penteado é muito amado por cacheados e crespos, ainda mais com um baby hair viramos a 8ª maravilha do mundo haha.', 
-    //         hrPostado: '2 dias atrás',
-    //         url: './../../assets/raquel_3.png'
-    //     },
-    // ];
-
     
     function mostrarPost(numPost){
         idPost = numPost;
@@ -242,6 +219,7 @@
         var titulo = document.getElementById('tituloPost');
         var hora = document.getElementById('horaPost');
         var descricao = document.getElementById('descricaoPost');
+        var btnRedirecionar = document.getElementById('buttonRedirecionar');
         var bolinha_1 = document.getElementById('post_1')
         var bolinha_2= document.getElementById('post_2')
         var bolinha_3 = document.getElementById('post_3')
@@ -277,7 +255,36 @@
         titulo.innerHTML = item.titulo;
         hora.innerHTML = item.hrPostado;
         descricao.innerHTML = item.descricao;
-    
+        btnRedirecionar.onclick = () => {
+            sessionStorage.ID_POST = item.id;
+
+            fetch(`/usuarios/adicionarVisita/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkUsuarioServer: fkUsuario,
+                fkPostagemServer: item.id
+            })
+
+        })
+            .then(resposta => {
+                if (resposta.ok) {
+                    console.log(resposta);
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro ao tentar adicionar curtida: ${error.message}`);
+            });
+
+            setTimeout(() => {
+                window.location = './descricaoPost.html'
+            }, 1000);  
+        }  
     }
+
 
 </script>

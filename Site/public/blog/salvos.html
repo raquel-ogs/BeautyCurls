@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/styleReceitas.css">
+    <link rel="stylesheet" href="./css/styleSalvos.css">
     <link rel="shortcut icon" href="./../assets/imagotipo.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
@@ -15,9 +15,12 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <script src="./../js/funcoes.js"></script>
+    <script src="./js/scriptCurtir.js"></script>
+    <script src="./js/scriptSalvar.js"></script>
     <title> BeautyCurls, onde seus cachos ganham vida</title>
 </head>
-<body onload="validarSessao(), exibirNomeUsuario(), mostrarPost(1)">
+
+<body onload="validarSessao(), listarPostsSalvos()">
     <header>
         <nav>
             <div class="logo">
@@ -40,7 +43,7 @@
                         <label class="icon">
                             <i class="fi fi-br-house-blank"></i>
                         </label>
-                        <h4 class="title-item">
+                        <h4 class="title-item-selected">
                             Início
                         </h4>
                     </a>
@@ -60,7 +63,7 @@
                         <label class="icon">
                             <i class="fi fi-sr-bookmark"></i>
                         </label>
-                        <h4 class="title-item-selected">
+                        <h4 class="title-item">
                             Salvos
                         </h4>
                     </a>
@@ -96,7 +99,7 @@
                     </span>
                 </li>
             </ul>
-            <div class="copyright"> 
+            <div class="copyright">
                 <h4 class="copyright-title">
                     © Copyright <a href="./../index.html"> BeautyCurls </a>
                 </h4>
@@ -109,13 +112,125 @@
                 <h1 class="title">
                     Salvos
                 </h1>
-                <div class="posts">
-                    <div class="card-post">
-                        
-                    </div>
-                </div>
+                <div class="posts" id="posts"></div>
             </div>
         </section>
     </main>
 </body>
+
 </html>
+<script>
+    var fkUsuario = sessionStorage.ID
+    var listaPostagens = [];
+
+    function listarPostsSalvos() {
+        listaPostagens = [];
+        posts.innerHTML = '';
+
+        fetch(`/usuarios/listarPostsSalvos/${fkUsuario}`)
+            .then(resposta => {
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+                        resposta.forEach(postagem => {
+                            if (listaPostagens.indexOf(postagem.idPostagem) == -1) {
+                                listaPostagens.push(postagem.idPostagem);
+
+                                if(postagem.categoria == 'Penteado'){
+                                    posts.innerHTML += `                    
+                                    <div class="card-post">
+                                        <div class="image-hairstyle" id="img-post">
+                                            <img src="${postagem.urlImagem}" id="urlImgPost">
+                                            <div class="icons">
+                                                <div class="card-icon">
+                                                    <button onclick="curtirOuDescurtir(${postagem.idPostagem})" style="cursor:pointer; border:none;">
+                                                        <i class="fi fi-br-heart" id="post${postagem.idPostagem}_like"></i>
+                                                    </button>
+                                                    <h3 id="qtdLike_post${postagem.idPostagem}"> ${postagem.qtdCurtida} </h3>
+                                                </div>
+                                                <div class="card-icon">
+                                                    <button onclick="salvarOuDessalvar(${postagem.idPostagem})" style="cursor:pointer; border:none;">
+                                                        <i class="fi fi-br-bookmark" id="post${postagem.idPostagem}_salvo"></i>
+                                                    </button>
+                                                    <h3 id="qtdSalvo_post${postagem.idPostagem}"> ${postagem.qtdSalvo} </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="post-informations">
+                                            <div class="post-texts">
+                                                <h4 id="horaPost"> ${postagem.dtPostagemFormatado} </h4>
+                                                <h2 id="tituloPost"> ${postagem.titulo} </h3>
+                                                <h3 class="link-post" onclick="irParaPost(${postagem.idPostagem})"> Saiba mais </h2>
+                                            </div>
+                                        </div>
+                                    </div>`
+                                } else {
+                                    posts.innerHTML += `                    
+                                    <div class="card-post">
+                                        <div class="image-recipe" id="img-post">
+                                            <div class="img-post">
+                                                <div class="background-post"></div>
+                                                <img src="${postagem.urlImagem}"">
+                                            </div>
+                                            <div class="icons">
+                                                <div class="card-icon">
+                                                    <button onclick="curtirOuDescurtir(${postagem.idPostagem})" style="cursor:pointer; border:none;">
+                                                        <i class="fi fi-br-heart" id="post${postagem.idPostagem}_like"></i>
+                                                    </button>
+                                                    <h3 id="qtdLike_post${postagem.idPostagem}"> ${postagem.qtdCurtida} </h3>
+                                                </div>
+                                                <div class="card-icon">
+                                                    <button onclick="salvarOuDessalvar(${postagem.idPostagem})" style="cursor:pointer; border:none;">
+                                                        <i class="fi fi-br-bookmark" id="post${postagem.idPostagem}_salvo"></i>
+                                                    </button>
+                                                    <h3 id="qtdSalvo_post${postagem.idPostagem}"> ${postagem.qtdSalvo} </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="post-informations">
+                                            <div class="post-texts">
+                                                <h4 id="horaPost"> ${postagem.dtPostagemFormatado} </h4>
+                                                <h2 id="tituloPost"> ${postagem.titulo} </h3>
+                                                <h3 class="link-post" onclick="irParaPost(${postagem.idPostagem})"> Saiba mais </h2>
+                                            </div>
+                                        </div>
+                                    </div>`
+                                }
+                            }
+
+
+                            verificarCurtida(postagem.idPostagem);
+                            verificarSalvo(postagem.idPostagem);
+                        });
+
+
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro ao tentar listar posts salvos: ${error.message}`);
+            });
+    }
+
+    function irParaPost(idPost) {
+        sessionStorage.ID_POST = idPost;
+
+        setTimeout(() => {
+            window.location = './descricaoPost.html'
+        }, 1000);
+    }
+
+    function atualizarSalvoCurtida() {
+        for (var contadorPostagem = 0; contadorPostagem < listaPostagens.length; contadorPostagem++) {
+            var postagemAtual = listaPostagens[contadorPostagem];
+
+            atualizarQtdLike(postagemAtual);
+            atualizarQtdSalvo(postagemAtual);
+        }
+
+    }
+
+    setInterval(atualizarSalvoCurtida, 10000)
+
+</script>

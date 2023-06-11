@@ -1,0 +1,225 @@
+
+main .post-description{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+main .post-description .content{
+    margin-top: 10vh;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 7vh;
+}
+
+main .post-description .content .back{
+    width: 100%;
+    display: flex;
+    column-gap: 5vh;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+main .post-description .content .back button{
+    width: fit-content;
+    padding-left: 1vh;
+    cursor: pointer;
+    background: transparent;
+    color: var(--pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+    border: none;
+    filter: drop-shadow(0px 7px 4px var(--pink-25));
+    transition: 0.3s ease-out;
+}
+
+main .post-description .content .back button:hover{
+    color: var(--dark-pink);
+    filter: drop-shadow(0px 7px 4px var(--dark-pink-25));
+}
+
+main .post-description .content .posts{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 7vh;
+}
+
+main .post-description .content .posts .post-information{
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 5vh;
+}
+
+main .post-description .content .posts .post-information .image-hairstyle, 
+main .post-description .content .posts .post-information .image-recipe{
+    width: 40%;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2vh;
+}  
+
+main .post-description .content .posts .post-information .image-hairstyle .icons,
+main .post-description .content .posts .post-information .image-recipe .icons{
+    color: var(--pink);
+    width: 60%;
+    display: flex;
+}
+
+main .post-description .content .posts .post-information .image-hairstyle .icons .card-icon,
+main .post-description .content .posts .post-information .image-recipe .icons .card-icon{
+    width: 12vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.5vw;
+    text-align: center;
+}
+
+main .post-description .content .posts .post-information .image-hairstyle .icons .card-icon i,
+main .post-description .content .posts .post-information .image-recipe .icons .card-icon i{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vw;
+    transition: 0.3s linear;
+}
+
+main .post-description .content .posts .post-information .image-hairstyle .icons .card-icon h3,
+main .post-description .content .posts .post-information .image-recipe .icons .card-icon h3{
+    font-size: 1.1vw;
+    font-family: 'Poppins';
+    font-weight: 800;
+}
+
+main .post-description .content .posts .post-information .image-hairstyle img{
+    width: 13vw;
+    height: 32vh;
+    border: 3px solid var(--pink-50);
+    border-radius: 4vw;
+    filter: drop-shadow(-12px 7px 7px var(--pink-25));
+}
+
+main .post-description .content .posts .post-information .image-recipe .img-post{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 100%;
+}
+
+main .post-description .content .posts .post-information .image-recipe .img-post div{
+    position: absolute;
+    width: 15vw;
+    height: 17vh;
+    background: linear-gradient(113.35deg, rgba(255, 94, 129, 0.3) 0%, rgba(255, 207, 218, 0.3) 100%), #FFFFFF;
+    border-radius: 3vw;
+    box-shadow: 0px 7px 7px var(--pink-25);
+}
+
+main .post-description .content .posts .post-information .image-recipe .img-post img{
+    width: 13vw;
+    height: auto;
+    margin-bottom: 2vh;
+    filter: drop-shadow(0px 15px 15px rgba(255, 94, 129, 0.35));
+}
+
+main .post-description .content .posts .post-information .post-texts{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 3vh;
+    padding-left: 1vh;
+}
+
+main .post-description .content .posts .post-information .post-texts h4{
+    width: 75%;
+}
+
+main .post-description .content .posts .post-ingredients{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 4vh;
+}
+
+
+main .post-description .content .posts .post-ingredients ul{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 3vh;
+}
+
+main .post-description .content .posts .post-ingredients ul li{
+    width: 90%;
+}
+
+main .post-description .content .posts .post-ingredients ul li::marker{
+    color: var(--dark-pink-70);
+    font-size: 0.7vw;
+}
+
+main .post-description .content .posts .post-steps{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 4vh;
+}
+
+
+main .post-description .content .posts .post-steps ol{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 3vh;
+}
+
+main .post-description .content .posts .post-steps ol li{
+    width: 90%;
+    text-align: justify;
+}
+
+main .post-description .content .posts .post-steps ol li::marker{
+    color: var(--dark-pink-70);
+    font-family: 'Poppins';
+    font-size: 1vw;
+    font-weight: 300;
+}
+
+main .post-description .content .posts .post-steps ol li h4{
+  width: 85%;
+}
+
+main h2{
+    color: var(--dark-pink);
+    font-family: 'Arvo';
+    font-weight: 700;
+    font-size: 1.9vw;
+    text-shadow: 0px 4px 4px var(--dark-pink-25);
+    line-height: 5vh;
+    -webkit-text-stroke: 0.5px var(--dark-pink);
+}
+
+main h4{
+    color: var(--dark-pink-70);
+    font-family: 'Poppins';
+    font-weight: 300;
+    font-size: 1.1vw;
+    text-align: justify;
+}
+

@@ -82,13 +82,41 @@ function cadastrar(nome, sobrenome, user, email, senha, curvatura, fotoPerfil) {
     return database.executar(instrucao);
 }
 
+function adicionarVisita(fkUsuario, fkPostagem) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function adicionarVisita():", fkUsuario, fkPostagem);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO Visita VALUES (null, ${fkUsuario}, ${fkPostagem}, CURRENT_DATE(), CURRENT_TIME());
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function listarPostsCurtidos(fkUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPostsCurtidos()", fkUsuario);
+    var instrucao = `
+    SELECT idPostagem, titulo, descricao, urlImagem, categoria, DATE_FORMAT(dtPostagem, '%d/%m/%Y') AS dtPostagemFormatado, 
+    (SELECT COUNT(fkPostagem) FROM Curtida WHERE fkPostagem = Postagem.idPostagem) AS qtdCurtida,
+    (SELECT COUNT(fkPostagem) FROM Salvo WHERE fkPostagem = Postagem.idPostagem) AS qtdSalvo FROM Postagem
+            LEFT JOIN Curtida ON Curtida.fkPostagem = idPostagem
+                LEFT JOIN Salvo ON Salvo.fkPostagem = idPostagem
+                WHERE Curtida.fkUsuario = ${fkUsuario}
+                ORDER BY dtPostagem DESC;
+                
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function adicionarCurtida(fkUsuario, fkPostagem) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function adicionarCurtida():", fkUsuario, fkPostagem);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO Curtida VALUES (${fkUsuario}, ${fkPostagem}, CURRENT_DATE());
+        INSERT INTO Curtida VALUES (${fkUsuario}, ${fkPostagem}, CURRENT_DATE(),  CURRENT_TIME());
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -118,6 +146,23 @@ function apagarCurtida(fkUsuario, fkPostagem) {
     return database.executar(instrucao);
 }
 
+
+function listarPostsSalvos(fkUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPostsSalvos()", fkUsuario);
+    var instrucao = `
+    SELECT idPostagem, titulo, descricao, urlImagem, categoria, DATE_FORMAT(dtPostagem, '%d/%m/%Y') AS dtPostagemFormatado, 
+    (SELECT COUNT(fkPostagem) FROM Curtida WHERE fkPostagem = Postagem.idPostagem) AS qtdCurtida,
+    (SELECT COUNT(fkPostagem) FROM Salvo WHERE fkPostagem = Postagem.idPostagem) AS qtdSalvo FROM Postagem
+            LEFT JOIN Curtida ON Curtida.fkPostagem = idPostagem
+                LEFT JOIN Salvo ON Salvo.fkPostagem = idPostagem
+                WHERE Salvo.fkUsuario = ${fkUsuario}
+                ORDER BY dtPostagem DESC;
+                
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function verificarSalvo(fkUsuario, fkPostagem) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarSalvo():", fkUsuario, fkPostagem);
     
@@ -137,7 +182,7 @@ function adicionarSalvo(fkUsuario, fkPostagem) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO Salvo VALUES (${fkUsuario}, ${fkPostagem}, CURRENT_DATE());
+        INSERT INTO Salvo VALUES (${fkUsuario}, ${fkPostagem}, CURRENT_DATE(), CURRENT_TIME());
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -184,9 +229,12 @@ module.exports = {
     listarFotoPerfil,
     atualizarFotoPerfil,
     cadastrar,
+    adicionarVisita,
+    listarPostsCurtidos,
     verificarCurtida,
     adicionarCurtida,
     apagarCurtida,
+    listarPostsSalvos,
     verificarSalvo,
     adicionarSalvo,
     apagarSalvo,

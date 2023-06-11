@@ -81,13 +81,14 @@ main .hairstyle .content .posts .card-post .image .icons .card-icon{
     text-align: center;
 }
 
-main .hairstyle .content .posts .card-post .image .icons .card-icon i{
+main .hairstyle .content .posts .card-post .image .icons .card-icon button i{
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5vw;
     transition: 0.3s linear;
+    color: var(--pink);
 }
 
 main .hairstyle .content .posts .card-post .image .icons .card-icon h3{

@@ -82,10 +82,17 @@ main .products .content .posts .card-post .info-post{
 }
 
 main .products .content .posts .card-post .info-post .img-post{
+    cursor: pointer;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     width: 100%;
+    transition: 0.5s ease-in-out;
+}
+
+
+main .products .content .posts .card-post .info-post .img-post:hover{
+   transform: scale(1.12);
 }
 
 main .products .content .posts .card-post .info-post .img-post div{
@@ -101,6 +108,7 @@ main .products .content .posts .card-post .info-post .img-post img{
     width: 15vw;
     margin-bottom: 2vh;
     filter: drop-shadow(0px 15px 15px rgba(255, 94, 129, 0.5));
+    transition: 0.5s ease-in-out;
 }
 
 main .products .content .posts .card-post .info-post .text-post{

@@ -17,7 +17,7 @@
     <script src="./../js/funcoes.js"></script>
     <title> BeautyCurls, onde seus cachos ganham vida</title>
 </head>
-<body onload="validarSessao()">
+<body onload="validarSessao(), listarProdutosRecomendados()">
     <header>
         <nav>
             <div class="logo">
@@ -114,103 +114,149 @@
                         Produtos Recomendados
                     </h1>
                 </div>
-                <div class="posts">
-                    <div class="card-post">
-                        <span class="curvature-hair-post">
-                            2 ABC + 
-                        </span>
-                        <div class="info-post">
-                            <div class="img-post">
-                                <div class="background-post"></div>
-                                <img src="../assets/divino_potinho.png">
-                            </div>
-                            <div class="text-post">
-                                <h2 class="title-post"> Divino Potinho </h2>
-                                <h2 class="subtitle-post" onclick="redirecionarPost(idPost)"> Saiba Mais </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-post">
-                        <span class="curvature-hair-post">
-                            4ABC 
-                        </span>
-                        <div class="info-post">
-                            <div class="img-post">
-                                <div class="background-post"></div>
-                                <img src="../assets/mais_crespos.png">
-                            </div>
-                            <div class="text-post">
-                                <h2 class="title-post"> #Mais Crespos </h2>
-                                <h2 class="subtitle-post" onclick="redirecionarPost(idPost)"> Saiba Mais </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-post">
-                        <span class="curvature-hair-post">
-                            2 ABC + 
-                        </span>
-                        <div class="info-post">
-                            <div class="img-post">
-                                <div class="background-post"></div>
-                                <img src="../assets/babosa.png">
-                            </div>
-                            <div class="text-post">
-                                <h2 class="title-post"> Babosa </h2>
-                                <h2 class="subtitle-post" onclick="redirecionarPost(idPost)"> Saiba Mais </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-post">
-                        <span class="curvature-hair-post">
-                            2 ABC + 
-                        </span>
-                        <div class="info-post">
-                            <div class="img-post">
-                                <div class="background-post"></div>
-                                <img src="../assets/teste.png">
-                            </div>
-                            <div class="text-post">
-                                <h2 class="title-post"> Definição Intensa </h2>
-                                <h2 class="subtitle-post" onclick="redirecionarPost(idPost)"> Saiba Mais </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-post">
-                        <span class="curvature-hair-post">
-                            2 ABC + 
-                        </span>
-                        <div class="info-post">
-                            <div class="img-post">
-                                <div class="background-post"></div>
-                                <img src="../assets/gelatina.png">
-                            </div>
-                            <div class="text-post">
-                                <h2 class="title-post"> Gelatina Super Definição </h2>
-                                <h2 class="subtitle-post" onclick="redirecionarPost(idPost)"> Saiba Mais </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-post">
-                        <span class="curvature-hair-post">
-                            2 ABC + 
-                        </span>
-                        <div class="info-post">
-                            <div class="img-post">
-                                <div class="background-post"></div>
-                                <img src="../assets/definicao_maxima.png">
-                            </div>
-                            <div class="text-post">
-                                <h2 class="title-post"> Definição Máxima </h2>
-                                <h2 class="subtitle-post" onclick="redirecionarPost(idPost)"> Saiba Mais </h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="posts" id="posts"></div>
             </div>
         </section>
     </main>
 </body>
 </html>
 <script>
-    var listaProduto = [];
+    var listaProdutos = [
+        {
+            nome: 'Divino Potinho',
+            urlImg: 'http://localhost:3333/assets/divino_potinho.png',
+            urlSite: 'https://www.skala.com.br/produto/divino-potinho-171',
+            curvaturaRecomendada: '2 ABC +'
+        },
+        {
+            nome: '#Mais Crespos',
+            urlImg: 'http://localhost:3333/assets/mais_crespos.png',
+            urlSite: 'https://www.skala.com.br/produto/-maiscrespos-177',
+            curvaturaRecomendada: '4ABC'
+        },
+        {
+            nome: 'Babosa',
+            urlImg: 'http://localhost:3333/assets/babosa.png',
+            urlSite: 'https://www.skala.com.br/produto/babosa-33',
+            curvaturaRecomendada: '2 ABC +'
+        },
+        {
+            nome: 'Definição Máxima',
+            urlImg: 'http://localhost:3333/assets/definicao_maxima.png',
+            urlSite: 'https://www.salonline.com.br/creme-para-pentear-definicao-maxima-salon-line-1kg',
+            curvaturaRecomendada: '2 ABC +'
+        },
+        {
+            nome: 'Gelatina Super Definição',
+            urlImg: 'http://localhost:3333/assets/gelatina_super_definicao.png',
+            urlSite: 'https://www.salonline.com.br/gelatina-todecacho-super-definicao-salon-line-550g',
+            curvaturaRecomendada: '2 ABC +'
+        },
+        {
+            nome: 'Definição Intensa',
+            urlImg: 'http://localhost:3333/assets/definicao_intensa.png',
+            urlSite: 'https://www.salonline.com.br/creme-para-pentear-definicao-intensa-salon-line-1kg',
+            curvaturaRecomendada: '2 ABC +'
+        },
+        {
+            nome: '#Mais Cachos',
+            urlImg: 'http://localhost:3333/assets/mais_cachos.png',
+            urlSite: 'https://www.skala.com.br/produto/-mais-cachos-59',
+            curvaturaRecomendada: '3 ABC +'
+        },
+        {
+            nome: 'Maionese Capilar',
+            urlImg: 'http://localhost:3333/assets/maionese.png',
+            urlSite: 'https://www.skala.com.br/produto/maionese-capilar-nutritiva-733',
+            curvaturaRecomendada: '1ABC+'
+        },
+        {
+            nome: 'Divino Potão',
+            urlImg: 'http://localhost:3333/assets/divino_potao.png',
+            urlSite: 'https://www.skala.com.br/produto/divino-potao-43',
+            curvaturaRecomendada: '3 ABC +'
+        },
+        {
+            nome: 'Maracujá e Ól. de Patauá',
+            urlImg: 'http://localhost:3333/assets/maracuja.png',
+            urlSite: 'https://www.skala.com.br/produto/maracuja-e-oleo-de-pataua-88',
+            curvaturaRecomendada: '2 ABC +'
+        },
+        {
+            nome: 'Potão do Amor',
+            urlImg: 'http://localhost:3333/assets/potao_do_amor.png',
+            urlSite: 'https://www.skala.com.br/produto/potao-do-amor-175',
+            curvaturaRecomendada: '1 ABC +'
+        },
+        {
+            nome: 'Dona Skala',
+            urlImg: 'http://localhost:3333/assets/dona_skala.png',
+            urlSite: 'https://www.skala.com.br/produto/dona-skala-32',
+            curvaturaRecomendada: '1 ABC +'
+        },
+        {
+            nome: 'Gelatina Super Transição',
+            urlImg: 'http://localhost:3333/assets/gelatina_super_transicao.png',
+            urlSite: 'https://www.salonline.com.br/gelatina-todecacho-mais-definicao-transicao-capilar-salon-line-550gr',
+            curvaturaRecomendada: '2 ABC +'
+        },
+        {
+            nome: 'Soltos e Definidos 3 em 1',
+            urlImg: 'http://localhost:3333/assets/soltos_e_definidos.png',
+            urlSite: 'https://www.embelleze.com/creme-para-pentear-novex-o-especialista-soltos-e-definidos-3-em-1-1kg-07237/p',
+            curvaturaRecomendada: '3 ABC +'
+        },
+        {
+            nome: 'Cachos de Cinema',
+            urlImg: 'http://localhost:3333/assets/cachos_de_cinema.png',
+            urlSite: 'https://www.embelleze.com/creme-de-tratamento-novex-meus-cachos-de-cinema-248/p',
+            curvaturaRecomendada: '3 ABC +'
+        },
+        {
+            nome: 'Super Babosão',
+            urlImg: 'http://localhost:3333/assets/novex_babosa.png',
+            urlSite: 'https://www.embelleze.com/creme-de-tratamento-novex-super-babosao-670443/p',
+            curvaturaRecomendada: '1 ABC +'
+        },
+        {
+            nome: 'Shampoo Óleo de Coco',
+            urlImg: 'http://localhost:3333/assets/shampoo_oleo_de_coco.png',
+            urlSite: 'https://www.skala.com.br/produto/oleo-de-coco-38',
+            curvaturaRecomendada: '1 ABC +'
+        },
+        {
+            nome: 'Shampoo #Mais Cachos',
+            urlImg: 'http://localhost:3333/assets/shampoo_mais_cachos.png',
+            urlSite: 'https://www.skala.com.br/produto/-mais-cachos-58',
+            curvaturaRecomendada: '3 ABC +'
+        }
+    ];
+
+    function listarProdutosRecomendados(){
+        for(var contadorProduto = 0; contadorProduto < listaProdutos.length; contadorProduto++){
+            var produtoAtual = listaProdutos[contadorProduto];
+
+            posts.innerHTML += `                    
+                <div class="card-post" onclick="redirecionar('${produtoAtual.urlSite}')">
+                    <span class="curvature-hair-post">
+                        ${produtoAtual.curvaturaRecomendada} 
+                    </span>
+                    <div class="info-post">
+                        <div class="img-post">
+                            <div class="background-post"></div>
+                            <img src="${produtoAtual.urlImg}">
+                        </div>
+                        <div class="text-post">
+                            <h2 class="title-post"> ${produtoAtual.nome} </h2>
+                            <h2 class="subtitle-post" onclick="redirecionar('${produtoAtual.urlSite}')"> Saiba Mais </h2>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    function redirecionar(url){
+        window.location.href = url;
+    }
 </script>

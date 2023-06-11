@@ -1,12 +1,16 @@
-var postagemModel = require("../models/postagemModel");
+var analyticsModel = require("../models/analyticsModel");
+
+var sessoes = [];
 
 function testar(req, res) {
-    console.log("ENTRAMOS NA postagemController");
+    console.log("ENTRAMOS NA analyticsController");
     res.json("ESTAMOS FUNCIONANDO!");
 }
 
-function listarPenteadosRecentes(req, res) {
-    postagemModel.listarPenteadosRecentes()
+function listarQtdVisitas(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+
+    analyticsModel.listarQtdVisitas(fkUsuario)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -22,8 +26,10 @@ function listarPenteadosRecentes(req, res) {
         );
 }
 
-function listarPenteados(req, res) {
-    postagemModel.listarPenteados()
+function listarQtdCurtidas(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+
+    analyticsModel.listarQtdCurtidas(fkUsuario)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -39,8 +45,46 @@ function listarPenteados(req, res) {
         );
 }
 
-function listarReceitas(req, res) {
-    postagemModel.listarReceitas()
+function listarQtdSalvos(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+
+    analyticsModel.listarQtdSalvos(fkUsuario)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}   
+
+function listarQtdPosts(req, res) {
+    analyticsModel.listarQtdPosts()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}   
+
+function buscarInteracaoHoje(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+
+    analyticsModel.buscarInteracaoHoje(fkUsuario)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -56,86 +100,11 @@ function listarReceitas(req, res) {
         );
 }
 
-function listarPostagem(req, res) {
-    var idPost = req.params.idPost;
-    
-    postagemModel.listarPostagem(idPost)
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(204).send("Nenhum resultado encontrado!")
-            }
-        }).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
+function buscarInteracaoAno(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+    var mes = req.params.mes;
 
-function listarIngredientes(req, res) {
-    var idPost = req.params.idPost;
-    
-    postagemModel.listarIngredientes(idPost)
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(204).send("Nenhum resultado encontrado!")
-            }
-        }).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
-function listarPassos(req, res) {
-    var idPost = req.params.idPost;
-    
-    postagemModel.listarPassos(idPost)
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(204).send("Nenhum resultado encontrado!")
-            }
-        }).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
-function atualizarCurtida(req, res) {
-    var fkPostagem = req.params.fkPostagem;
-
-    postagemModel.atualizarCurtida(fkPostagem)
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(204).send("Nenhum resultado encontrado!")
-            }
-        }).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
-function atualizarSalvo(req, res) {
-    var fkPostagem = req.params.fkPostagem;
-
-    postagemModel.atualizarSalvo(fkPostagem)
+    analyticsModel.buscarInteracaoAno(fkUsuario, mes)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -152,13 +121,11 @@ function atualizarSalvo(req, res) {
 }
 
 module.exports = {
-    listarPenteadosRecentes,
-    listarPenteados,
-    listarReceitas,
-    listarPostagem,
-    listarIngredientes,
-    listarPassos,
-    atualizarCurtida,
-    atualizarSalvo,
+    listarQtdVisitas,
+    listarQtdCurtidas,
+    listarQtdSalvos,
+    listarQtdPosts,
+    buscarInteracaoHoje,
+    buscarInteracaoAno,
     testar
 }

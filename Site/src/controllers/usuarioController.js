@@ -201,6 +201,52 @@ function verificarEmail(req, res) {
     });
 }
 
+function adicionarVisita(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var fkUsuario = req.body.fkUsuarioServer;
+    var fkPostagem = req.body.fkPostagemServer;
+
+    // Faça as validações dos valores
+    if (fkUsuario == undefined) {
+        res.status(400).send("Seu fkUsuario está undefined!");
+    } else if (fkPostagem == undefined) {
+        res.status(400).send("Seu fkPostagem está undefined!");
+    } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.adicionarVisita(fkUsuario, fkPostagem)
+            .then(
+                function (resultado) {
+                    res.status(204).send("Postagem foi visitada!");
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao adicionar visita! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function listarPostsCurtidos(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+
+    usuarioModel.listarPostsCurtidos(fkUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.json(resultado)
+        } else {
+            res.status(200).send("Nenhum post curtido encontrado");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao tentar listar posts curtidos.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 function verificarCurtida(req, res) {
     var fkUsuario = req.params.fkUsuario;
@@ -220,27 +266,6 @@ function verificarCurtida(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
-
-
-function verificarSalvo(req, res) {
-    var fkUsuario = req.params.fkUsuario;
-    var fkPostagem = req.params.fkPostagem;
-
-    console.log(`Verificando se existe salvo na postagem de id: ${fkPostagem}`);
-
-    usuarioModel.verificarSalvo(fkUsuario, fkPostagem).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(204).send("Existe")
-        } else {
-            res.status(200).send("Não existe");
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao tentar verificar salvo.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
 
 function adicionarCurtida(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -302,6 +327,41 @@ function apagarCurtida(req, res) {
                 }
             );
     }
+}
+
+function verificarSalvo(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+    var fkPostagem = req.params.fkPostagem;
+
+    console.log(`Verificando se existe salvo na postagem de id: ${fkPostagem}`);
+
+    usuarioModel.verificarSalvo(fkUsuario, fkPostagem).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(204).send("Existe")
+        } else {
+            res.status(200).send("Não existe");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao tentar verificar salvo.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function listarPostsSalvos(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+
+    usuarioModel.listarPostsSalvos(fkUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.json(resultado)
+        } else {
+            res.status(200).send("Nenhum post salvo encontrado");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao tentar listar posts salvos.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function adicionarSalvo(req, res) {
@@ -411,9 +471,12 @@ module.exports = {
     cadastrar,
     verificarUser,
     verificarEmail,
+    adicionarVisita,
+    listarPostsCurtidos,
     verificarCurtida,
     adicionarCurtida,
     apagarCurtida,
+    listarPostsSalvos,
     verificarSalvo,
     adicionarSalvo,
     apagarSalvo,

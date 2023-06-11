@@ -1,0 +1,144 @@
+main .analytics{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+main .analytics .content{
+    margin-top: 10vh;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 7vh;
+}
+
+main .analytics .content .back{
+    width: 100%;
+    display: flex;
+    column-gap: 5vh;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+main .analytics .content .back button{
+    width: fit-content;
+    padding-left: 1vh;
+    cursor: pointer;
+    background: transparent;
+    color: var(--pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+    border: none;
+    filter: drop-shadow(0px 7px 4px var(--pink-25));
+    transition: 0.3s ease-out;
+}
+
+main .analytics .content .back button:hover{
+    color: var(--dark-pink);
+    filter: drop-shadow(0px 7px 4px var(--dark-pink-25));
+}
+
+main .analytics .content .dashboard{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 7vh;
+    justify-content: center;
+    align-items: center;
+}
+
+main .analytics .content .dashboard .metrics{
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .analytics .content .dashboard .metrics .card-metric{
+    overflow-x: hidden;
+    position: relative;
+    background: linear-gradient(113.35deg, rgba(255, 94, 129, 0.3) 0%, rgba(255, 94, 129, 0.05) 100%);
+    width: 14vw;
+    height: 18vh;
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--pink-10);
+    border-radius: 2.5vw;
+    transition: 0.5s all linear;
+    box-shadow: -15px 10px 10px var(--pink-10);
+    
+}
+
+main .analytics .content .dashboard .metrics .card-metric .background{
+    position: absolute;
+    width: 2.5vw;
+    height: 17vh;
+    background-size: cover;
+    background-position: -10%;
+    background-image: url('./../../assets/vector-icon-category.svg');
+}
+
+main .analytics .content .dashboard .metrics .card-metric .metric-informations{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 4vh;
+}
+
+main .analytics .content .dashboard .metrics .card-metric .metric-informations h2{
+    font-size: 1.25vw;
+    color: var(--pink);
+    font-family: 'Arvo';
+    text-shadow: 0px 4px 4px var(--pink-25);
+    -webkit-text-stroke: 0.3px var(--pink);
+}
+
+main .analytics .content .dashboard .metrics .card-metric .metric-informations h4{
+    font-size: 1vw;
+    color: var(--dark-pink-70);
+    font-family: 'Poppins';
+    font-weight: 400;
+    text-shadow: 0px 4px 4px var(--dark-pink-25);
+}
+
+
+main .analytics .content .dashboard .charts{
+    width: 97%;
+    display: flex;
+    row-gap: 2vh;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .analytics .content .charts .card-chart{
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+}
+
+main .analytics .content .charts .card-chart h4{
+    color: var(--pink);
+    font-size: 1.5vw;
+    font-family: 'Sofia';
+    -webkit-text-stroke: 0.8px var(--pink);
+    letter-spacing: 0.05em;
+}
+
+main .analytics .content .charts .card-chart .chart{
+    background-color: var(--background-header);
+    box-shadow: 0px 10px 25px var(--pink-25) ;
+    border-radius: 45px;
+    padding: 2vh;
+}
+
+main .analytics .content .charts .card-chart .chart canvas{
+    width: 30vw;
+    height: 30vh;
+    font-family: 'Poppins';
+    color: black;
+}

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/styleConta.css">
+    <link rel="stylesheet" href="./css/styleAnalytics.css">
     <link rel="shortcut icon" href="./../assets/imagotipo.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
@@ -15,10 +15,12 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <script src="./../js/funcoes.js"></script>
-    <script src="./js/scriptConta.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/scriptAnalytics.js"></script>
     <title> BeautyCurls, onde seus cachos ganham vida</title>
 </head>
-<body onload="validarSessao(), exibirDadosConta()">
+<body onload="validarSessao(), obterDados(), obterDadosGraficoLinha(), obterDadosGraficoBarra()">
     <header>
         <nav>
             <div class="logo">
@@ -105,76 +107,61 @@
         </nav>
     </header>
     <main>
-        <section class="account">
+        <section class="analytics">
             <div class="content">
-                <div class="nav">
-                    <a href="analytics.html">
-                        <label>
-                            <i class="fi fi-br-chart-pie-alt"></i>
-                        </label>
-                        <h3> Análise da Conta</h3>
-                    </a>
+                <div class="back">
+                    <button onclick="history.back()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <h1 class="title">
+                        Análise da Conta
+                    </h1>
                 </div>
-                <div class="informations">
-                    <div class="informations-account">
-                        <div class="image-account">
-                            <img id="fotoConta">
-                            <a href="./atualizarFotoPerfil.html">
-                                <label class="icon-camera" style="display: flex; align-items: center;">
-                                    <i class="fa-solid fa-camera" style="font-size: 1.5vw;"></i>
-                                </label>
-                            </a>
+                <div class="dashboard" id="dashboard">
+                    <div class="metrics">
+                        <div class="card-metric">
+                            <div class="background"></div>
+                            <div class="metric-informations">
+                                <h2> Você visitou </h2>
+                                <h4 id="qtdPostVisitado"> </h4>
+                            </div>
                         </div>
-                        <div class="data-account">
-                            <h1 class="title" id="nomeCompleto"> </h1>
-                            <h3 id="userUsuario"> </h3>
+                        <div class="card-metric">
+                            <div class="background"></div>
+                            <div class="metric-informations">
+                                <h2> Você curtiu </h2>
+                                <h4 id="qtdPostCurtido"> </h4>
+                            </div>
+                        </div>
+                        <div class="card-metric">
+                            <div class="background"></div>
+                            <div class="metric-informations">
+                                <h2> Você salvou </h2>
+                                <h4 id="qtdPostSalvo"> </h4>
+                            </div>
+                        </div>
+                        <div class="card-metric">
+                            <div class="background"></div>
+                            <div class="metric-informations">
+                                <h2> Você atingiu </h2>
+                                <h4 id="qtdInteracao"> </h4>
+                            </div>
                         </div>
                     </div>
-                    <div class="informations-interaction">
-                        <div class="card">
-                            <label>
-                                <i class="fi fi-sr-heart"></i>
-                            </label>
-                            <h4 id="qtdCurtidos"> </h4>
+                    <div class="charts">
+                        <div class="card-chart">
+                            <h4> Interação Hoje</h4>
+                            <div class="chart">
+                                <canvas id="chartHoje"></canvas>
+                            </div>   
                         </div>
-                        <div class="card">
-                            <label>
-                                <i class="fi fi-sr-bookmark"></i>
-                            </label>
-                            <h4 id="qtdSalvos"> </h4>
+                        <div class="card-chart">
+                            <h4> Interação no Ano</h4>
+                            <div class="chart">
+                                <canvas id="chartAno"></canvas>
+                            </div>   
                         </div>
                     </div>
-                </div>
-                <div class="personal-data">
-                    <ul class="list-personal-data">
-                        <li class="list-item" >
-                            <h3 class="name-data"> Email </h3>
-                            <span>
-                                <h3 class="data" id="email"> </h3>
-                                <label>
-                                    <i class="fa-solid fa-angle-right"></i>
-                                </label>
-                            </span>
-                        </li>
-                        <li class="list-item" >
-                            <h3 class="name-data"> Senha </h3>
-                            <span>
-                                <h3 class="data" id="senha"> </h3>
-                                <label>
-                                    <i class="fa-solid fa-angle-right"></i>
-                                </label>
-                            </span>
-                        </li>
-                        <li class="list-item" >
-                            <h3 class="name-data"> Curvatura do Cabelo </h3>
-                            <span>
-                                <h3 class="data" id="curvatura"> </h3>
-                                <label>
-                                    <i class="fa-solid fa-angle-right"></i>
-                                </label>
-                            </span>
-                        </li> 
-                    </ul>
                 </div>
             </div>
         </section>

@@ -126,40 +126,49 @@
 
 </html>
 <script>
+    var listaReceitas = [];
+
     fetch(`/postagem/listarReceitas/`)
         .then(resposta => {
             if (resposta.ok) {
                 resposta.json().then(resposta => {
                     resposta.forEach(receita => {
-                        posts.innerHTML += `                    
-                        <div class="card-post">
-                            <div class="image">
-                                <div class="img-post">
-                                    <div class="background-post"></div>
-                                    <img src="${receita.urlImagem}"">
-                                </div>
-                                <div class="icons">
-                                        <div class="card-icon">
-                                            <i class="fi fi-br-heart" onclick="curtirOuDescurtir(${receita.idPostagem})" id="post${receita.idPostagem}_like"></i>
-                                            <h3 id="qtdLike_post${receita.idPostagem}"> ${receita.qtdCurtida} </h3>
-                                        </div>
-                                        <div class="card-icon">
-                                            <i class="fi fi-br-bookmark" onclick="salvarOuDessalvar(${receita.idPostagem})" id="post${receita.idPostagem}_salvo"></i>
-                                            <h3 id="qtdSalvo_post${receita.idPostagem}"> ${receita.qtdSalvo} </h3>
-                                        </div>
+                        if (listaReceitas.indexOf(receita.idPostagem) == -1) {
+                            listaReceitas.push(receita.idPostagem);
+                            posts.innerHTML += `                    
+                            <div class="card-post">
+                                <div class="image">
+                                    <div class="img-post">
+                                        <div class="background-post"></div>
+                                        <img src="${receita.urlImagem}"">
                                     </div>
-                            </div>
-                            <div class="post-informations">
-                                <div class="post-texts">
-                                    <h4 id="horaPost"> ${receita.dtPostagem} </h4>
-                                    <h2 id="tituloPost"> ${receita.titulo} </h2>
-                                    <h3 class="link-post" onclick="irParaPost(${receita.idPostagem})"> Saiba mais </h3>
+                                    <div class="icons">
+                                            <div class="card-icon">
+                                                <button onclick="curtirOuDescurtir(${receita.idPostagem})" style="cursor:pointer; border:none;">
+                                                    <i class="fi fi-br-heart" id="post${receita.idPostagem}_like"></i>
+                                                </button>
+                                                <h3 id="qtdLike_post${receita.idPostagem}"> ${receita.qtdCurtida} </h3>
+                                            </div>
+                                            <div class="card-icon">
+                                                <button onclick="salvarOuDessalvar(${receita.idPostagem})" style="cursor:pointer; border:none;">
+                                                    <i class="fi fi-br-bookmark" id="post${receita.idPostagem}_salvo"></i>
+                                                </button>
+                                                <h3 id="qtdSalvo_post${receita.idPostagem}"> ${receita.qtdSalvo} </h3>
+                                            </div>
+                                        </div>
                                 </div>
-                            </div>
-                        </div>`;
+                                <div class="post-informations">
+                                    <div class="post-texts">
+                                        <h4 id="horaPost"> ${receita.dtPostagemFormatada} </h4>
+                                        <h2 id="tituloPost"> ${receita.titulo} </h2>
+                                        <h3 class="link-post" onclick="irParaPost(${receita.idPostagem})"> Saiba mais </h3>
+                                    </div>
+                                </div>
+                            </div>`;
 
-                        verificarCurtida(receita.idPostagem);
-                        verificarSalvo(receita.idPostagem);
+                            verificarCurtida(receita.idPostagem);
+                            verificarSalvo(receita.idPostagem);
+                        }
                     });
 
 
@@ -169,7 +178,50 @@
             }
         })
         .catch(function (error) {
-            console.error(`Erro ao tentar listar penteados recentes: ${ error.message }`);
+            console.error(`Erro ao tentar listar penteados recentes: ${error.message}`);
         });
+
+
+    function irParaPost(idPost) {
+        sessionStorage.ID_POST = idPost;
+
+        fetch(`/usuarios/adicionarVisita/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkUsuarioServer: fkUsuario,
+                fkPostagemServer: idPost
+            })
+
+        })
+            .then(resposta => {
+                if (resposta.ok) {
+                    console.log(resposta);
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro ao tentar adicionar curtida: ${error.message}`);
+            });
+
+        setTimeout(() => {
+            window.location = './descricaoPost.html'
+        }, 1000);
+    }
+
+    function atualizarSalvoCurtida() {
+        for (var contadorReceita = 0; contadorReceita < listaReceitas.length; contadorReceita++) {
+            var receitaAtual = listaReceitas[contadorReceita];
+
+            atualizarQtdLike(receitaAtual);
+            atualizarQtdSalvo(receitaAtual);
+        }
+
+    }
+
+    setInterval(atualizarSalvoCurtida, 2000)
 
 </script>

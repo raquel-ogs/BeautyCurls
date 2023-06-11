@@ -1,1 +1,148 @@
+main .likes{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
+main .likes .content{
+    margin-top: 10vh;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 7vh;
+}
+
+main .likes .content .posts{
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+    align-items: center;
+    justify-content: center;
+    row-gap: 10vh;
+}
+
+main .likes .content .posts .card-post{
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 1vh;
+}
+
+main .likes .content .posts .card-post .image-hairstyle img{
+    width: 13vw;
+    height: 32vh;
+    border: 3px solid var(--pink-50);
+    border-radius: 4vw;
+    filter: drop-shadow(-12px 7px 7px var(--pink-25));
+}
+
+
+main .likes .content .posts .card-post .image-recipe, 
+main .likes .content .posts .card-post .image-hairstyle{
+    width: 55%;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2vh;
+}  
+
+main .likes .content .posts .card-post .image-recipe .icons, 
+main .likes .content .posts .card-post .image-hairstyle .icons{
+    color: var(--pink);
+    width: 60%;
+    display: flex;
+}
+
+main .likes .content .posts .card-post .image-recipe .icons .card-icon, 
+main .likes .content .posts .card-post .image-hairstyle .icons .card-icon{
+    width: 12vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.5vw;
+    text-align: center;
+}
+
+main .likes .content .posts .card-post .image-recipe .icons .card-icon button i,
+main .likes .content .posts .card-post .image-hairstyle .icons .card-icon button i{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vw;
+    color: var(--pink);
+}
+
+main .likes .content .posts .card-post .image-recipe .icons .card-icon h3,
+main .likes .content .posts .card-post .image-hairstyle .icons .card-icon h3{
+    font-size: 1.1vw;
+    font-family: 'Poppins';
+    font-weight: 800;
+}
+
+main .likes .content .posts .card-post .image-recipe .img-post{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 100%;
+}
+
+main .likes .content .posts .card-post .image-recipe .img-post div{
+    position: absolute;
+    width: 15vw;
+    height: 17vh;
+    background: linear-gradient(113.35deg, rgba(255, 94, 129, 0.3) 0%, rgba(255, 207, 218, 0.3) 100%), #FFFFFF;
+    border-radius: 3vw;
+    box-shadow: 0px 7px 7px var(--pink-25);
+}
+
+main .likes .content .posts .card-post .image-recipe .img-post img{
+    width: 13vw;
+    height: auto;
+    margin-bottom: 2vh;
+    filter: drop-shadow(0px 15px 15px rgba(255, 94, 129, 0.35));
+}
+
+main .likes .content .posts .card-post .post-informations .post-texts{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 3vh;
+    padding-left: 1vh;
+}
+
+main .likes .content .posts .card-post .post-informations .post-texts h4{
+    color: var(--dark-pink-70);
+    font-family: 'Poppins';
+    font-weight: 300;
+    font-size: 1vw;
+}
+
+main .likes .content .posts .card-post .post-informations .post-texts h2{
+    width: 80%;
+    color: var(--dark-pink);
+    font-family: 'Arvo';
+    font-weight: 700;
+    font-size: 1.9vw;
+    text-shadow: 0px 4px 4px var(--dark-pink-25);
+    line-height: 5vh;
+    -webkit-text-stroke: 0.5px var(--dark-pink);
+}
+
+main .likes .content .posts .card-post .post-informations .post-texts h3{
+    cursor: pointer;
+    color: var(--pink);
+    font-size: 1.4vw;
+    font-family: 'Sofia';
+    letter-spacing: 0.15rem;
+    text-shadow: 0px 4px 4px var(--pink-25);
+    -webkit-text-stroke: 1px var(--pink);
+    transition: 0.5s linear;
+}
+
+main .likes .content .posts .card-post .post-informations .post-texts h3:hover{
+    transform: scale(1.1);
+}

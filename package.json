@@ -1,11 +1,11 @@
 {
-  "name": "site",
+  "name": "Site",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./site/app.js",
-    "dev": "cd site && npm run dev",
-    "postinstall": "cd site && npm install"
+    "start": "node ./Site/app.js",
+    "dev": "cd Site && npm run dev",
+    "postinstall": "cd Site && npm install"
   },
   "dependencies": {
     "sweetalert2": "^11.7.5"
