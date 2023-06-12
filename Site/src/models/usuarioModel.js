@@ -32,6 +32,7 @@ function listarFotoPerfil() {
     return database.executar(instrucao);
 }
 
+
 function atualizarFotoPerfil(idUsuario, fkFotoPerfil){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarFotoPerfil()");
     var instrucao = `
@@ -64,6 +65,17 @@ function verificarUser(user) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarUser(): ", user)
     var instrucao = `
         SELECT * FROM Usuario WHERE nomeUser = '${user}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarDadosPessoais(idUsuario, nome, sobrenome, nomeUser, curvaturaCabelo, email, senha){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarFotoPerfil()");
+    var instrucao = `
+        UPDATE Usuario SET nome = '${nome}', sobrenome = '${sobrenome}', nomeUser = '${nomeUser}'
+        fkCurvaturaCabelo = ${curvaturaCabelo}, email = '${email}', senha = '${senha}'
+        WHERE idUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -225,9 +237,10 @@ module.exports = {
     entrar,
     verificarUser,
     verificarEmail,
+    atualizarFotoPerfil,
     verificarQtdFotoPerfil,
     listarFotoPerfil,
-    atualizarFotoPerfil,
+    atualizarDadosPessoais,
     cadastrar,
     adicionarVisita,
     listarPostsCurtidos,

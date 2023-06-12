@@ -23,12 +23,20 @@ router.get("/listarQtdPosts/", function (req, res) {
     analyticsController.listarQtdPosts(req, res);
 });
 
-router.get("/buscarInteracaoHoje/:fkUsuario/:hora", function (req, res) {
-    analyticsController.buscarInteracaoHoje(req, res);
+router.get("/buscarCurtidaHoje/:fkUsuario/:hora", function (req, res) {
+    analyticsController.buscarCurtidaHoje(req, res);
 });
 
-router.get("/buscarInteracaoAno/:fkUsuario/:mes", function (req, res) {
-    analyticsController.buscarInteracaoAno(req, res);
+router.get("/buscarCurtidaMes/:fkUsuario/:mes", function (req, res) {
+    analyticsController.buscarCurtidaMes(req, res);
+});
+
+router.get("/buscarSalvoHoje/:fkUsuario/:hora", function (req, res) {
+    analyticsController.buscarSalvoHoje(req, res);
+});
+
+router.get("/buscarSalvoMes/:fkUsuario/:mes", function (req, res) {
+    analyticsController.buscarSalvoMes(req, res);
 });
 
 module.exports = router;

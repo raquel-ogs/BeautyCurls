@@ -189,3 +189,7 @@ constraint pkCompostaSalvo primary key (fkUsuario, fkPostagem)
 );
 
 SELECT * FROM Salvo;
+
+        SELECT COUNT(DISTINCT(Curtida.fkPostagem)) AS qtdCurtida, '10:00:00' AS hrCurtida FROM Curtida
+		        WHERE fkUsuario = 100 AND hrCurtida LIKE '10%';
+		       

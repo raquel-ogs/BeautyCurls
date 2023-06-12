@@ -17,11 +17,12 @@ function obterDados() {
                     var qtdVisitas = Number(visita[0].qtdVisitas);
                     qtdPostVisitado.innerHTML = qtdVisitas;
 
-                    if(qtdVisitas <= 1){
+                    if (qtdVisitas <= 1) {
                         qtdPostVisitado.innerHTML += " post"
                     } else {
                         qtdPostVisitado.innerHTML += " posts";
-                    }                })
+                    }
+                })
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
@@ -39,7 +40,7 @@ function obterDados() {
                     qtdPostCurtido.innerHTML = qtdCurtidos;
                     qtdInteracaoUsuario += qtdCurtidos;
 
-                    if(qtdCurtidos <= 1){
+                    if (qtdCurtidos <= 1) {
                         qtdPostCurtido.innerHTML += " post"
                     } else {
                         qtdPostCurtido.innerHTML += " posts";
@@ -62,12 +63,12 @@ function obterDados() {
                     qtdPostSalvo.innerHTML = qtdSalvos;
                     qtdInteracaoUsuario += qtdSalvos;
 
-                    if(qtdSalvos <= 1){
+                    if (qtdSalvos <= 1) {
                         qtdPostSalvo.innerHTML += " post"
                     } else {
                         qtdPostSalvo.innerHTML += " posts";
                     }
-                    
+
                 })
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -97,23 +98,37 @@ function obterDados() {
 
 
 function obterDadosGraficoLinha() {
-    var registrosInteracaoHoje = [];
+    var registrosCurtidas = [];
+    var registrosSalvos = [];
     var dataAtual = new Date;
     var horaAtual = dataAtual.getHours();
-    
+
     for (var contadorHora = horaAtual - 7; contadorHora <= horaAtual; contadorHora++) {
-        if(contadorHora < 10){
-            var a = "0" + contadorHora;
-            contadorHora = a;
-            console.log(a)
+        if (contadorHora < 10) {
+            var horaCom0 = "0" + contadorHora;
+            contadorHora = horaCom0;
         }
 
-        fetch(`/analytics/buscarInteracaoHoje/${fkUsuario}/${contadorHora}`)
+        fetch(`/analytics/buscarCurtidaHoje/${fkUsuario}/${contadorHora}`)
+            .then(resposta => {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        registrosCurtidas.push(resposta[0]);
+                    })
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+
+        fetch(`/analytics/buscarSalvoHoje/${fkUsuario}/${contadorHora}`)
             .then(resposta => {
                 if (resposta.ok) {
                     resposta.json().then(function (resposta) {
                         console.log(resposta)
-                        registrosInteracaoHoje.push(resposta[0]);
+                        registrosSalvos.push(resposta[0]);
                     })
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
@@ -124,20 +139,21 @@ function obterDadosGraficoLinha() {
             });
     }
 
-    setTimeout(() => {plotarGraficoLinha(registrosInteracaoHoje)}, 200);
+    setTimeout(() => { plotarGraficoLinha(registrosCurtidas, registrosSalvos) }, 200);
 }
 
 function obterDadosGraficoBarra() {
-    var registrosInteracaoAno = [];
+    var registrosCurtidas = [];
+    var registrosSalvos = [];
     var mesAtual = dataAtual.getMonth();
 
     for (var contadorMes = 1; contadorMes <= mesAtual + 1; contadorMes++) {
-        fetch(`/analytics/buscarInteracaoAno/${fkUsuario}/${contadorMes}`)
+        fetch(`/analytics/buscarCurtidaMes/${fkUsuario}/${contadorMes}`)
             .then(resposta => {
                 if (resposta.ok) {
                     resposta.json().then(function (resposta) {
                         console.log(resposta)
-                        registrosInteracaoAno.push(resposta[0]);
+                        registrosCurtidas.push(resposta[0]);
                     })
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
@@ -146,12 +162,27 @@ function obterDadosGraficoBarra() {
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
             });
-    }
+        
+            fetch(`/analytics/buscarSalvoMes/${fkUsuario}/${contadorMes}`)
+            .then(resposta => {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        console.log(resposta)
+                        registrosSalvos.push(resposta[0]);
+                    })
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }   
 
-    setTimeout(() => {plotarGraficoBarra(registrosInteracaoAno)}, 200);
+    setTimeout(() => { plotarGraficoBarra(registrosCurtidas, registrosSalvos) }, 200);
 }
 
-function plotarGraficoLinha(resposta) {
+function plotarGraficoLinha(respostaCurtida, respostaSalvo) {
 
     console.log('iniciando plotagem do gráfico...');
 
@@ -180,14 +211,22 @@ function plotarGraficoLinha(resposta) {
 
     console.log('----------------------------------------------')
     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta)
+    console.log(respostaCurtida)
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(respostaSalvo)
 
     // Inserindo valores recebidos em estrutura para plotar o gráfico
-    for (i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        labelsHoje.push(registro.hrCurtida);
-        dadosHoje.datasets[0].data.push(registro.qtdCurtida);
-        dadosHoje.datasets[1].data.push(registro.qtdSalvo);
+    for (i = 0; i < respostaCurtida.length; i++) {
+        var registroCurtida = respostaCurtida[i];
+        labelsHoje.push(registroCurtida.hrCurtida);
+        dadosHoje.datasets[0].data.push(registroCurtida.qtdCurtida);
+    }
+
+    for (i = 0; i < respostaSalvo.length; i++) {
+        var registroSalvo = respostaSalvo[i];
+        dadosHoje.datasets[1].data.push(registroSalvo.qtdSalvo);
     }
 
     console.log('----------------------------------------------')
@@ -203,18 +242,18 @@ function plotarGraficoLinha(resposta) {
         type: 'line',
         data: dadosHoje,
         options: {
-            scales:{
+            scales: {
                 x: {
-                    grid:{
+                    grid: {
                         drawOnChartArea: false
                     }
                 },
                 y: {
-                    grid:{
+                    grid: {
                         drawOnChartArea: false
                     }
                 },
-                
+
             },
             plugins: {
                 legend: {
@@ -229,7 +268,7 @@ function plotarGraficoLinha(resposta) {
                     }
                 }
             }
-        }     
+        }
     }
 
     // Adicionando gráfico criado em div na tela
@@ -241,7 +280,7 @@ function plotarGraficoLinha(resposta) {
     // setTimeout(() => atualizarGraficoLinha(dadosHoje, chartHoje), 2000);
 }
 
-function plotarGraficoBarra(resposta) {
+function plotarGraficoBarra(respostaCurtida, respostaSalvo) {
     var mesAno = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto']
     var mesAtual = dataAtual.getMonth() + 1;
     console.log('iniciando plotagem do gráfico...');
@@ -249,7 +288,7 @@ function plotarGraficoBarra(resposta) {
     // Criando estrutura para plotar gráfico - labels
     let labelsAno = [];
 
-    for(var contadorMes = 0; contadorMes < mesAtual; contadorMes++){
+    for (var contadorMes = 0; contadorMes < mesAtual; contadorMes++) {
         var itemMesAtual = mesAno[contadorMes];
         labelsAno.push(itemMesAtual);
     }
@@ -276,13 +315,21 @@ function plotarGraficoBarra(resposta) {
 
     console.log('----------------------------------------------')
     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta)
+    console.log(respostaCurtida)
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(respostaSalvo)
 
     // Inserindo valores recebidos em estrutura para plotar o gráfico
-    for (i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        dadosAno.datasets[0].data.push(registro.qtdCurtida);
-        dadosAno.datasets[1].data.push(registro.qtdSalvo);
+    for (var i = 0; i < respostaCurtida.length; i++) {
+        var registroCurtida = respostaCurtida[i];
+        dadosAno.datasets[0].data.push(registroCurtida.qtdCurtida);
+    }
+
+    for (var i = 0; i < respostaSalvo.length; i++) {
+        var registroSalvo = respostaSalvo[i];
+        console.log("Dados dos Salvo: " + registroSalvo.qtdSalvo)
+        dadosAno.datasets[1].data.push(registroSalvo.qtdSalvo);
     }
 
     console.log('----------------------------------------------')
@@ -298,18 +345,18 @@ function plotarGraficoBarra(resposta) {
         type: 'bar',
         data: dadosAno,
         options: {
-            scales:{
+            scales: {
                 x: {
-                    grid:{
+                    grid: {
                         drawOnChartArea: false
                     }
                 },
                 y: {
-                    grid:{
+                    grid: {
                         drawOnChartArea: false
                     }
                 },
-                
+
             },
             plugins: {
                 legend: {
@@ -324,7 +371,7 @@ function plotarGraficoBarra(resposta) {
                     }
                 }
             }
-        }     
+        }
     }
 
     // Adicionando gráfico criado em div na tela

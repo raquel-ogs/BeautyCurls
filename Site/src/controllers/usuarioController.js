@@ -119,6 +119,53 @@ function verificarQtdFotoPerfil(req, res) {
     });
 }
 
+
+
+function atualizarDadosPessoais(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    var nome = req.body.nomeServer;
+    var sobrenome = req.body.sobrenomeServer;
+    var nomeUser = req.body.nomeUserServer;
+    var curvaturaCabelo = req.body.curvaturaCabeloServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    // Faça as validações dos valores
+    if (idUsuario == undefined) {
+        res.status(400).send("Seu idUsuario está undefined!");
+    } else if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (sobrenome == undefined) {
+        res.status(400).send("Seu sobrenome está undefined!");
+    } else if (nomeUser == undefined) {
+        res.status(400).send("Seu nomeUser está undefined!");
+    } else if (curvaturaCabelo == undefined) {
+        res.status(400).send("Seu curvaturaCabelo está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Seu emailç está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Seu senha está undefined!");
+        
+    } else {
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.atualizarDadosPessoais(idUsuario, nome, sobrenome, nomeUser, curvaturaCabelo, email, senha)
+            .then(
+                function () {
+                    res.status(200).send('Dados atualizados com sucesso!')
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao atualizar os dados pessoais! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
@@ -458,8 +505,9 @@ module.exports = {
     testar,
     entrar,
     listarFotoPerfil,
-    atualizarFotoPerfil,
     verificarQtdFotoPerfil,
+    atualizarFotoPerfil,
+    atualizarDadosPessoais,
     cadastrar,
     verificarUser,
     verificarEmail,

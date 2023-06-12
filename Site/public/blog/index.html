@@ -177,6 +177,8 @@
     var fkUsuario = sessionStorage.ID
     var idPost = 0;
     var postsRecentes = [];
+    var delay;
+
 
     fetch(`/postagem/listarPenteadosRecentes/`)
             .then(resposta => {
@@ -212,6 +214,7 @@
             });
     
     function mostrarPost(numPost){
+        clearTimeout(delay);
         idPost = numPost;
         var item = postsRecentes[numPost - 1];
         var img = document.getElementById('urlImgPost');
@@ -231,7 +234,7 @@
             bolinha_1.classList.add('ball-now');
             bolinha_2.classList.add('ball');
             bolinha_3.classList.add('ball');
-            setTimeout(() => {mostrarPost(idPost+=1)}, 8000);
+            delay = setTimeout(() => {mostrarPost(idPost+=1)}, 8000);
         } else if(numPost == 2){
             bolinha_1.classList.remove('ball-now');
             bolinha_2.classList.remove('ball');
@@ -239,7 +242,7 @@
             bolinha_1.classList.add('ball');
             bolinha_2.classList.add('ball-now');
             bolinha_3.classList.add('ball');
-            setTimeout(() => {mostrarPost(idPost+=1)}, 8000);
+            delay = setTimeout(() => {mostrarPost(idPost+=1)}, 8000);
         } else {
             bolinha_1.classList.remove('ball-now');
             bolinha_2.classList.remove('ball-now');
@@ -247,7 +250,7 @@
             bolinha_1.classList.add('ball');
             bolinha_2.classList.add('ball');
             bolinha_3.classList.add('ball-now');
-            setTimeout(() => {mostrarPost(1)}, 8000);
+            delay = setTimeout(() => {mostrarPost(1)}, 8000);
         }
 
         img.src = item.url;
