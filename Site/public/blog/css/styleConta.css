@@ -181,19 +181,26 @@ main .account .content .personal-data .list-personal-data .list-item .name-data{
     font-weight: 400;
 }
 
-main .account .content .personal-data .list-personal-data .list-item span{
+main .account .content .personal-data .list-personal-data .list-item a{
     width: 50%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-main .account .content .personal-data .list-personal-data .list-item span h3{
+main .account .content .personal-data .list-personal-data .list-item a h3{
     color: var(--dark-pink);
     font-size: 1vw;
     font-family: 'Poppins';
     font-weight: 500;
+    transition: 0.3s linear;
 }
+
+main .account .content .personal-data .list-personal-data .list-item a:hover h3, 
+main .account .content .personal-data .list-personal-data .list-item a:hover i{
+    color: var(--pink);
+}
+
 
 
 

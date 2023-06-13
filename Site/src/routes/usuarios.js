@@ -77,6 +77,10 @@ router.put("/atualizarFotoPerfil/:idUsuario", function (req, res) {
     usuarioController.atualizarFotoPerfil(req, res);
 });
 
+router.put("/atualizarDadosPessoais/:idUsuario", function (req, res) {
+    usuarioController.atualizarDadosPessoais(req, res);
+});
+
 router.delete("/apagarCurtida", function (req, res) {
     usuarioController.apagarCurtida(req, res);
 })

@@ -122,11 +122,11 @@ function verificarQtdFotoPerfil(req, res) {
 
 
 function atualizarDadosPessoais(req, res) {
-    var idUsuario = req.body.idUsuarioServer;
+    var idUsuario = req.params.idUsuario;
     var nome = req.body.nomeServer;
     var sobrenome = req.body.sobrenomeServer;
-    var nomeUser = req.body.nomeUserServer;
-    var curvaturaCabelo = req.body.curvaturaCabeloServer;
+    var nomeUser = req.body.userServer;
+    var curvaturaCabelo = req.body.curvaturaServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
@@ -142,7 +142,7 @@ function atualizarDadosPessoais(req, res) {
     } else if (curvaturaCabelo == undefined) {
         res.status(400).send("Seu curvaturaCabelo está undefined!");
     } else if (email == undefined) {
-        res.status(400).send("Seu emailç está undefined!");
+        res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Seu senha está undefined!");
         

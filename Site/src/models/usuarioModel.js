@@ -12,7 +12,7 @@ function listar() {
 function entrar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     var instrucao = `
-        SELECT Usuario.idUsuario, Usuario.nome, Usuario.sobrenome, Usuario.nomeUser, Usuario.email, Usuario.senha, curvaturaCabelo.nome nomeCurvatura, url FROM Usuario 
+        SELECT Usuario.idUsuario, Usuario.nome, Usuario.sobrenome, Usuario.nomeUser, Usuario.email, Usuario.senha, fkCurvaturaCabelo, curvaturaCabelo.nome AS nomeCurvatura, url FROM Usuario 
             JOIN curvaturaCabelo ON curvaturaCabelo.idCurvatura = Usuario.fkCurvaturaCabelo
                 JOIN fotoPerfil ON fotoPerfil.idFotoPerfil = Usuario.fkFotoPerfil
                     WHERE email = '${email}' AND senha = '${senha}';
@@ -73,8 +73,8 @@ function verificarUser(user) {
 function atualizarDadosPessoais(idUsuario, nome, sobrenome, nomeUser, curvaturaCabelo, email, senha){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarFotoPerfil()");
     var instrucao = `
-        UPDATE Usuario SET nome = '${nome}', sobrenome = '${sobrenome}', nomeUser = '${nomeUser}'
-        fkCurvaturaCabelo = ${curvaturaCabelo}, email = '${email}', senha = '${senha}'
+        UPDATE Usuario SET nome = '${nome}', sobrenome = '${sobrenome}', nomeUser = '${nomeUser}',
+        fkCurvaturaCabelo = ${curvaturaCabelo}, email = '${email}' and senha = '${senha}'
         WHERE idUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);

@@ -1,0 +1,211 @@
+main .data-update{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+main .data-update .content{
+    margin-top: 7vh;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 3vh;
+}
+
+main .data-update .content .back{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .data-update .content .back button{
+    width: fit-content;
+    padding-left: 1vh;
+    cursor: pointer;
+    background: transparent;
+    color: var(--dark-pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+    border: none;
+    filter: drop-shadow(0px 7px 4px var(--dark-pink-25));
+    transition: 0.3s ease-out;
+}
+
+main .data-update .content .back button:hover{
+    color: var(--dark-pink);
+    filter: drop-shadow(0px 7px 4px var(--pink-25));
+}
+
+main .data-update .content .back button:hover{
+    color: var(--pink);
+    filter: drop-shadow(0px 7px 4px var(--pink-25));
+}
+
+
+main .data-update .content .informations{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 2vh;
+}
+
+main .data-update .content .informations .informations-data-update{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+main .data-update .content .informations .informations-data-update .image-data-update{
+    width: fit-content;
+    height: fit-content;
+    padding-bottom: 1vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+main .data-update .content .informations .informations-data-update .image-data-update img{
+    width: 12vw;
+    border: 5px solid var(--pink);
+    border-radius: 500px;
+    box-shadow: 0px 7px 4px var(--pink-25);
+}
+
+
+main .data-update .content .informations .informations-data-update .image-data-update a{
+    position: absolute;
+    cursor: pointer;
+    background-color: var(--pink);
+    width: 3vw;
+    height: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 100px;
+    transition: 0.25s linear;
+
+}
+
+main .data-update .content .informations .informations-data-update .image-data-update a .icon-camera{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+main .data-update .content .informations .informations-data-update .image-data-update a:hover{
+    background-color: var(--dark-pink);
+}
+
+main .data-update .content .informations .informations-data-update .-data-update{
+    width: 100%;
+    height: fit-content;
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .data-update .content .informations .informations-data-update .data-update h1{
+    width: 100%;
+    text-align: center;
+}
+
+main .data-update .content .informations .informations-data-update .data-update h3{
+    width: 100%;
+    color: var(--dark-pink);
+    font-family: 'Arvo';
+    font-size: 1.2vw;
+    text-align: center;
+}
+
+main .data-update .content .form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+}
+
+main .data-update .content .form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    row-gap: 5vh;
+}
+
+main .data-update .content .form h3{
+    font-size: 1.7vw;
+    color: var(--pink);
+    text-shadow: 0px 4px 5px var(--pink-25);
+    -webkit-text-stroke: 1px var(--pink);
+}
+
+main .data-update .content .form input, select{
+    height: 8vh;
+    padding-left: 2vw;
+}
+
+main .data-update .content .form input, select{
+    background-color: transparent;
+    font-size: 1.1vw;
+    font-family: 'Arvo';
+    border: 0.35vh solid var(--dark-pink-70);
+    border-radius: 4.5vh;
+    box-shadow: 0px 7px 4px var(--dark-pink-25);
+    color: var(--dark-pink);
+}
+
+
+main .data-update .content .form select option{
+    width: 100%;
+    height: 7.5vh;
+    color: var(--dark-pink-65);
+    font-family: 'Arvo';
+}
+
+main .data-update .content .form input::-webkit-input-placeholder{
+    color: var(--dark-pink-65);
+}
+
+main .data-update .content .form .row {
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+
+main .data-update .content .form .row .row-item{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2vh;
+}
+
+main .data-update .content .form .row .row-item input{
+    width: 93%;
+}
+
+main .data-update .content .form .form-item{
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2vh;
+}
+
+
+
+
+
+
+
+
+

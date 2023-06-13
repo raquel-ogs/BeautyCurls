@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/styleConta.css">
+    <link rel="stylesheet" href="./css/styleAtualizarDadosPessoais.css">
     <link rel="shortcut icon" href="./../assets/imagotipo.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/2780876011.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
@@ -15,10 +15,11 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <script src="./../js/funcoes.js"></script>
-    <script src="./js/scriptConta.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/scriptDadosPessoais.js"></script>
     <title> BeautyCurls, onde seus cachos ganham vida</title>
 </head>
-<body onload="validarSessao(), exibirDadosConta()">
+<body onload="validarSessao(), exibirDados()">
     <header>
         <nav>
             <div class="logo">
@@ -105,19 +106,19 @@
         </nav>
     </header>
     <main>
-        <section class="account">
+        <section class="data-update">
             <div class="content">
-                <div class="nav">
-                    <a href="analytics.html">
-                        <label>
-                            <i class="fi fi-br-chart-pie-alt"></i>
-                        </label>
-                        <h3> Análise da Conta</h3>
-                    </a>
+                <div class="back">
+                    <button onclick="history.back()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button onclick="atualizarDados()">
+                        <i class="fa-solid fa-square-check"></i>
+                    </button>
                 </div>
                 <div class="informations">
-                    <div class="informations-account">
-                        <div class="image-account">
+                    <div class="informations-data-update">
+                        <div class="image-data-update">
                             <img id="fotoConta">
                             <a href="./atualizarFotoPerfil.html">
                                 <label class="icon-camera" style="display: flex; align-items: center;">
@@ -125,56 +126,37 @@
                                 </label>
                             </a>
                         </div>
-                        <div class="data-account">
-                            <h1 class="title" id="nomeCompleto"> </h1>
-                            <h3 id="userUsuario"> </h3>
-                        </div>
-                    </div>
-                    <div class="informations-interaction">
-                        <div class="card">
-                            <label>
-                                <i class="fi fi-sr-heart"></i>
-                            </label>
-                            <h4 id="qtdCurtidos"> </h4>
-                        </div>
-                        <div class="card">
-                            <label>
-                                <i class="fi fi-sr-bookmark"></i>
-                            </label>
-                            <h4 id="qtdSalvos"> </h4>
-                        </div>
                     </div>
                 </div>
-                <div class="personal-data">
-                    <ul class="list-personal-data">
-                        <li class="list-item" >
-                            <h3 class="name-data"> Email </h3>
-                            <a href="./atualizarDadosPessoais.html">
-                                <h3 class="data" id="email"> </h3>
-                                <label>
-                                    <i class="fa-solid fa-angle-right"></i>
-                                </label>
-                            </a>
-                        </li>
-                        <li class="list-item" >
-                            <h3 class="name-data"> Senha </h3>
-                            <a href="./atualizarDadosPessoais.html">
-                                <h3 class="data" id="senha"> </h3>
-                                <label>
-                                    <i class="fa-solid fa-angle-right"></i>
-                                </label>
-                            </a>
-                        </li>
-                        <li class="list-item" >
-                            <h3 class="name-data"> Curvatura do Cabelo </h3>
-                            <a href="./atualizarDadosPessoais.html">
-                                <h3 class="data" id="curvatura"> </h3>
-                                <label>
-                                    <i class="fa-solid fa-angle-right"></i>
-                                </label>
-                            </a>
-                        </li> 
-                    </ul>
+                <div class="form">
+                    <div class="row">
+                        <div class="row-item">
+                            <h3> Nome </h3>
+                            <input type="text" id="input_nome" placeholder="Seu Nome" maxlength="45">
+                        </div>
+                        <div class="row-item">
+                            <h3> Sobrenome </h3>
+                            <input type="text" id="input_sobrenome" placeholder="Seu Sobrenome" maxlength="45">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row-item">
+                            <h3> Nome de Usuario </h3>
+                            <input type="text" id="input_nomeUser" placeholder="Seu Nome de Usuário" maxlength="45">
+                        </div>
+                        <div class="row-item">
+                            <h3> Curvatura do Cabelo </h3>
+                            <select id="select_curvatura" name="Curvatura"></select>
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <h3> Email </h3>
+                        <input type="email" id="input_email" placeholder="Seu Email" maxlength="45">
+                    </div>
+                    <div class="form-item">
+                        <h3> Senha </h3>
+                        <input type="password" id="input_senha" placeholder="Sua Senha" maxlength="45">
+                    </div>
                 </div>
             </div>
         </section>
