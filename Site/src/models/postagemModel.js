@@ -44,7 +44,7 @@ function listarReceitas() {
 function listarPostagem(idPost) {
     console.log("ACESSEI O POSTAGEM MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPostagem()", idPost);
     var instrucao = `
-    SELECT idPostagem, titulo, descricao, urlImagem, categoria, DATE_FORMAT(dtPostagem, '%d/%m/%Y') AS dtPostagem, 
+    SELECT idPostagem, titulo, descricao, urlImagem, urlInspiracao, categoria, DATE_FORMAT(dtPostagem, '%d/%m/%Y') AS dtPostagem, 
     (SELECT COUNT(fkPostagem) FROM Curtida WHERE fkPostagem = Postagem.idPostagem) AS qtdCurtida,
     (SELECT COUNT(fkPostagem) FROM Salvo WHERE fkPostagem = Postagem.idPostagem) AS qtdSalvo FROM Postagem
             LEFT JOIN Curtida ON Curtida.fkPostagem = idPostagem

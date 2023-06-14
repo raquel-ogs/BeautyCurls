@@ -71,7 +71,7 @@ main .data-update .content .informations .informations-data-update .image-data-u
 }
 
 main .data-update .content .informations .informations-data-update .image-data-update img{
-    width: 12vw;
+    width: 13vw;
     border: 5px solid var(--pink);
     border-radius: 500px;
     box-shadow: 0px 7px 4px var(--pink-25);
@@ -82,15 +82,14 @@ main .data-update .content .informations .informations-data-update .image-data-u
     position: absolute;
     cursor: pointer;
     background-color: var(--pink);
-    width: 3vw;
-    height: 3vw;
+    width: 3.5vw;
+    height: 3.5vw;
     display: flex;
     justify-content: center;
     align-items: center;
     border: none;
     border-radius: 100px;
     transition: 0.25s linear;
-
 }
 
 main .data-update .content .informations .informations-data-update .image-data-update a .icon-camera{
@@ -161,7 +160,7 @@ main .data-update .content .form input, select{
     font-family: 'Arvo';
     border: 0.35vh solid var(--dark-pink-70);
     border-radius: 4.5vh;
-    box-shadow: 0px 7px 4px var(--dark-pink-25);
+    box-shadow: 0px 4px 4px var(--dark-pink-25);
     color: var(--dark-pink);
 }
 

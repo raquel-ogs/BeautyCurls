@@ -91,6 +91,12 @@ function listarPenteado(penteado){
             <ol class="list-steps" id="listaPassos">
             </ol>
         </div>
+        <div class="post-inspiration">
+            <h2> Inspiração <h4>
+            <h4> 
+                <a href="${penteado.urlInspiracao}"> ${penteado.urlInspiracao} </a>
+            </h4>
+        </div>
     `;
 
     verificarCurtida(penteado.idPostagem);

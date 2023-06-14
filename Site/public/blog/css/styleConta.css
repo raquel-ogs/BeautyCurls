@@ -196,6 +196,11 @@ main .account .content .personal-data .list-personal-data .list-item a h3{
     transition: 0.3s linear;
 }
 
+main .account .content .personal-data .list-personal-data .list-item a i{
+    color: var(--dark-pink);
+    transition: 0.3s linear;
+}
+
 main .account .content .personal-data .list-personal-data .list-item a:hover h3, 
 main .account .content .personal-data .list-personal-data .list-item a:hover i{
     color: var(--pink);

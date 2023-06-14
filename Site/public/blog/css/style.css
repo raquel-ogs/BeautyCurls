@@ -168,7 +168,7 @@ header nav .list-navegation .list-item a:hover, header nav .list-navegation .lis
 }
 
 .icon{
-    font-size: 1.3vw;
+    font-size: 1.2vw;
 }
 
 header nav .list-navegation .list-item a:hover h4, header nav .list-navegation .list-item-now h4, header nav .list-navegation .list-item span:hover h4{
@@ -185,7 +185,7 @@ header nav .copyright{
 
 header nav .copyright .copyright-title, header nav .copyright .copyright-title a{
     margin-top: 2vh;
-    font-size: 1vw;
+    font-size: 0.9vw;
     font-weight: 700;
 }
 

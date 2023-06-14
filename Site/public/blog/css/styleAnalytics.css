@@ -123,9 +123,10 @@ main .analytics .content .charts .card-chart{
 
 main .analytics .content .charts .card-chart h4{
     color: var(--pink);
-    font-size: 1.5vw;
+    font-size: 2vw;
     font-family: 'Sofia';
-    -webkit-text-stroke: 0.8px var(--pink);
+    -webkit-text-stroke: 0.5px var(--pink);
+    text-shadow: 0px 7px 4px var(--pink-25);
     letter-spacing: 0.05em;
 }
 

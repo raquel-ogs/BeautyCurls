@@ -1,4 +1,6 @@
 var idUsuario = sessionStorage.ID;
+var statusRespostaEmail;
+var statusRespostaUser;
 
 function buscarCurvaturas() {
     fetch('../curvatura/listar')
@@ -43,11 +45,13 @@ function exibirDados() {
 }
 
 function verificarUser(user) {
-    if(user != sessionStorage.USER){
+    var nomeUserAtual = sessionStorage.USER
+
+    if(user != nomeUserAtual){
         fetch(`../usuarios/verificarUser/${user}`)
         .then(resposta => {
             if (resposta.ok) {
-                return resposta.status;
+                statusRespostaUser = resposta.status;
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
@@ -56,19 +60,21 @@ function verificarUser(user) {
             console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
         });
     } else {
-        return 200;
+        statusRespostaUser = 200;
     }
-        
+    
 }
 
 function verificarEmail(email) {
+    var emailAtual = sessionStorage.EMAIL;
+
     if (email.indexOf('@') == -1) {
         return 203;
-    } else if(email != sessionStorage.EMAIL){
+    } else if(email != emailAtual){
         fetch(`../usuarios/verificarEmail/${email}`)
             .then(resposta => {
                 if (resposta.ok) {
-                    return resposta.status;
+                    statusRespostaEmail = resposta.status
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
                 }
@@ -77,9 +83,10 @@ function verificarEmail(email) {
                 console.error(`Erro na verifição do nome de usuário: ${error.message}`);
             });
     } else {
-        return 200;
+        statusRespostaEmail = 200;
     }
 }
+
 
 
 function atualizarDados() {
@@ -89,8 +96,8 @@ function atualizarDados() {
     var emailVar = input_email.value;
     var senhaVar = input_senha.value;
     var curvaturaVar = select_curvatura.value;
-    var statusRespostaUser = verificarUser(userVar);
-    var statusRespostaEmail = verificarEmail(emailVar);
+    verificarUser(userVar);
+    verificarEmail(emailVar);
 
     if (emailVar == "" || senhaVar == "" || curvaturaVar == "") {
         Swal.fire({
@@ -104,7 +111,14 @@ function atualizarDados() {
         return false;
 
     } else {
-            if (statusRespostaEmail == 200 && statusRespostaUser == 200) {
+        setTimeout(() => {
+            if (statusRespostaEmail == 203) {
+                finalizarAguardar('Email inválido, tente novamente')
+            } else if(statusRespostaEmail == 204) {
+                finalizarAguardar('Esse email já foi cadastrado, tente com outro')
+            } else if(statusRespostaUser == 204) {
+                finalizarAguardar('Esse nome de usuário já foi cadastrado, tente com outro')
+            } else {
                 fetch(`../usuarios/atualizarDadosPessoais/${idUsuario}`, {
                     method: "PUT",
                     headers: {
@@ -154,14 +168,10 @@ function atualizarDados() {
                 });
 
                 return false;
+
             }
-            else if (statusRespostaEmail == 203) {
-                finalizarAguardar('Email inválido, tente novamente')
-            } else if(statusRespostaUser == 204) {
-                finalizarAguardar('Esse nome de usuário já foi cadastrado, tente com outro')
-            } else {
-                finalizarAguardar('Esse email já foi cadastrado, tente com outro')
-            }
+
+        }, 200);
     }
 }
 

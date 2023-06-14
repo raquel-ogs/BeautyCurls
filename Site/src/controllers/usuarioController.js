@@ -219,7 +219,7 @@ function verificarUser(req, res) {
 
     usuarioModel.verificarUser(nomeUser).then(function (resultado) {
         if (resultado.length > 0) {
-            res.status(204).send("")
+            res.status(204).send("Opa deu certo")
         } else {
             res.status(200).send("Nenhum nome de usuário encontrado");
         }
@@ -239,7 +239,8 @@ function verificarEmail(req, res) {
         if (resultado.length > 0) {
             res.status(204).send("Esse email já foi cadastrado")
         } else {
-            res.status(200).send("Nenhum email encontrado");
+            console.log("Mano não aguento mais essa bosta: ")
+            res.status(200).send("Meu Deus não aguento mais");
         }
     }).catch(function (erro) {
         console.log(erro);

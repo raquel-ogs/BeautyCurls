@@ -55,7 +55,7 @@ function verificarQtdFotoPerfil() {
 function verificarEmail(email) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarEmail(): ", email);
     var instrucao = `
-        SELECT * FROM Usuario WHERE email = '${email}' ;
+        SELECT * FROM Usuario WHERE email = '${email}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -74,7 +74,7 @@ function atualizarDadosPessoais(idUsuario, nome, sobrenome, nomeUser, curvaturaC
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarFotoPerfil()");
     var instrucao = `
         UPDATE Usuario SET nome = '${nome}', sobrenome = '${sobrenome}', nomeUser = '${nomeUser}',
-        fkCurvaturaCabelo = ${curvaturaCabelo}, email = '${email}' and senha = '${senha}'
+        fkCurvaturaCabelo = ${curvaturaCabelo}, email = '${email}', senha = '${senha}'
         WHERE idUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);

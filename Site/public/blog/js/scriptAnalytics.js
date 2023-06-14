@@ -14,7 +14,7 @@ function obterDados() {
 
             if (resposta.ok) {
                 resposta.json().then(visita => {
-                    var qtdVisitas = Number(visita[0].qtdVisitas);
+                    var qtdVisitas = Number(visita[0].qtdVisitas);  
                     qtdPostVisitado.innerHTML = qtdVisitas;
 
                     if (qtdVisitas <= 1) {
@@ -102,8 +102,15 @@ function obterDadosGraficoLinha() {
     var registrosSalvos = [];
     var dataAtual = new Date;
     var horaAtual = dataAtual.getHours();
+    var limiteRegistro = 0;
 
-    for (var contadorHora = horaAtual - 7; contadorHora <= horaAtual; contadorHora++) {
+    if(horaAtual < 7){
+        limiteRegistro = horaAtual;
+    } else {
+        limiteRegistro = horaAtual - 7;
+    }
+
+    for (var contadorHora = limiteRegistro; contadorHora <= horaAtual; contadorHora++) {
         if (contadorHora < 10) {
             var horaCom0 = "0" + contadorHora;
             contadorHora = horaCom0;
