@@ -1,6 +1,6 @@
-CREATE DATABASE BeautyCurls1;
+CREATE DATABASE BeautyCurls;
 
-DROP DATABASE BeautyCurls;
+--DROP DATABASE BeautyCurls;
 
 USE BeautyCurls1;
 
