@@ -43,7 +43,8 @@ function buscarCurtidaHoje(fkUsuario, hora){
     console.log("ACESSEI O ANALYTICS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarCurtidaHoje()", fkUsuario, hora);
     var instrucao = `
         SELECT COUNT(DISTINCT(Curtida.fkPostagem)) AS qtdCurtida, '${hora}:00:00' AS hrCurtida FROM Curtida
-            WHERE fkUsuario = ${fkUsuario} AND dtCurtida = CURRENT_DATE() AND hrCurtida LIKE '${hora}%';             
+            WHERE fkUsuario = ${fkUsuario} AND dtCurtida = CURRENT_DATE()
+             AND hrCurtida LIKE '${hora}%';             
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

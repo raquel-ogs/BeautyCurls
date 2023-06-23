@@ -393,4 +393,4 @@ window.onload = setTimeout(() => {
     obterDados();
     obterDadosGraficoLinha();
     obterDadosGraficoBarra();
-}, 100)
+}, 500)
