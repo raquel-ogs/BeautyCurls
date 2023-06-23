@@ -1,6 +1,8 @@
-CREATE DATABASE BeautyCurls;
+CREATE DATABASE BeautyCurls1;
 
-USE BeautyCurls;
+DROP DATABASE BeautyCurls;
+
+USE BeautyCurls1;
 
 CREATE TABLE fotoPerfil(
 idFotoPerfil int primary key auto_increment,
@@ -57,15 +59,16 @@ constraint fkFotoPerfil foreign key (fkFotoPerfil) references fotoPerfil(idFotoP
 -- constraint chkEmail check (email like '%@%')
 )auto_increment = 10;
 
-SELECT * FROM Usuario;
-
 INSERT INTO Usuario VALUES
 	(null, 'Elena', 'Lima', 'elena_lima', 'elena.lima@outlook.com', 'bananinha123', 7, 3),
 	(null, 'Carla', 'Gomes', 'carlaaaa_g', 'carlagomes0403@gmail.com', 'cerejinha123', 9, 2),
 	(null, 'Peter', 'Barros', 'peterSemPan', 'peterbarros123@gmail.com', 'laranjinha123', 4, 6),
 	(null, 'Ana', 'Beatriz', 'beatriz_anaa', 'aninha456@gmail.com', 'macazinha123', 6, 1),
-	(null, 'Lorenzo', 'Silva', 'lor_enzo', 'lorenzo987@gmail.com', 'goiabinha123', 5, 7);
-    
+	(null, 'Lorenzo', 'Silva', 'lor_enzo', 'lorenzo987@gmail.com', 'goiabinha123', 5, 7),
+	(null, 'Bruno', 'Fernandez', 'brunin_1', 'bruno012@gmail.com', 'caquizinho123', 9, 4);
+
+SELECT * FROM Usuario;
+
 CREATE TABLE Preferencia(
 idPreferencias int primary key auto_increment,
 creme varchar(45) not null,
@@ -74,7 +77,8 @@ acessorio varchar(45) not null,
 escova varchar(45) not null,
 pente varchar(45) not null,
 fkUsuario int,
-constraint fkUsuarioPreferencias foreign key (fkUsuario) references Usuario(idUsuario)
+constraint fkUsuarioPreferencias foreign key (fkUsuario) references Usuario(idUsuario),
+unique key (fkUsuario)
 ) auto_increment = 1000;
 
 INSERT INTO Preferencia VALUES
@@ -85,6 +89,8 @@ INSERT INTO Preferencia VALUES
 	(null, 'Dona Skala', 'Fitagem Estruturada', 'Bandana', 'Escova Polvo', 'Pente Finalizador', 14),
 	(null, '#Mais Cachos', 'Dedoliss', 'Boné', 'Escova Raquete', 'Pente Garfo', 15);
     
+SELECT * FROM Preferencia;
+
 CREATE TABLE Postagem(
 idPostagem int primary key auto_increment,
 titulo varchar(45),
@@ -93,15 +99,15 @@ urlImagem varchar(45),
 urlInspiracao varchar(45),
 categoria varchar(45),
 dtPostagem date,
-constraint chkCategoria check (categoria in ('Penteado' or 'Receita'))
+constraint chkCategoria check (categoria in ('Penteado', 'Receita'))
 )auto_increment = 1000;
 
 INSERT INTO Postagem VALUES
 	(null, 'Solto + Tiara Falsa', 
     'Esse penteado era muito usado por mim para disfarçar as partes que ainda tinham química do meu cabelo, é super prático de fazer e dá margem para outros tipos de penteados, por exemplo, um Rabo de Cavalo com a Tiara Fake.', 
     'http://localhost:3333/assets/raquel_4.png', 
+    'https://www.instagram.com/p/CJbRfkhhuwK/',
     'Penteado', 
-     'https://www.instagram.com/p/CJbRfkhhuwK/',
     '2023-05-19'),
     (null, 'PUFF + Baby Hair', 
     'Esse penteado é muito amado por cacheados e crespos, ainda mais com um baby hair viramos a 8ª maravilha do mundo haha.', 
@@ -145,7 +151,8 @@ INSERT INTO Postagem VALUES
 	'2023-05-27'),
 	(null, 'Soro Fisiológico', 
     'O soro deixa os fios mais hidratados, brilhosos e com menos frizz, por isso amo hidratar meus cachos com o produto.', 
-	'http://localhost:3333/assets/soro.png', 
+	'http://localhost:3333/assets/soro.png',
+	null,
 	'Receita',
 	'2023-06-02');
 
